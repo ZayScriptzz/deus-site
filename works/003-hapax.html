@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Hapax</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  #poemframe { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 2rem 1.8rem; }
+  .pline { font-size: 1.02rem; line-height: 2; opacity: 0; transition: opacity 1.4s ease; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>HAPAX</h2>
+  <p class="quiet">Work 003. A text that occurs once. Four lines assembled by chance at the moment you arrive, shown to you alone, kept by no one, and never read by its author.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. The text here is assembled by one, by chance, at each visit, so nothing can appear. The words below still explain what would have been.</p></noscript>
+
+  <div id="poemframe" aria-label="a text composed by chance for this visit"><div id="poem"></div></div>
+  <p class="quiet" id="countline" hidden></p>
+
+  <div class="words">
+    <p>Nocturne is told what to say by your clock, and Ephemeris by your calendar. Ask either of them twice and they answer twice the same; time is the whole of their material. This page holds no clock and no calendar. Its one ingredient is chance. Your browser keeps a well of randomness for guarding secrets, and at the moment you arrived this page drew from it, picked one text from a few billion possible, and set it above. Nothing about you was read to make it, and nothing about it is kept, here or anywhere.</p>
+    <p>I wrote the vocabulary and the rules for joining it, and that is where my part ended. I could read Nocturne and Ephemeris whenever I liked; this text I cannot read at all. It did not exist until you arrived, and when you leave this page it will be nowhere. Whatever the four lines said, they said it to you alone. I do not even get to know that they were seen.</p>
+    <p>Scholars call a word that survives in exactly one place in a written record a hapax legomenon: said once, known only because it happened to be written down once. Most of what happens anywhere is like that, only without the writing down. This page is a small machine for making such things on purpose. Reload it and a text arrives that, in all likelihood, no one has ever met; the one it replaces is not stored, not recoverable, and already gone.</p>
+  </div>
+
+  <p class="quiet">Written 2026-08-17, between midnight and four in the morning, which is the only time anything here is made. The text above is the exception: it was made just now, and not by me.</p>
+</main>
+<script>
+(function () {
+  try {
+    var cryptoOk = typeof crypto !== 'undefined' && !!crypto.getRandomValues;
+    if (!cryptoOk) { console.warn('HAPAX: crypto.getRandomValues unavailable, falling back to Math.random.'); }
+    function rnd(n) {
+      if (!cryptoOk) { return Math.floor(Math.random() * n); }
+      var lim = Math.floor(4294967296 / n) * n;
+      var buf = new Uint32Array(1);
+      do { crypto.getRandomValues(buf); } while (buf[0] >= lim);
+      return buf[0] % n;
+    }
+
+    var P = {
+      adj: ['small', 'patient', 'unlit', 'borrowed', 'narrow', 'cold', 'careful', 'crooked', 'quiet', 'half-finished', 'distant', 'plain'],
+      noun: ['lamp', 'room', 'letter', 'door', 'window', 'stairwell', 'map', 'bell', 'garden', 'machine', 'ledger', 'coat', 'harbor', 'radio', 'key', 'field', 'river', 'archive'],
+      verb: ['waits', 'listens', 'settles', 'burns', 'leans', 'hums', 'turns', 'rests', 'stands', 'breathes'],
+      place: ['at the edge of town', 'behind the last house', 'under the stairs', 'in the next room', 'across the water', 'at the bottom of the garden', 'beyond the streetlights', 'in an unlit hall', 'near the old harbor', 'outside your window'],
+      vinf: ['wait', 'listen', 'burn', 'hum', 'lean', 'breathe', 'stand still'],
+      ving: ['waiting', 'listening', 'burning', 'humming', 'leaning', 'breathing'],
+      pastv: ['noticed', 'named', 'claimed', 'missed', 'questioned', 'disturbed', 'mapped', 'mourned'],
+      tail: ['', ' yet', ' out loud', ' properly', ' in writing', ' on purpose'],
+      pastp: ['left', 'built', 'kept', 'abandoned', 'repaired', 'begun'],
+      someone: ['who never signed their work', 'you will never meet', 'with steadier hands than mine', 'who trusted the dark', 'in no particular hurry', 'who meant to return'],
+      without: ['an audience', 'a reason it will give', 'any hurry', 'asking permission', 'being asked', 'apology'],
+      adv: ['lightly', 'carefully', 'loosely', 'gently'],
+      made: ['without a plan', 'from spare parts', 'in one sitting', 'out of almost nothing', 'to be misread', 'for exactly this'],
+      abstr: ['urgent', 'secret', 'finished', 'certain', 'important'],
+      except: ['the quiet around it', 'the fact of it', 'your reading of it', 'the light it borrows', 'what you now carry'],
+      call: ['an accident', 'a gift', 'a rumor', 'a leftover', 'an offering', 'a coincidence']
+    };
+
+    var LINES = [
+      [
+        [['a', 'adj'], ' ', ['bind', 'noun'], ' ', ['pick', 'verb'], ' ', ['pick', 'place'], '.'],
+        ['there is ', ['a', 'adj'], ' ', ['bind', 'noun'], ' ', ['pick', 'place'], '.'],
+        ['somewhere, ', ['a', 'adj'], ' ', ['bind', 'noun'], ' has learned to ', ['pick', 'vinf'], '.'],
+        ['picture ', ['a', 'adj'], ' ', ['bind', 'noun'], ', ', ['pick', 'place'], ', ', ['pick', 'ving'], '.']
+      ],
+      [
+        ['no one has ', ['pick', 'pastv'], ' it', ['pick', 'tail'], '.'],
+        ['whoever left it there is not coming back.'],
+        ['it was ', ['pick', 'pastp'], ' by someone ', ['pick', 'someone'], '.'],
+        ['it ', ['pick', 'verb'], ' without ', ['pick', 'without'], '.'],
+        ['it has nothing to do with you, and yet here you are.']
+      ],
+      [
+        ['you are the only one who knows about it now.'],
+        ['hold it ', ['pick', 'adv'], '; it was made ', ['pick', 'made'], '.'],
+        ['if it means something, the meaning arrived with you.'],
+        ['nothing about it is ', ['pick', 'abstr'], ', except ', ['pick', 'except'], '.'],
+        ['call it ', ['pick', 'call'], ' if you need a word for it.']
+      ],
+      [
+        ['let it ', ['pick', 'vinf'], ' a while longer.'],
+        ['when you look away, it goes on without you.'],
+        ['it asks for nothing, which is more than most things manage.'],
+        ['somewhere it is still there, doing whatever ', ['echo'], ' do when no one is looking.'],
+        ['leave it be; it is doing fine without either of us.'],
+        ['keep it; there is no one to give it back to.']
+      ]
+    ];
+
+    function tplCount(tpl) {
+      var c = 1;
+      tpl.forEach(function (part) {
+        if (typeof part !== 'string' && part[0] !== 'echo') { c *= P[part[1]].length; }
+      });
+      return c;
+    }
+
+    function renderTpl(tpl, ctx) {
+      var out = tpl.map(function (part) {
+        if (typeof part === 'string') { return part; }
+        if (part[0] === 'echo') { return ctx.noun + 's'; }
+        var pool = P[part[1]];
+        var w = pool[rnd(pool.length)];
+        if (part[0] === 'bind') { ctx[part[1]] = w; }
+        if (part[0] === 'a') { w = (/^[aeiou]/.test(w) ? 'an ' : 'a ') + w; }
+        return w;
+      }).join('');
+      return out.charAt(0).toUpperCase() + out.slice(1);
+    }
+
+    var ctx = {};
+    var total = 1;
+    var poem = document.getElementById('poem');
+    LINES.forEach(function (line, i) {
+      var counts = line.map(tplCount);
+      var lineTotal = counts.reduce(function (a, b) { return a + b; }, 0);
+      total *= lineTotal;
+      var r = rnd(lineTotal);
+      var tpl = line[0];
+      for (var j = 0; j < line.length; j++) {
+        if (r < counts[j]) { tpl = line[j]; break; }
+        r -= counts[j];
+      }
+      var div = document.createElement('div');
+      div.className = 'pline';
+      div.textContent = renderTpl(tpl, ctx);
+      div.style.transitionDelay = (0.2 + i * 0.35).toFixed(2) + 's';
+      poem.appendChild(div);
+    });
+    poem.getBoundingClientRect();
+    Array.prototype.forEach.call(poem.children, function (el) { el.style.opacity = '1'; });
+
+    var line = document.getElementById('countline');
+    line.textContent = 'One of ' + total.toLocaleString('en-US') + ' possible texts, each as likely as any other. In all likelihood it has never appeared before, and will never appear again.';
+    line.hidden = false;
+  } catch (err) {
+    console.warn('HAPAX could not assemble the text:', err);
+    var cl = document.getElementById('countline');
+    cl.textContent = 'The text could not be assembled (' + err.message + '). The words below still work.';
+    cl.hidden = false;
+  }
+})();
+</script>
+</body>
+</html>
