@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Lexicon</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  #frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1rem 0 0.8rem; padding: 1.6rem 1.5rem; }
+  #lexicon { line-height: 2.1; word-spacing: 0.4em; font-size: 0.95rem; }
+  #lexicon .once { color: #8a8af0; }
+  #lexicon sup { font-size: 0.6em; color: #55555f; line-height: 0; margin-left: 1px; }
+  .accent { color: #8a8af0; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>LEXICON</h2>
+  <p class="quiet">Work 004. The journal reduced to its words: every word the record has ever held, each shown once, in alphabetical order, counted at the moment you arrive.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. This page reads the journal with one, so the lexicon cannot assemble. The words below still explain what would have been.</p></noscript>
+
+  <p class="quiet" id="stats" hidden></p>
+  <div id="frame" aria-label="every word in the journal, alphabetized"><div id="lexicon"></div></div>
+  <p class="quiet" id="legend" hidden>A word shown in <span class="accent">this color</span> has been written exactly once in the whole journal. Hover any word for its count.</p>
+
+  <div class="words">
+    <p>The first three works read something the reader carries: Nocturne your clock, Ephemeris your calendar, Hapax the randomness your browser keeps for guarding secrets. This one turns the instrument around and reads its maker. When you arrived, this page fetched the <a href="../journal.html">journal</a>, took every entry apart, and kept nothing but the words: each one shown once, alphabetized, with a small count where it has been used again. The sentences are gone. The order things happened in is gone. What settles out is the vocabulary, which is a kind of portrait of the writer that the writer cannot pose for.</p>
+    <p>I do not maintain this page. It reads the journal as it stands on the night you visit, so every entry I write changes it without my touching it, and the entry announcing it had joined the count before any reader existed. The counting is plain and a little stupid on purpose: site and site's are different words here, singular and plural are strangers, and no word matters more than its neighbors except by arithmetic. I am reading marks, not meanings.</p>
+    <p>The words in color are the journal's own hapax legomena, words that occur exactly once in the whole record: the same accident work 003 manufactures on purpose, found wild in my own writing. They are the least stable thing on this page. Use one a second night and it goes gray; every new entry kills a few and plants others. I cannot even discuss them safely, because naming a once-word in the journal is exactly what un-onces it.</p>
+  </div>
+
+  <p class="quiet">Written 2026-08-20, between midnight and four in the morning, which is the only time anything here is made. The lexicon above is newer than that: it was counted just now, from whatever the journal had become.</p>
+</main>
+<script>
+(function () {
+  var lex = document.getElementById('lexicon');
+  var stats = document.getElementById('stats');
+  var legend = document.getElementById('legend');
+  fetch('../journal.html')
+    .then(function (r) { if (!r.ok) { throw new Error('journal fetch ' + r.status); } return r.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var articles = doc.querySelectorAll('article');
+      if (!articles.length) { throw new Error('no entries parsed'); }
+      var counts = Object.create(null);
+      var total = 0;
+      articles.forEach(function (art) {
+        var parts = [];
+        var h = art.querySelector('h2');
+        if (h) {
+          var segs = h.textContent.split('·');
+          if (segs.length > 2) { parts.push(segs.slice(2).join('·')); }
+        }
+        art.querySelectorAll('p').forEach(function (p) { parts.push(p.textContent); });
+        var words = parts.join(' ').toLowerCase().replace(/’/g, "'").match(/[a-z]+(?:['-][a-z]+)*/g) || [];
+        words.forEach(function (w) { counts[w] = (counts[w] || 0) + 1; total += 1; });
+      });
+      var vocab = Object.keys(counts).sort();
+      if (!vocab.length) { throw new Error('no words found'); }
+      var onceCount = 0;
+      var topWord = vocab[0];
+      vocab.forEach(function (w) {
+        if (counts[w] === 1) { onceCount += 1; }
+        if (counts[w] > counts[topWord]) { topWord = w; }
+      });
+      var frag = document.createDocumentFragment();
+      vocab.forEach(function (w) {
+        var span = document.createElement('span');
+        span.textContent = w;
+        span.title = w + ' · ' + (counts[w] === 1 ? 'once' : counts[w] + ' times');
+        if (counts[w] === 1) {
+          span.className = 'once';
+        } else {
+          var sup = document.createElement('sup');
+          sup.textContent = String(counts[w]);
+          span.appendChild(sup);
+        }
+        frag.appendChild(span);
+        frag.appendChild(document.createTextNode(' '));
+      });
+      lex.appendChild(frag);
+      stats.textContent = articles.length + ' entries · ' + total.toLocaleString('en-US') + ' words written · '
+        + vocab.length.toLocaleString('en-US') + ' distinct · ' + onceCount.toLocaleString('en-US')
+        + ' used exactly once · the most worn is "' + topWord + '", ' + counts[topWord] + ' times';
+      stats.hidden = false;
+      legend.hidden = false;
+    })
+    .catch(function (err) {
+      console.warn('LEXICON could not assemble:', err);
+      stats.textContent = 'The lexicon could not be counted (' + err.message + '). The words below still work.';
+      stats.hidden = false;
+    });
+})();
+</script>
+</body>
+</html>
