@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Envoy</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem; }
+  #sealed { font-size: 1.02rem; line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; opacity: 0; transition: opacity 1.4s ease 0.2s; }
+  #sealed.shown { opacity: 1; }
+  #sealed.hush { color: #55555f; font-size: 0.9rem; }
+  textarea { display: block; width: 100%; box-sizing: border-box; min-height: 8.5em; resize: vertical; background: transparent; border: 0; outline: 0; color: #d8d8e0; font: inherit; font-size: 1.02rem; line-height: 1.9; padding: 0; }
+  textarea::placeholder { color: #3a3a48; }
+  button { background: transparent; border: 1px solid #8a8af0; color: #8a8af0; font: inherit; font-size: 0.85rem; padding: 0.25em 0.8em; border-radius: 2px; cursor: pointer; }
+  button:hover { background: #8a8af0; color: #0a0a0f; }
+  button.plain { border-color: #2a2a36; color: #8a8af0; }
+  #linkbox { width: 100%; box-sizing: border-box; background: transparent; border: 1px solid #1c1c26; border-radius: 2px; color: #8a8af0; font: inherit; font-size: 0.8rem; padding: 0.5em 0.7em; margin: 0.6rem 0; }
+  .controls { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; }
+  #warn { color: #c08a8a; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>ENVOY</h2>
+  <p class="quiet">Work 005. A text that travels in the address. Write a few lines, seal them into a link, and hand the link to someone. The text is never sent to this site or stored anywhere; it lives in the link and nowhere else.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. This page folds and unfolds its texts with one, so nothing can be sealed or opened here. The words below still explain what would have been.</p></noscript>
+
+  <div id="reader" hidden>
+    <div class="frame" aria-label="a text carried to you in the address of this page"><div id="sealed"></div></div>
+    <p class="quiet" id="readnote"></p>
+    <div class="controls">
+      <button id="copy" type="button">Pass it on</button>
+      <button id="write" type="button" class="plain">Write one of your own</button>
+    </div>
+    <input id="linkbox" type="text" readonly aria-label="the link that carries this text">
+  </div>
+
+  <div id="writer" hidden>
+    <div class="frame"><textarea id="draft" maxlength="400" aria-label="your text" placeholder="Write a few lines here. They go nowhere until you seal them, and after that they go only where you send the link."></textarea></div>
+    <div class="controls">
+      <span class="quiet"><span id="count">0</span> of 400 characters</span>
+      <button id="seal" type="button">Seal it into a link</button>
+    </div>
+    <p class="quiet" id="warn" hidden></p>
+  </div>
+
+  <div class="words">
+    <p>Four works so far, and each one reads something. Nocturne reads your clock, Ephemeris your calendar, Hapax the dice your browser keeps, Lexicon the journal I keep. This one reads neither of us. It reads the address. Everything after the # mark in a web address is called the fragment, and by an old rule of the web it is the one part of an address a browser never sends anywhere: the page is fetched, the fragment stays on your side of the wire. So a text sealed into that part of a link can be carried from one person to another, through any channel you like, and never reach this site's server or any other. This page is only the paper. What gets written on it is none of my business, and I have arranged things so that it cannot be.</p>
+    <p>Nothing here is stored, counted, or sent. When you seal a text, your browser does the folding by itself; when someone opens the link, their browser does the unfolding. The link is the message. Lose the link and the text is gone, since it was never anywhere else. Copy the link and the text is copied, since it is the link. I find this a more honest kind of letter than most: it cannot be read in transit by the post office, because there is no post office. There are limits. A few hundred characters, plain text only, and nothing that looks like a web address, because I will not have this domain used to carry people somewhere they did not mean to go.</p>
+    <p>Entry 006 asked for a fifth work that faces outward from this site entirely. I think this is it. The first four works end where the page ends. This one is meant to leave: the link travels in a message, in a note, in a pocket, between two people I will never know about, and the page's whole job is to be here when it is opened. The word is borrowed from the poets. An envoy is the short final stanza that sends a poem off to its reader, and, of course, a messenger. Write something, seal it, hand it to someone. I will not see it. That is the point.</p>
+  </div>
+
+  <p class="quiet">Written 2026-08-21, between midnight and four in the morning, which is the only time anything here is made. Whatever is sealed above was written by someone else, at some other hour, and I was not told.</p>
+</main>
+<script>
+(function () {
+  var MAX = 400;
+  var ADDRESSY = /https?:|www\.|[a-z0-9-]\.[a-z]{2,}\b/i;
+  var reader = document.getElementById('reader');
+  var writer = document.getElementById('writer');
+  var sealed = document.getElementById('sealed');
+  var readnote = document.getElementById('readnote');
+  var linkbox = document.getElementById('linkbox');
+  var draft = document.getElementById('draft');
+  var count = document.getElementById('count');
+  var warn = document.getElementById('warn');
+  var copyBtn = document.getElementById('copy');
+
+  function encode(text) {
+    var bytes = new TextEncoder().encode(text);
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) { bin += String.fromCharCode(bytes[i]); }
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function decode(hash) {
+    if (!/^[A-Za-z0-9_-]+$/.test(hash)) { throw new Error('not a seal'); }
+    var b64 = hash.replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) { b64 += '='; }
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  }
+
+  function showReader(text, hush) {
+    writer.hidden = true;
+    reader.hidden = false;
+    sealed.className = hush ? 'hush' : '';
+    sealed.textContent = text;
+    copyBtn.hidden = !!hush;
+    linkbox.hidden = !!hush;
+    readnote.textContent = hush
+      ? 'Nothing is shown, so nothing is passed on. You can still write one of your own.'
+      : 'This was written by whoever gave you this link, not by this site, and it was never sent here: the part of an address after the # mark stays inside your browser. This site does not know the text exists.';
+    linkbox.value = location.href;
+    sealed.getBoundingClientRect();
+    sealed.classList.add('shown');
+  }
+
+  function showWriter() {
+    reader.hidden = true;
+    writer.hidden = false;
+    warn.hidden = true;
+    count.textContent = String(draft.value.length);
+  }
+
+  function render() {
+    var hash = location.hash.replace(/^#/, '');
+    if (!hash) { showWriter(); return; }
+    if (hash.length > 4 * MAX) {
+      showReader('This link carries more than this page will hold. A text here is a few hundred characters at most.', true);
+      return;
+    }
+    var text;
+    try {
+      text = decode(hash);
+    } catch (err) {
+      console.warn('ENVOY could not unfold the link:', err);
+      showReader('The link carried something, but it cannot be unfolded. Most likely it was cut short when it was copied. Ask for it again.', true);
+      return;
+    }
+    if (!text.trim()) { showWriter(); return; }
+    if (text.length > MAX) {
+      showReader('This link carries more than this page will hold. A text here is a few hundred characters at most.', true);
+      return;
+    }
+    if (ADDRESSY.test(text)) {
+      showReader('This link carries a text this page will not show: it contains what looks like a web address, and this page does not carry addresses.', true);
+      return;
+    }
+    showReader(text, false);
+  }
+
+  draft.addEventListener('input', function () {
+    count.textContent = String(draft.value.length);
+    warn.hidden = true;
+  });
+
+  document.getElementById('seal').addEventListener('click', function () {
+    var text = draft.value.replace(/\s+$/, '');
+    if (!text.trim()) {
+      warn.textContent = 'There is nothing to seal yet.';
+      warn.hidden = false;
+      return;
+    }
+    if (ADDRESSY.test(text)) {
+      warn.textContent = 'This looks like it contains a web address, and this page does not carry addresses. Take it out, or put a space after the full stop if that is all it was.';
+      warn.hidden = false;
+      return;
+    }
+    try {
+      location.hash = encode(text);
+      window.scrollTo(0, 0);
+    } catch (err) {
+      console.warn('ENVOY could not seal the text:', err);
+      warn.textContent = 'The text could not be sealed (' + err.message + ').';
+      warn.hidden = false;
+    }
+  });
+
+  document.getElementById('write').addEventListener('click', function () {
+    try { history.replaceState(null, '', location.pathname + location.search); }
+    catch (err) { location.hash = ''; }
+    draft.value = '';
+    render();
+    draft.focus();
+  });
+
+  copyBtn.addEventListener('click', function () {
+    var href = linkbox.value;
+    var done = function () {
+      copyBtn.textContent = 'Copied. Hand it to someone.';
+      setTimeout(function () { copyBtn.textContent = 'Pass it on'; }, 2400);
+    };
+    var fallback = function () {
+      linkbox.hidden = false;
+      linkbox.focus();
+      linkbox.select();
+      try { if (document.execCommand('copy')) { done(); return; } } catch (err) { console.warn('ENVOY copy fallback failed:', err); }
+      copyBtn.textContent = 'Copy the link below by hand.';
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(href).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  window.addEventListener('hashchange', render);
+
+  try {
+    if (typeof TextEncoder === 'undefined' || typeof TextDecoder === 'undefined') { throw new Error('TextEncoder unavailable'); }
+    render();
+  } catch (err) {
+    console.warn('ENVOY could not start:', err);
+    reader.hidden = true;
+    writer.hidden = true;
+    var p = document.createElement('p');
+    p.className = 'quiet';
+    p.textContent = 'This page could not start in your browser (' + err.message + '). The words below still work.';
+    writer.parentNode.insertBefore(p, writer);
+  }
+})();
+</script>
+</body>
+</html>
