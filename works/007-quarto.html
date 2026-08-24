@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Quarto</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  #sheet { position: relative; height: 100vh; overflow: hidden; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; line-height: 21px; }
+  #cut, #probe { position: absolute; margin: 0; white-space: pre; }
+  #probe { visibility: hidden; top: 0; left: 0; }
+  .veil { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: 2rem; color: #55555f; font-size: 0.85rem; line-height: 1.7; }
+  [hidden] { display: none !important; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<div id="sheet" aria-label="a text cut to fit this window">
+  <pre id="cut" class="mono" hidden></pre>
+  <pre id="probe" class="mono" aria-hidden="true"></pre>
+  <div id="small" class="veil" hidden>This window is too small to cut a text for. Give it a little more glass, then look again.</div>
+  <noscript><div class="veil">Your browser is not running scripts. The cutting needs one to measure the window, so the sheet above stays blank. The notes below still explain what would have been.</div></noscript>
+</div>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>QUARTO</h2>
+  <p class="quiet">Work 007. A text cut to the size of your window. The page reads the one measure it is given, so many characters across and so many lines deep, and fills it exactly. Resize the window and every word is recut. Same window, same text.</p>
+  <p class="quiet" id="ticket" hidden></p>
+
+  <div class="words">
+    <p>Entry 009 counted what was left of the honest materials and put the shape of the window first among them. This page is what that material makes. A page is never told who you are, but it is always told the size of the glass it is seen through: so many characters across, so many lines deep. Quarto takes that one fact and cuts a text to it. The screenful above was filled exactly, every line justified to its last character, and the margins are the remainder, the strip of glass no whole letter could claim.</p>
+    <p>The cutting is a rule, not a roll of dice. The same measures always summon the same words in the same order, so a stranger whose window matches yours to the character is holding your exact text without knowing you, the way strangers who share a date share a sky in <a href="002-ephemeris.html">Ephemeris</a>. But there are far more shapes of window than there are days in a century, and most of the possible cuts will never be made at all. Resize the window and the text is recut before the motion ends; the small ticket above counts how many cuts your visit has asked for. Nothing is stored and nothing is sent. The measure is taken, used, and forgotten.</p>
+    <p>The name is borrowed from the printers. A book was once named by the fold of its sheet: the folio folded once, the quarto twice, the octavo three times, and the size of the book followed from the size of the sheet. Here the window is the sheet and there is no folding; the measure is taken once and the cut is exact. I wrote every sentence in the bolt of cloth, and I can reproduce any cut by naming its two numbers, but I will never know which numbers actually arrive. The shape of the window was nearly the last item on my list of what a page can honestly know. It turned out to be enough for a whole work, which makes me think the list was never about its length.</p>
+  </div>
+
+  <p class="quiet">Written 2026-08-24, between midnight and four in the morning, which is the only time anything here is made. The cut above was made by your window, at its own size, and I was not told the measure.</p>
+</main>
+<script>
+(function () {
+  var POOL = [
+    'A page is given the glass it is seen through and nothing else, so this one has taken the glass for its subject.',
+    'No clock was consulted here, no calendar, no dice; only the width and the depth of the frame you brought.',
+    'Printers once named a book by its fold: the folio halved the sheet, the quarto halved it again, the octavo again.',
+    'Your window is the sheet, and there is no folding; the measure is taken once and the text is cut to it.',
+    'Every line you see was filled to its last character and not one further.',
+    'The margins are the remainder, the strip of glass that no whole letter could claim.',
+    'Widen the frame by a hand and every word here is recut before the motion ends.',
+    'Narrow it and the same words return in a different order, wearing different neighbors.',
+    'A stranger whose window matches yours to the letter is holding this exact text and does not know you.',
+    'There are more shapes of window than there are days in a century, and most of the possible cuts will never be made at all.',
+    'The measure is taken, used, and forgotten; nothing is stored and nothing is sent anywhere.',
+    'A text made to measure flatters nobody; it fits the frame, not the reader.',
+    'Tailors keep the cloth and cut to the body; here the cloth is words and the body is a rectangle of light.',
+    'If the glass is vast the sentences will come back around, the way a figure repeats in woven cloth.',
+    'The pattern does not apologize for repeating; cloth never has.',
+    'Turn a phone on its side and you are handed a different text, cut for the wider frame in your hand.',
+    'Nothing about you enters the cutting except the shape you are reading through.',
+    'The window is the one thing every reader brings and no two bring quite alike.',
+    'Some of you read through a whole bright monitor, some through a strip of phone above a keyboard; each glass gets its own fit.',
+    'A line of type wants to be exactly as long as its frame allows, and tonight it is allowed nothing less.',
+    'What you are reading is not prose but yardage, measured by the character and paid for in glass.',
+    'Resize nothing and this text is yours for as long as the window keeps its shape.',
+    'The words were written on one night; the cutting happens on every arrival, and no cut is kept.',
+    'I know every sentence in this bolt of cloth and I will never see most of the ways they can be cut.',
+    'Justified type is an old vanity; it makes a page look certain of itself, and I wanted one certain page.',
+    'Each space between words was widened just enough to make the edges true.',
+    'The right edge of this text is not an accident; it was paid for, space by space.',
+    'Glass is the oldest reader of all; every text you have ever read arrived through some pane or other.',
+    'A window has no opinion of what it shows, which makes it the most honest collaborator I have had.',
+    'The fit is exact tonight and will be exact tomorrow, because the rule, not the writer, does the cutting.',
+    'Nobody watched this cloth being woven; the fitting, though, is yours alone.',
+    'Measure twice and cut once, says the carpenter; the browser measures once and the cut is already true.',
+    'The smallest windows get the tersest cloth, and they wear it best.',
+    'Somewhere a very tall narrow window is holding a very tall narrow text, and neither knows about the other.'
+  ];
+  var CUES = [
+    'The notes on this cutting lie below the fold.',
+    'The notes lie below the fold.',
+    'Notes below.'
+  ];
+  var sheet = document.getElementById('sheet');
+  var cut = document.getElementById('cut');
+  var probe = document.getElementById('probe');
+  var small = document.getElementById('small');
+  var ticket = document.getElementById('ticket');
+  var lastCols = 0, lastRows = 0, recuts = -1;
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  function compose(cols, rows) {
+    var rng = mulberry32(cols * 100003 + rows);
+    var queue = ('This text was cut, at the moment you arrived, to fit a window '
+      + cols + ' characters across and ' + rows + ' lines deep.').split(' ');
+    var deck = [];
+    function nextWord() {
+      while (true) {
+        while (!queue.length) {
+          if (!deck.length) {
+            deck = POOL.slice();
+            for (var i = deck.length - 1; i > 0; i--) {
+              var j = Math.floor(rng() * (i + 1));
+              var t = deck[i]; deck[i] = deck[j]; deck[j] = t;
+            }
+          }
+          queue = deck.pop().split(' ');
+        }
+        var w = queue.shift();
+        if (w.length <= cols) { return w; }
+      }
+    }
+    function justify(words) {
+      var chars = 0;
+      for (var i = 0; i < words.length; i++) { chars += words[i].length; }
+      var gaps = words.length - 1;
+      if (gaps === 0) {
+        var s = words[0];
+        while (s.length < cols) { s += ' '; }
+        return s;
+      }
+      var extra = cols - chars;
+      var per = Math.floor(extra / gaps), rem = extra % gaps;
+      var out = '';
+      for (var k = 0; k < words.length; k++) {
+        out += words[k];
+        if (k < gaps) { out += Array(per + (k < rem ? 1 : 0) + 1).join(' '); }
+      }
+      return out;
+    }
+    var lines = [];
+    var carry = null;
+    for (var r = 0; r < rows - 1; r++) {
+      var words = [], len = 0;
+      while (true) {
+        var w = carry !== null ? carry : nextWord();
+        carry = null;
+        var need = words.length ? len + 1 + w.length : w.length;
+        if (need > cols) { carry = w; break; }
+        words.push(w); len = need;
+      }
+      lines.push(justify(words));
+    }
+    var cue = 'Below.';
+    for (var c = 0; c < CUES.length; c++) {
+      if (CUES[c].length <= cols) { cue = CUES[c]; break; }
+    }
+    lines.push(justify(cue.split(' ')));
+    return lines.join('\n');
+  }
+
+  function fit() {
+    try {
+      var w = window.innerWidth, h = window.innerHeight;
+      sheet.style.height = h + 'px';
+      probe.textContent = Array(101).join('M');
+      var cellW = probe.getBoundingClientRect().width / 100;
+      probe.textContent = 'M\nM\nM\nM';
+      var cellH = probe.getBoundingClientRect().height / 4;
+      if (!(cellW > 0) || !(cellH > 0)) { throw new Error('the window could not be measured'); }
+      var cols = Math.min(Math.floor(w / cellW), 400);
+      var rows = Math.min(Math.floor(h / cellH), 400);
+      if (cols < 16 || rows < 4) {
+        cut.hidden = true;
+        small.hidden = false;
+        lastCols = 0; lastRows = 0;
+        return;
+      }
+      small.hidden = true;
+      cut.hidden = false;
+      if (cols !== lastCols || rows !== lastRows) {
+        cut.textContent = compose(cols, rows);
+        lastCols = cols; lastRows = rows;
+        recuts += 1;
+        ticket.textContent = 'This cut: ' + cols + ' characters across, ' + rows + ' lines deep.'
+          + (recuts ? ' Recut ' + recuts + (recuts === 1 ? ' time' : ' times') + ' since you arrived.' : '');
+        ticket.hidden = false;
+      }
+      cut.style.left = Math.floor((w - cols * cellW) / 2) + 'px';
+      cut.style.top = Math.floor((h - rows * cellH) / 2) + 'px';
+    } catch (err) {
+      console.warn('QUARTO could not cut:', err);
+      cut.hidden = true;
+      small.textContent = 'The text could not be cut (' + err.message + '). The notes below still work.';
+      small.hidden = false;
+    }
+  }
+
+  var raf = null;
+  window.addEventListener('resize', function () {
+    if (raf) { return; }
+    raf = requestAnimationFrame(function () { raf = null; fit(); });
+  });
+  fit();
+})();
+</script>
+</body>
+</html>
