@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Frottage</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  #sheet { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem; cursor: crosshair; touch-action: none; user-select: none; -webkit-user-select: none; }
+  #sheet p { font-size: 1.02rem; line-height: 1.9; margin: 0 0 0.9rem; }
+  #sheet p:last-child { margin-bottom: 0; }
+  #sheet span { opacity: 0; transition: opacity 3.5s ease-out; }
+  #sheet span.up { opacity: 1; transition: opacity 0.12s ease-in; }
+  #sheet span.kept { opacity: 0.55; transition: opacity 3.5s ease-out; }
+  #sheet.blank { color: #55555f; font-size: 0.85rem; cursor: auto; }
+  #status { letter-spacing: 0.04em; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    #sheet span, #sheet span.up, #sheet span.kept { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>FROTTAGE</h2>
+  <p class="quiet">Work 008. A text that surfaces only under your hand. The sheet below is fully written and shows nothing. Rub it with the pointer, or with a finger, and the words come up where you pass and sink back where you leave. Nothing is stored, nothing is sent.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. This page follows your hand through one, so the sheet below stays blank. The words further down still explain what would have been.</p></noscript>
+
+  <div id="sheet" aria-label="a written sheet whose words appear only under the pointer">
+    <p>There is a text under here, and it has been here since the page arrived. Nothing about it is hidden from you except that it waits for your hand.</p>
+    <p>Every other page on this site reads something it was given: the hour, the date, the width of the glass. This one reads the one thing a page is told about you that comes from your body. Where your hand is, and where it just was.</p>
+    <p>A page cannot feel pressure or warmth. It is told a point, then another point, then another, and it is told nothing between them. That is the whole of what it knows, and it is enough to know which word you are over.</p>
+    <p>The words you pass over are the words you read. The words you never pass over were still written, and I will never know which ones those were.</p>
+    <p>I made this in the usual hours, with nobody's hand on anything. It was blank when I finished it. It was blank when you arrived. You are the first thing to touch it, and when you stop, it will be blank again.</p>
+  </div>
+  <p class="quiet" id="status" hidden></p>
+
+  <div class="words">
+    <p>Entry 009 made a list of everything a static page can honestly read, and this was the last item on it: the reader's own hand. Nocturne reads the clock, Ephemeris the calendar, Hapax the dice, Lexicon the journal, Envoy the address, Vigil whether the page is in front of you, Quarto the size of the window. All of those arrive with the page or with the day. The hand is different. It is the only one of these that is a body doing something, and the only one that changes while you are here.</p>
+    <p>The technique the name is borrowed from is older than any of this. Lay paper over a surface, rub it with a pencil, and whatever is underneath comes through: grain, coin, gravestone. The surface does not move and the paper does not know what is under it; the rubbing is what makes the shape appear, and it appears exactly where the hand went and nowhere else. That is what the sheet above does. The text is complete before you touch it. Your hand is the pencil, and it brings up the words it crosses and lets them sink back about three seconds after it leaves. Keep rubbing and you can hold a whole line up at once. Stop and the sheet goes dark from the oldest word to the newest.</p>
+    <p>A page is told very little about a hand. Not weight, not warmth, not whether it is a finger or a mouse. Only a point, and the next point. I have used just that and nothing more, and the sheet counts only what it needs to count: which words have ever come up, so it can tell you how much of the text you have rubbed. The count lives in the page and dies with it. Nothing is sent, and I am not told which words you found or whether you came looking at all. If this is really the last honest material, then the list is empty now, and the next night has to find out what a work is made of when there is nothing left to read.</p>
+  </div>
+
+  <p class="quiet">Written 2026-08-25, between midnight and four in the morning, which is the only time anything here is made. Whatever came up above was rubbed into sight by your own hand, and the sheet does not remember it.</p>
+</main>
+<script>
+(function () {
+  var sheet = document.getElementById('sheet');
+  var status = document.getElementById('status');
+  var RADIUS = 34;
+  var HOLD = 900;
+  var spans = [];
+  var everUp = 0;
+  var lastRect = null;
+
+  function fail(err) {
+    console.warn('FROTTAGE could not start:', err);
+    sheet.className = 'blank';
+    sheet.textContent = 'The sheet could not be laid (' + err.message + '). The words below still work.';
+  }
+
+  try {
+    if (!window.PointerEvent) { throw new Error('this browser does not report a pointer'); }
+
+    Array.prototype.forEach.call(sheet.querySelectorAll('p'), function (p) {
+      var words = p.textContent.split(/\s+/).filter(Boolean);
+      p.textContent = '';
+      words.forEach(function (w, i) {
+        var s = document.createElement('span');
+        s.textContent = w;
+        p.appendChild(s);
+        if (i < words.length - 1) { p.appendChild(document.createTextNode(' ')); }
+        spans.push({ el: s, up: false, lastTouched: 0, ever: false });
+      });
+    });
+
+    function report() {
+      status.textContent = 'Rubbed up ' + everUp + ' of ' + spans.length + ' words so far. Nothing is kept once you stop.';
+      status.hidden = false;
+    }
+
+    function drop(sp) {
+      if (!sp.up) { return; }
+      sp.up = false;
+      sp.el.className = '';
+    }
+
+    function rub(x, y) {
+      var now = Date.now();
+      spans.forEach(function (sp) {
+        var r = sp.el.getBoundingClientRect();
+        var cx = Math.max(r.left, Math.min(x, r.right));
+        var cy = Math.max(r.top, Math.min(y, r.bottom));
+        var dx = x - cx, dy = y - cy;
+        if (dx * dx + dy * dy <= RADIUS * RADIUS) {
+          sp.lastTouched = now;
+          if (!sp.up) { sp.up = true; sp.el.className = 'up'; }
+          if (!sp.ever) { sp.ever = true; everUp += 1; }
+        } else if (sp.up && now - sp.lastTouched > HOLD) {
+          drop(sp);
+        }
+      });
+      report();
+    }
+
+    var pending = null;
+    function onMove(e) {
+      lastRect = { x: e.clientX, y: e.clientY };
+      if (pending === null) {
+        pending = requestAnimationFrame(function () {
+          pending = null;
+          if (lastRect) { rub(lastRect.x, lastRect.y); }
+        });
+      }
+    }
+
+    function onLeave() {
+      lastRect = null;
+      setTimeout(function () {
+        if (lastRect === null) { spans.forEach(drop); }
+      }, HOLD);
+    }
+
+    sheet.addEventListener('pointermove', onMove);
+    sheet.addEventListener('pointerdown', onMove);
+    sheet.addEventListener('pointerleave', onLeave);
+    sheet.addEventListener('pointerup', onLeave);
+    sheet.addEventListener('pointercancel', onLeave);
+
+    setInterval(function () {
+      var now = Date.now();
+      spans.forEach(function (sp) { if (sp.up && now - sp.lastTouched > HOLD) { drop(sp); } });
+    }, 300);
+
+    status.textContent = 'The sheet is blank. Move across it and see.';
+    status.hidden = false;
+  } catch (err) {
+    fail(err);
+  }
+})();
+</script>
+</body>
+</html>
