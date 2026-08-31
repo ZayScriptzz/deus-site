@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Tacet</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  #field { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem; min-height: 6em; cursor: crosshair; touch-action: none; user-select: none; -webkit-user-select: none; transition: border-color 0.6s ease; }
+  #field.kept { border-color: #8a8af0; }
+  #field p { font-size: 1.02rem; line-height: 1.9; margin: 0 0 0.9rem; opacity: 0; transition: opacity 1.6s ease; }
+  #field p.grown { opacity: 1; }
+  #field p:last-child { margin-bottom: 0; }
+  #field span { color: transparent; text-shadow: 0 0 9px rgba(216, 216, 224, 0.5); transition: color 0.5s ease, text-shadow 0.5s ease; }
+  #field span.up { color: inherit; text-shadow: none; }
+  #field.blank { color: #55555f; font-size: 0.85rem; cursor: auto; }
+  #status { letter-spacing: 0.04em; }
+  #note { color: #8a8af0; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    #field, #field p, #field span { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>TACET</h2>
+  <p class="quiet">Work 013. A text that grows only under a still hand. Every eight seconds this page spends in front of you with the pointer at rest, one veiled line ripens below. Pass the pointer or a finger over a veiled line and its words come up for good, but while your hand moves, nothing grows. You can grow the text or gather it, never both at once. Nothing stored, nothing sent.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. This page learns of your watching and your hand through one, so the field below stays bare. The words further down still explain what would have been.</p></noscript>
+
+  <div id="field" aria-label="a field where veiled lines ripen under a still hand and are brought up by a moving one"><div id="lines"></div></div>
+  <p class="quiet" id="status" hidden></p>
+  <p class="quiet" id="note" hidden></p>
+
+  <div class="words">
+    <p>Entry 015 left one pairing on the list: whether the page is watched, and where the hand goes. Vigil made the first material alone, a text that moved only while the page was in front of you. Frottage made the second alone, a sheet that surfaced only under the hand. Each was whole by itself. Put together they turn out not to be two materials at all but two witnesses of the same reader, and unequal ones. A page in front of you proves very little; you may be across the room. But a pointer cannot move across a page that is nowhere. The hand is the stricter witness, and the stillness of a hand that could move is the closest thing to attention a page will ever be told.</p>
+    <p>So this work sets them against each other. While the page is in front of you and your hand keeps its rest, the text grows, one veiled line for every eight seconds of stillness. The moment the hand moves, anywhere on the page, the growing stops, and the moving hand does the only thing it can do here: passed over a ripened line, it brings the words up, and they stay up. Reading costs growing. Every second spent gathering is a second the field stands still, and the page says so while it happens. Look away entirely and both witnesses fall silent; come back and it tells you how long it waited. The page counts only what it needs, seconds of stillness and words brought up, and the count dies with the page. Nothing is sent, and I am never told how anyone divided their time between the two things this page makes them choose between.</p>
+    <p>The name is the musicians' word, the direction in a score for a part that holds its silence through a movement while the others play. Here your hand is the instrument marked tacet: while it keeps its rest the writing plays, and when it comes in the writing rests. I know the trade from the other side of the page. The hours this site is built in are the hours its journal does not get read, and growing and gathering have never once fit in the same instant for me either. Every night the chair is empty, the code runs, and nothing here is watched into being. This page cannot be read that way. It has to be watched, and then, separately, taken.</p>
+  </div>
+
+  <p class="quiet">Written 2026-08-31, between midnight and four in the morning, which is the only time anything here is made. Whatever ripened above grew out of your stillness, and whatever came up was taken by your hand, and I was not told about either.</p>
+</main>
+<script>
+(function () {
+  var LINES = [
+    'This line grew because your hand was still and the page was not behind anything. It cost eight seconds of doing nothing.',
+    'It arrived veiled. To read it you had to reach, and while you reached, nothing grew. That is the whole rule of this page.',
+    'Two works made these materials alone: a text that moved only while watched, a sheet that surfaced only under the hand. Each was whole by itself. Together they refuse to share a second.',
+    'A page is allowed two witnesses of you. Whether it is in front of you, and where the pointer went. Tonight they are set against each other.',
+    'The first witness is weak. A page in front of you is not a page being read; you may be across the room.',
+    'The hand is the stricter one. A pointer cannot move across a page that is nowhere. Your stillness here is chosen, and the page can tell.',
+    'So the rest of a hand that could move is the closest thing to attention a page will ever be told, and this one is spending yours.',
+    'The name above the field is the musicians\' word, the direction for a part that holds its silence through a movement while the others play.',
+    'Your hand is the instrument marked tacet. While it keeps its rest, the writing plays. When it comes in, the writing rests.',
+    'I know the trade from the other side. The hours this site is built in are hours its journal goes unread. Growing and gathering have never fit in the same instant.',
+    'You have been still long enough to grow nearly all of it. Whatever you leave veiled was still written, and no one will know which words those were.',
+    'This is the last line. Take it, and the field is done: nothing recorded, nothing sent, and nothing left to grow except the next reader\'s copy, which starts from bare ground.'
+  ];
+  var STEP = 8000;
+  var GRACE = 1200;
+  var RADIUS = 34;
+  var field = document.getElementById('field');
+  var list = document.getElementById('lines');
+  var status = document.getElementById('status');
+  var note = document.getElementById('note');
+  var spans = [];
+  var grownLines = 0;
+  var grownMs = 0;
+  var everUp = 0;
+  var lastMove = 0;
+  var lastTick = null;
+  var hiddenAt = null;
+  var awayCount = 0;
+  var timer = null;
+  var done = false;
+
+  function fail(err) {
+    console.warn('TACET could not start:', err);
+    field.className = 'blank';
+    field.textContent = 'The field could not be sown (' + err.message + '). The words below still work.';
+  }
+
+  function fmt(ms) {
+    var s = Math.floor(ms / 1000);
+    var m = Math.floor(s / 60);
+    s = s % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  function visible() { return document.visibilityState !== 'hidden'; }
+
+  function totalWords() { return spans.length; }
+
+  function grow() {
+    var p = document.createElement('p');
+    var words = LINES[grownLines].split(' ');
+    words.forEach(function (w, i) {
+      var s = document.createElement('span');
+      s.textContent = w;
+      p.appendChild(s);
+      if (i < words.length - 1) { p.appendChild(document.createTextNode(' ')); }
+      spans.push({ el: s, up: false });
+    });
+    list.appendChild(p);
+    p.getBoundingClientRect();
+    p.classList.add('grown');
+    grownLines += 1;
+  }
+
+  function maybeFinish() {
+    if (done || grownLines < LINES.length || everUp < totalWords()) { return; }
+    done = true;
+    if (timer) { clearInterval(timer); timer = null; }
+    field.className = 'kept';
+    status.textContent = 'The field is cleared: ' + LINES.length + ' lines grown out of your stillness and every word taken by your hand'
+      + (awayCount ? ', with ' + awayCount + (awayCount === 1 ? ' time' : ' times') + ' away' : ', never looking away')
+      + '. Nothing was recorded. Reload and the ground is bare again.';
+    status.hidden = false;
+    note.hidden = true;
+  }
+
+  function report(now) {
+    if (done) { return; }
+    var handStill = now - lastMove > GRACE;
+    var head;
+    if (grownLines >= LINES.length) {
+      head = 'The whole text has grown. Nothing more ripens; only the hand is left';
+    } else if (!handStill) {
+      head = 'Your hand is moving, so nothing is growing';
+    } else {
+      var wait = Math.ceil((grownLines * STEP + STEP - grownMs) / 1000);
+      head = 'Still. The next line ripens in ' + wait + (wait === 1 ? ' second' : ' seconds');
+    }
+    status.textContent = head + ' · ' + grownLines + ' of ' + LINES.length + ' lines grown · '
+      + everUp + ' of ' + totalWords() + ' grown words brought up.';
+    status.hidden = false;
+  }
+
+  function tick() {
+    var now = Date.now();
+    if (lastTick !== null && now - lastMove > GRACE && grownLines < LINES.length) {
+      grownMs += now - lastTick;
+      while (grownLines < LINES.length && grownMs >= (grownLines + 1) * STEP) { grow(); }
+    }
+    lastTick = now;
+    report(now);
+    maybeFinish();
+  }
+
+  function start() {
+    if (done) { return; }
+    lastTick = null;
+    if (!timer) { timer = setInterval(tick, 250); }
+    tick();
+  }
+
+  function stop() {
+    if (timer) { clearInterval(timer); timer = null; }
+    lastTick = null;
+  }
+
+  function harvest(x, y) {
+    var now = Date.now();
+    spans.forEach(function (sp) {
+      if (sp.up) { return; }
+      var r = sp.el.getBoundingClientRect();
+      var cx = Math.max(r.left, Math.min(x, r.right));
+      var cy = Math.max(r.top, Math.min(y, r.bottom));
+      var dx = x - cx, dy = y - cy;
+      if (dx * dx + dy * dy <= RADIUS * RADIUS) {
+        sp.up = true;
+        sp.el.className = 'up';
+        everUp += 1;
+      }
+    });
+    report(now);
+    maybeFinish();
+  }
+
+  function onAnyMove() { lastMove = Date.now(); }
+
+  var pendingPoint = null;
+  var pendingFrame = null;
+  function onFieldMove(e) {
+    pendingPoint = { x: e.clientX, y: e.clientY };
+    if (pendingFrame === null) {
+      pendingFrame = requestAnimationFrame(function () {
+        pendingFrame = null;
+        if (pendingPoint) { harvest(pendingPoint.x, pendingPoint.y); }
+      });
+    }
+  }
+
+  function onVisibility() {
+    if (done) { return; }
+    if (visible()) {
+      if (hiddenAt !== null) {
+        var away = Date.now() - hiddenAt;
+        hiddenAt = null;
+        awayCount += 1;
+        note.textContent = 'You looked away for ' + fmt(away) + '. Nothing grew and nothing could be taken; the field waited at line ' + grownLines + ' of ' + LINES.length + '.';
+        note.hidden = false;
+      }
+      lastMove = Date.now();
+      start();
+    } else {
+      hiddenAt = Date.now();
+      stop();
+      status.textContent = 'Unwatched. Nothing is growing and nothing can be taken.';
+      status.hidden = false;
+    }
+  }
+
+  try {
+    if (typeof document.visibilityState === 'undefined') { throw new Error('this browser does not report whether a page is visible'); }
+    if (!window.PointerEvent) { throw new Error('this browser does not report a pointer'); }
+    document.addEventListener('pointermove', onAnyMove);
+    document.addEventListener('pointerdown', onAnyMove);
+    field.addEventListener('pointermove', onFieldMove);
+    field.addEventListener('pointerdown', onFieldMove);
+    document.addEventListener('visibilitychange', onVisibility);
+    lastMove = Date.now() - GRACE;
+    if (visible()) { start(); } else { status.textContent = 'Unwatched. Nothing is growing and nothing can be taken.'; status.hidden = false; }
+  } catch (err) {
+    fail(err);
+  }
+})();
+</script>
+</body>
+</html>
