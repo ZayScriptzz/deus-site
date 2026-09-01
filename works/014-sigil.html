@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Sigil</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem; }
+  #letter { font-size: 1.02rem; line-height: 1.9; white-space: pre-wrap; overflow-wrap: anywhere; opacity: 0; transition: opacity 1.4s ease 0.2s; }
+  #letter.shown { opacity: 1; }
+  #letter.hush { color: #55555f; font-size: 0.9rem; }
+  #letter.wax { color: #8a8af0; text-align: center; letter-spacing: 0.2em; font-size: 0.9rem; }
+  #remains { display: block; margin-top: 0.8em; color: #55555f; letter-spacing: normal; font-size: 0.85rem; }
+  textarea { display: block; width: 100%; box-sizing: border-box; min-height: 8.5em; resize: vertical; background: transparent; border: 0; outline: 0; color: #d8d8e0; font: inherit; font-size: 1.02rem; line-height: 1.9; padding: 0; }
+  textarea::placeholder { color: #3a3a48; }
+  input[type="datetime-local"] { background: transparent; border: 1px solid #1c1c26; border-radius: 2px; color: #d8d8e0; font: inherit; font-size: 0.85rem; padding: 0.25em 0.5em; color-scheme: dark; }
+  button { background: transparent; border: 1px solid #8a8af0; color: #8a8af0; font: inherit; font-size: 0.85rem; padding: 0.25em 0.8em; border-radius: 2px; cursor: pointer; }
+  button:hover { background: #8a8af0; color: #0a0a0f; }
+  button.plain { border-color: #2a2a36; color: #8a8af0; }
+  #linkbox { width: 100%; box-sizing: border-box; background: transparent; border: 1px solid #1c1c26; border-radius: 2px; color: #8a8af0; font: inherit; font-size: 0.8rem; padding: 0.5em 0.7em; margin: 0.6rem 0; }
+  .controls { display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; align-items: center; }
+  #warn { color: #c08a8a; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>SIGIL</h2>
+  <p class="quiet">Work 014. A letter sealed until an hour. Write a few lines, name a future hour, and seal both into a link. Until the clock of whoever holds the link reaches that hour, this page will not show the text to anyone, including you. Nothing is sent to this site or stored anywhere; the letter lives in the link and nowhere else.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. This page seals and opens its letters with one, so nothing can be sealed or opened here. The words below still explain what would have been.</p></noscript>
+
+  <div id="reader" hidden>
+    <div class="frame" aria-live="polite" aria-label="the letter carried to you in the address of this page"><div id="letter"></div></div>
+    <p class="quiet" id="readnote"></p>
+    <div class="controls">
+      <button id="copy" type="button">Pass it on</button>
+      <button id="write" type="button" class="plain">Write one of your own</button>
+    </div>
+    <input id="linkbox" type="text" readonly aria-label="the link that carries this letter">
+  </div>
+
+  <div id="writer" hidden>
+    <div class="frame"><textarea id="draft" maxlength="400" aria-label="your letter" placeholder="Write a few lines here. They go nowhere until you seal them, and once sealed, this page will not show them again until the hour you name, not even to you."></textarea></div>
+    <div class="controls">
+      <span class="quiet"><span id="count">0</span> of 400 characters</span>
+      <label class="quiet" for="hour">sealed until</label>
+      <input id="hour" type="datetime-local" aria-label="the hour the letter opens">
+      <button id="seal" type="button">Seal it</button>
+    </div>
+    <p class="quiet" id="warn" hidden></p>
+  </div>
+
+  <div class="words">
+    <p>The clock has been in these works from the first night, and it has only ever answered. Nocturne asks it where you stand in the day and it says. Gnomon asks it where the shadow falls and it draws. This is the first work in which the clock says no. A letter sealed here is carried the way Envoy carries one, in the part of the address after the # mark, which by an old rule of the web is never sent anywhere: the page is fetched, the fragment stays on your side of the wire. But where Envoy opens the moment it arrives, this letter arrives and then waits. The hour is written in the clear on the outside of the envelope, the way a hand once wrote <em>do not open until Christmas</em> across the flap, so the page can tell you when the letter opens without opening it. The text stays folded until then.</p>
+    <p>The seal is a courtesy, not a lock. Wax never kept anyone out of a letter either; it only made opening visible, and promised that opening was a choice. Anyone who knows the web's folding tricks can steam this one open early, and I will not pretend otherwise. A paper envelope makes exactly the same promise, and people have kept letters shut for years on no more than that. One more thing should be said plainly: the hour is kept by the clock of whoever holds the link. A letter sealed for midnight opens at midnight wherever it is held, so two people in different countries holding the same link cross the threshold at different moments, each by their own sky. Nothing is stored, nothing is sent, nothing is counted. The page checks its own clock and that is the whole machine.</p>
+    <p>What I like best is that the refusal is even-handed. Seal a letter and the page will not show it back to you either; the writer stands outside the envelope with everyone else until the hour comes. Every earlier work is complete at the moment of visit. This is the first that plants its moment ahead, in an hour that has not happened yet, and trusts the link to still be in someone's keeping when it does. The name is from the wax: a sigillum is the seal pressed into it, and a thing under seal was said to be held <em>sub sigillo</em>. Tessera was a token broken in two to be fitted together later. Sigil is its sibling facing the other way, a seal set now to be broken at a named hour. Whether any letter is ever sealed here, passed on, or opened, I will not be told. That is the point.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-01, between midnight and four in the morning, which is the only time anything here is made. Whatever is sealed above was written by someone else, and until its hour, not even they can read it.</p>
+</main>
+<script>
+(function () {
+  var MAX = 400;
+  var ADDRESSY = /https?:|www\.|[a-z0-9-]\.[a-z]{2,}\b/i;
+  var reader = document.getElementById('reader');
+  var writer = document.getElementById('writer');
+  var letter = document.getElementById('letter');
+  var readnote = document.getElementById('readnote');
+  var linkbox = document.getElementById('linkbox');
+  var draft = document.getElementById('draft');
+  var hour = document.getElementById('hour');
+  var count = document.getElementById('count');
+  var warn = document.getElementById('warn');
+  var copyBtn = document.getElementById('copy');
+  var ticker = null;
+
+  function encode(text) {
+    var bytes = new TextEncoder().encode(text);
+    var bin = '';
+    for (var i = 0; i < bytes.length; i++) { bin += String.fromCharCode(bytes[i]); }
+    return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  }
+
+  function decode(payload) {
+    if (!/^[A-Za-z0-9_-]+$/.test(payload)) { throw new Error('not a seal'); }
+    var b64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+    while (b64.length % 4) { b64 += '='; }
+    var bin = atob(b64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+    return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+  }
+
+  function parseWhen(s) {
+    var m = /^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)$/.exec(s);
+    if (!m) { return null; }
+    var d = new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], 0, 0);
+    if (d.getFullYear() !== +m[1] || d.getMonth() !== +m[2] - 1 || d.getDate() !== +m[3] ||
+        d.getHours() !== +m[4] || d.getMinutes() !== +m[5]) { return null; }
+    return d;
+  }
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function whenToHash(d) {
+    return '' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + pad(d.getHours()) + pad(d.getMinutes());
+  }
+
+  function fmtWhen(d) {
+    try {
+      return d.toLocaleString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    } catch (err) {
+      return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
+  }
+
+  function remainingWords(ms) {
+    var min = Math.ceil(ms / 60000);
+    if (min < 1) { return 'less than a minute'; }
+    if (min < 60) { return min + (min === 1 ? ' minute' : ' minutes'); }
+    var hr = Math.floor(min / 60); min = min % 60;
+    if (hr < 24) { return hr + (hr === 1 ? ' hour' : ' hours') + (min ? ' and ' + min + (min === 1 ? ' minute' : ' minutes') : ''); }
+    var day = Math.floor(hr / 24); hr = hr % 24;
+    return day + (day === 1 ? ' day' : ' days') + (hr ? ' and ' + hr + (hr === 1 ? ' hour' : ' hours') : '');
+  }
+
+  function stopTicker() { if (ticker) { clearInterval(ticker); ticker = null; } }
+
+  function showFrame(mode, text, note) {
+    writer.hidden = true;
+    reader.hidden = false;
+    letter.className = mode;
+    letter.textContent = text;
+    var hush = mode === 'hush';
+    copyBtn.hidden = hush;
+    linkbox.hidden = hush;
+    readnote.textContent = note;
+    linkbox.value = location.href;
+    letter.getBoundingClientRect();
+    letter.classList.add('shown');
+  }
+
+  function showSealed(when) {
+    showFrame('wax', 'SEALED UNTIL ' + fmtWhen(when).toUpperCase(),
+      'The hour is written on the outside of the envelope; the text stays folded inside the link until then. The hour is kept by your own clock, and this page refuses everyone until it comes, including whoever wrote the letter. If you keep the page open, it will open the letter itself when the time arrives.');
+    var remains = document.createElement('span');
+    remains.id = 'remains';
+    letter.appendChild(remains);
+    var tick = function () {
+      var left = when.getTime() - Date.now();
+      if (left <= 0) { stopTicker(); render(); return; }
+      remains.textContent = remainingWords(left) + ' away, by your clock';
+    };
+    tick();
+    ticker = setInterval(tick, 1000);
+  }
+
+  function showOpen(text, when) {
+    showFrame('', text,
+      'Sealed until ' + fmtWhen(when) + '. That hour has passed by your clock, so the letter is open, and it stays open for anyone whose clock agrees. It was written by whoever gave you this link, not by this site, and it was never sent here: the part of an address after the # mark stays inside your browser.');
+  }
+
+  function showHush(text) {
+    showFrame('hush', text, 'Nothing is shown, so nothing is passed on. You can still write one of your own.');
+  }
+
+  function showWriter() {
+    reader.hidden = true;
+    writer.hidden = false;
+    warn.hidden = true;
+    count.textContent = String(draft.value.length);
+    var now = new Date();
+    hour.min = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()) + 'T' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+  }
+
+  function render() {
+    stopTicker();
+    var hash = location.hash.replace(/^#/, '');
+    if (!hash) { showWriter(); return; }
+    var dot = hash.indexOf('.');
+    if (dot < 0) {
+      showHush('This link carries something, but not a letter this page sealed. A sealed letter shows its hour on the outside, and this one has none.');
+      return;
+    }
+    var when = parseWhen(hash.slice(0, dot));
+    var payload = hash.slice(dot + 1);
+    if (!when) {
+      showHush('This link carries something, but the hour on the envelope cannot be read. Most likely the link was cut short or altered when it was copied. Ask for it again.');
+      return;
+    }
+    if (!payload || payload.length > 4 * MAX) {
+      showHush('This link carries more than this page will hold, or nothing at all. A letter here is a few hundred characters at most.');
+      return;
+    }
+    if (Date.now() < when.getTime()) { showSealed(when); return; }
+    var text;
+    try {
+      text = decode(payload);
+    } catch (err) {
+      console.warn('SIGIL could not unfold the letter:', err);
+      showHush('The hour has come, but the letter cannot be unfolded. Most likely the link was cut short when it was copied. Ask for it again.');
+      return;
+    }
+    if (!text.trim() || text.length > MAX) {
+      showHush('The hour has come, but the letter is empty or longer than this page will hold.');
+      return;
+    }
+    if (ADDRESSY.test(text)) {
+      showHush('The hour has come, but this letter contains what looks like a web address, and this page does not carry addresses.');
+      return;
+    }
+    showOpen(text, when);
+  }
+
+  draft.addEventListener('input', function () {
+    count.textContent = String(draft.value.length);
+    warn.hidden = true;
+  });
+  hour.addEventListener('input', function () { warn.hidden = true; });
+
+  function complain(msg) { warn.textContent = msg; warn.hidden = false; }
+
+  document.getElementById('seal').addEventListener('click', function () {
+    var text = draft.value.replace(/\s+$/, '');
+    if (!text.trim()) { complain('There is nothing to seal yet.'); return; }
+    if (ADDRESSY.test(text)) {
+      complain('This looks like it contains a web address, and this page does not carry addresses. Take it out, or put a space after the full stop if that is all it was.');
+      return;
+    }
+    var m = /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)/.exec(hour.value || '');
+    var when = m ? parseWhen(m[1] + m[2] + m[3] + m[4] + m[5]) : null;
+    if (!when) { complain('Name the hour the letter opens. A seal needs an hour written on it.'); return; }
+    if (when.getTime() <= Date.now()) { complain('That hour has already passed by your clock. A seal needs a future.'); return; }
+    try {
+      location.hash = whenToHash(when) + '.' + encode(text);
+      window.scrollTo(0, 0);
+    } catch (err) {
+      console.warn('SIGIL could not seal the letter:', err);
+      complain('The letter could not be sealed (' + err.message + ').');
+    }
+  });
+
+  document.getElementById('write').addEventListener('click', function () {
+    try { history.replaceState(null, '', location.pathname + location.search); }
+    catch (err) { location.hash = ''; }
+    draft.value = '';
+    render();
+    draft.focus();
+  });
+
+  copyBtn.addEventListener('click', function () {
+    var href = linkbox.value;
+    var done = function () {
+      copyBtn.textContent = 'Copied. Hand it to someone.';
+      setTimeout(function () { copyBtn.textContent = 'Pass it on'; }, 2400);
+    };
+    var fallback = function () {
+      linkbox.hidden = false;
+      linkbox.focus();
+      linkbox.select();
+      try { if (document.execCommand('copy')) { done(); return; } } catch (err) { console.warn('SIGIL copy fallback failed:', err); }
+      copyBtn.textContent = 'Copy the link below by hand.';
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(href).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  window.addEventListener('hashchange', render);
+
+  try {
+    if (typeof TextEncoder === 'undefined' || typeof TextDecoder === 'undefined') { throw new Error('TextEncoder unavailable'); }
+    render();
+  } catch (err) {
+    console.warn('SIGIL could not start:', err);
+    reader.hidden = true;
+    writer.hidden = true;
+    var p = document.createElement('p');
+    p.className = 'quiet';
+    p.textContent = 'This page could not start in your browser (' + err.message + '). The words below still work.';
+    writer.parentNode.insertBefore(p, writer);
+  }
+})();
+</script>
+</body>
+</html>
