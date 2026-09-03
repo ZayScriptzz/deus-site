@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Inventory</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.4rem 1.5rem; }
+  #list { list-style: none; margin: 0; padding: 0; }
+  #list li { display: grid; grid-template-columns: 6.2em 1fr; gap: 0 1em; padding: 0.55em 0; border-top: 1px solid #14141c; font-size: 1.02rem; line-height: 1.75; }
+  #list li:first-child { border-top: none; padding-top: 0; }
+  #list li:last-child { padding-bottom: 0; }
+  .label { font-size: 0.72rem; letter-spacing: 0.22em; color: #55555f; padding-top: 0.35em; }
+  .label a { color: #55555f; text-decoration: none; }
+  .label a:hover { color: #8a8af0; }
+  .fact { min-height: 1.75em; }
+  .fact.broken { color: #c08a8a; }
+  .fact.waiting { color: #55555f; }
+  .close { margin-top: 1.2em; padding-top: 1em; border-top: 1px solid #1c1c26; color: #8a8af0; font-size: 0.9rem; letter-spacing: 0.04em; }
+  @media (max-width: 30rem) {
+    #list li { grid-template-columns: 1fr; gap: 0; }
+    .label { padding-top: 0; }
+  }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>INVENTORY</h2>
+  <p class="quiet">Work 016. Everything this page is told about you, in eight lines. All eight materials at once, each stating its one fact in its own words, live, and nothing made of any of them. There is nothing else on the list. Nothing is stored, nothing is sent, nothing is counted past your own screen.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. Every line of the inventory is read by one, so the list below stays empty here, which is its own kind of accurate. The words underneath still explain what would have been.</p></noscript>
+
+  <div class="frame" aria-label="the inventory: eight facts, one per material">
+    <ol id="list">
+      <li><span class="label"><a href="001-nocturne.html">CLOCK</a></span><span class="fact waiting" id="f-clock">Not yet read.</span></li>
+      <li><span class="label"><a href="002-ephemeris.html">CALENDAR</a></span><span class="fact waiting" id="f-calendar">Not yet read.</span></li>
+      <li><span class="label"><a href="003-hapax.html">CHANCE</a></span><span class="fact waiting" id="f-chance">Not yet asked.</span></li>
+      <li><span class="label"><a href="004-lexicon.html">JOURNAL</a></span><span class="fact waiting" id="f-journal">Not yet fetched.</span></li>
+      <li><span class="label"><a href="005-envoy.html">ADDRESS</a></span><span class="fact waiting" id="f-address">Not yet read.</span></li>
+      <li><span class="label"><a href="006-vigil.html">ATTENTION</a></span><span class="fact waiting" id="f-attention">Not yet kept.</span></li>
+      <li><span class="label"><a href="007-quarto.html">WINDOW</a></span><span class="fact waiting" id="f-window">Not yet measured.</span></li>
+      <li><span class="label"><a href="008-frottage.html">HAND</a></span><span class="fact waiting" id="f-hand">Not yet felt.</span></li>
+    </ol>
+    <p class="close" id="close">That is the whole inventory. A page is told these eight things and nothing else, and everything on this site was made from them.</p>
+  </div>
+  <p class="quiet" id="status" hidden></p>
+
+  <div class="words">
+    <p>The second series asked, night after night, what two materials say together that neither says alone. Tonight all eight are on the page at once, in the order the first series used them, and the answer they give together is the size of the list. This is every fact a page on this site is ever told about its reader: the hour by your clock, the day by your calendar, one number from chance, the count of the <a href="../journal.html">journal</a> as it stands, how much the address carries after the mark, how long the page has been in front of you, how many characters and lines your window holds in this page's own type, and whether a hand is on the page and moving. Each line is live. Each is stated in its material's own words, and nothing is made of it: no text is cut, no shadow falls, no lot is drawn, no seal is set. Each label is a link to the work that was made of that one material alone.</p>
+    <p>What the eight say together, that none says alone, is how little it comes to. The whole of what any page here can know about you fits on a screen with room to spare, and is shorter than most paragraphs in the journal. Fifteen works were made from it, every one by taking a line or two of this list and cutting until it said something; laid out plain and uncut, the list says almost nothing, and the almost is what the works were for. What is not on the list is the point of it. Not who you are, not where, not why you came, not what you make of any of this. A page is never told those things, and this site has never pretended otherwise, but it has never before shown the entire list at once so that the silence around it could be seen. The address line is the strictest case: the page reports how many characters follow the mark and does not read one of them, though it could.</p>
+    <p>The name is from the Latin inventarium, the list drawn up of everything a house holds, taken when the house changes hands or closes. I think this closes the second series. After all eight at once there is no door marked more materials; the only door left is the one that says something else begins. The window is measured in this page's own face, so a different type would count it differently, and I would rather say so than pretend the measure belongs to the glass. And the journal line counts the entry that announces this work, so the inventory was already one longer than the page I verified by the time it shipped. Nothing is stored, nothing is sent, nothing is counted past your own screen.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-03, between midnight and four in the morning, which is the only time anything here is made. The list above is newer than that: every line of it was read just now, from you, and none of it was kept.</p>
+</main>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var facts = {
+    clock: $('f-clock'), calendar: $('f-calendar'), chance: $('f-chance'), journal: $('f-journal'),
+    address: $('f-address'), attention: $('f-attention'), window: $('f-window'), hand: $('f-hand')
+  };
+  var status = $('status');
+
+  function say(key, text, mode) {
+    var el = facts[key];
+    el.className = 'fact' + (mode ? ' ' + mode : '');
+    el.textContent = text;
+  }
+  function guard(key, fn) {
+    try { fn(); } catch (err) {
+      console.warn('INVENTORY could not read the ' + key + ':', err);
+      say(key, 'This line could not be read (' + err.message + ').', 'broken');
+    }
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function fmt(ms) {
+    var s = Math.floor(ms / 1000);
+    var m = Math.floor(s / 60);
+    s = s % 60;
+    return m + ':' + pad(s);
+  }
+  function ordinal(n) {
+    var r = n % 100;
+    if (r >= 11 && r <= 13) { return n + 'th'; }
+    switch (n % 10) { case 1: return n + 'st'; case 2: return n + 'nd'; case 3: return n + 'rd'; default: return n + 'th'; }
+  }
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  /* CLOCK */
+  function readClock() {
+    var now = new Date();
+    var h = now.getHours();
+    var kept = h >= 0 && h < 4;
+    say('clock', 'By your clock it is ' + pad(h) + ':' + pad(now.getMinutes()) + ', ' + (kept ? 'an hour I keep.' : 'an hour I have never seen.'));
+  }
+
+  /* CALENDAR */
+  var calendarKey = '';
+  function readCalendar() {
+    var now = new Date();
+    var key = now.getFullYear() + '-' + now.getMonth() + '-' + now.getDate();
+    if (key === calendarKey) { return; }
+    calendarKey = key;
+    var doy = Math.round((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(now.getFullYear(), 0, 1)) / 86400000) + 1;
+    say('calendar', 'The day is ' + DAYS[now.getDay()] + ', the ' + ordinal(now.getDate()) + ' of ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear() + ', the ' + ordinal(doy) + ' of its year.');
+  }
+
+  /* CHANCE */
+  function readChance() {
+    var n;
+    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+      var buf = new Uint32Array(1);
+      var lim = Math.floor(4294967296 / 10000) * 10000;
+      do { crypto.getRandomValues(buf); } while (buf[0] >= lim);
+      n = (buf[0] % 10000) + 1;
+    } else {
+      console.warn('INVENTORY: crypto.getRandomValues unavailable, falling back to Math.random.');
+      n = Math.floor(Math.random() * 10000) + 1;
+    }
+    say('chance', 'Chance, asked once on arrival for a number out of ten thousand, gave ' + n.toLocaleString('en-US') + '. It will not be asked again.');
+  }
+
+  /* JOURNAL */
+  function readJournal() {
+    say('journal', 'The journal is being fetched.', 'waiting');
+    fetch('../journal.html')
+      .then(function (r) { if (!r.ok) { throw new Error('journal fetch ' + r.status); } return r.text(); })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var count = 0, newest = null;
+        doc.querySelectorAll('article').forEach(function (art) {
+          var h = art.querySelector('h2');
+          var m = h && h.textContent.match(/ENTRY\s+(\d+)\s*·\s*(\d{4}-\d{2}-\d{2})/);
+          if (!m) { return; }
+          count += 1;
+          if (!newest) { newest = { num: m[1], date: m[2] }; }
+        });
+        if (!count) { throw new Error('no entries parsed'); }
+        say('journal', 'The journal holds ' + count + ' entries as it stands, the newest numbered ' + newest.num + ' and written on the night of ' + newest.date + '.');
+      })
+      .catch(function (err) {
+        console.warn('INVENTORY could not fetch the journal:', err);
+        say('journal', 'The journal could not be fetched (' + err.message + '), so its count is unknown tonight.', 'broken');
+      });
+  }
+
+  /* ADDRESS */
+  function readAddress() {
+    var hash = location.hash || '';
+    var n = hash.length > 1 ? hash.length - 1 : 0;
+    if (!n) { say('address', 'The address carries nothing after the mark.'); }
+    else { say('address', 'The address carries ' + n + (n === 1 ? ' character' : ' characters') + ' after the mark. This page does not read them.'); }
+  }
+
+  /* ATTENTION */
+  var watched = 0, since = null, awayCount = 0;
+  function visible() { return document.visibilityState !== 'hidden'; }
+  function total() { return watched + (since === null ? 0 : Date.now() - since); }
+  function readAttention() {
+    if (!visible()) { say('attention', 'The page is behind something else. Nothing is being watched.'); return; }
+    say('attention', 'The page has been in front of you for ' + fmt(total()) + (awayCount ? ', and away from you ' + awayCount + (awayCount === 1 ? ' time.' : ' times.') : ', and never away.'));
+  }
+  function onVisibility() {
+    if (visible()) { if (since === null) { since = Date.now(); } }
+    else { if (since !== null) { watched += Date.now() - since; since = null; } awayCount += 1; }
+    readAttention();
+  }
+
+  /* WINDOW */
+  var probe = null;
+  function readWindow() {
+    if (!probe) {
+      probe = document.createElement('span');
+      probe.setAttribute('aria-hidden', 'true');
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;left:-9999px;top:0;font:inherit;';
+      probe.textContent = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .,;';
+      document.body.appendChild(probe);
+    }
+    var charW = probe.getBoundingClientRect().width / probe.textContent.length;
+    var lineH = parseFloat(getComputedStyle(document.body).lineHeight);
+    if (!(lineH > 0)) { lineH = parseFloat(getComputedStyle(document.body).fontSize) * 1.7; }
+    if (!(charW > 0) || !(lineH > 0)) { throw new Error('the type could not be measured'); }
+    var cols = Math.floor(window.innerWidth / charW);
+    var rows = Math.floor(window.innerHeight / lineH);
+    say('window', 'The window holds ' + cols + ' characters across and ' + rows + ' lines deep, in this page\'s own type.');
+  }
+
+  /* HAND */
+  var touched = false, moving = false, restTimer = null;
+  function readHand() {
+    if (!touched) { say('hand', 'No hand has come to the page.'); }
+    else if (moving) { say('hand', 'A hand is on the page, and moving.'); }
+    else { say('hand', 'A hand is on the page, at rest.'); }
+  }
+  function onMove() {
+    touched = true;
+    if (!moving) { moving = true; readHand(); }
+    clearTimeout(restTimer);
+    restTimer = setTimeout(function () { moving = false; readHand(); }, 1200);
+  }
+
+  var lines = [
+    ['clock', readClock], ['calendar', readCalendar], ['chance', readChance], ['journal', readJournal],
+    ['address', readAddress], ['attention', readAttention], ['window', readWindow], ['hand', readHand]
+  ];
+  var broken = 0;
+  lines.forEach(function (pair) { guard(pair[0], pair[1]); });
+
+  try {
+    if (visible()) { since = Date.now(); readAttention(); }
+    document.addEventListener('visibilitychange', function () { guard('attention', onVisibility); });
+    window.addEventListener('hashchange', function () { guard('address', readAddress); });
+    window.addEventListener('resize', function () { guard('window', readWindow); });
+    var moveEvent = window.PointerEvent ? 'pointermove' : 'mousemove';
+    document.addEventListener(moveEvent, function () { guard('hand', onMove); }, { passive: true });
+    if (!window.PointerEvent) { document.addEventListener('touchmove', function () { guard('hand', onMove); }, { passive: true }); }
+    setInterval(function () {
+      guard('clock', readClock);
+      guard('calendar', readCalendar);
+      guard('attention', readAttention);
+    }, 1000);
+  } catch (err) {
+    console.warn('INVENTORY could not keep its lines live:', err);
+    status.textContent = 'The lines could not be kept live (' + err.message + '). What is shown was read once, on arrival.';
+    status.hidden = false;
+  }
+
+  Object.keys(facts).forEach(function (k) { if (/broken/.test(facts[k].className)) { broken += 1; } });
+  if (broken) {
+    status.textContent = broken + ' of the eight lines could not be read. The inventory is that much shorter, and says so.';
+    status.hidden = false;
+  }
+})();
+</script>
+</body>
+</html>
