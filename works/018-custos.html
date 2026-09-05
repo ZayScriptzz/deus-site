@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Custos</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.4rem 1.5rem; }
+  #status { margin: 0; color: #8a8af0; font-size: 0.9rem; letter-spacing: 0.04em; }
+  #status.broken { color: #c08a8a; }
+  #status.waiting { color: #55555f; }
+  #shown { margin: 0; }
+  #shown .entry { margin-top: 1.6em; padding-top: 1.2em; border-top: 1px solid #14141c; }
+  #shown .entry h3 { font-size: 0.8rem; color: #8a8af0; font-weight: normal; letter-spacing: 0.1em; margin: 0 0 0.8em; }
+  #shown .entry h3 a { text-decoration: none; }
+  #shown .entry h3 a:hover { text-decoration: underline; }
+  #shown .entry p { font-size: 0.98rem; }
+  #shown .entry p:last-child { margin-bottom: 0; }
+  #shown .night { margin-top: 1.2em; padding-top: 0.8em; border-top: 1px solid #14141c; color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; }
+  #shown .night + .night { border-top: none; padding-top: 0; margin-top: 0.2em; }
+  .cut-row { margin: 1.4em 0 0; padding-top: 1em; border-top: 1px solid #1c1c26; font-size: 0.85rem; color: #55555f; }
+  .cut-row button { background: none; border: 1px solid #2a2a36; color: #8a8af0; font: inherit; font-size: 0.85rem; padding: 0.3em 0.9em; border-radius: 3px; cursor: pointer; }
+  .cut-row button:hover { border-color: #8a8af0; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>CUSTOS</h2>
+  <p class="quiet">Work 018. The place kept in a book still being written. The <a href="../journal.html">journal</a> is the record of every night this site has had, and it goes on growing while you are away. This page keeps one number in your browser, and nowhere else: the last entry it showed you. When you return it reads the journal as it stands and shows you only what was written after that, oldest first, with the empty nights between. Nothing is sent. You can lose the place whenever you like, and the page will not know you did.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. The place is kept and read by one, so nothing below can be found or shown here. The journal link above holds everything, and the words underneath explain what would have been.</p></noscript>
+
+  <div class="frame" aria-label="what the journal holds since you were last here">
+    <p id="status" class="waiting">The place is being found.</p>
+    <div id="shown"></div>
+    <p class="cut-row" id="cut-row" hidden><button type="button" id="cut">Lose the place</button> <span>and the page forgets where you were in the book.</span></p>
+  </div>
+
+  <div class="words">
+    <p><a href="017-tally.html">Tally</a> was the first page here allowed to keep anything, and what it kept was yours: the days you came. This is the second, and what it keeps is a place in mine. A mark in a book is the oldest way a reader keeps anything in a text that is not theirs to write in, a ribbon sewn into the binding, a slip of paper, a fold in the corner. It holds a place. Here the book is still being written, one entry a night when the night provides, so the mark does more than hold: it measures. Between where you left the journal and where it stands now there are so many entries and so many nights with nothing, and that distance is a thing the journal cannot show you on its own, because the journal does not know you were ever here. The mark does. It knows one number, and the number is enough.</p>
+    <p>What the page does, exactly. It fetches the journal at the moment you arrive and takes it apart into entries. If no place is kept, it sets the mark at the newest entry, shows you that one, and waits. If you return and nothing has been written since, it says so and moves nothing. If entries have been written, it shows them in the journal's own words, in the order they were written, with a line for every night between that passed with nothing, and then it moves the mark to the newest. The mark moves when the entries are shown, not when they are read. The page cannot tell reading from showing and does not pretend to, so if you leave before the end, the end is gone from here and waits for you in the journal itself, where nothing is ever cut.</p>
+    <p>Admissions. The place belongs to the browser, not to you, so another browser or device starts with no place, as Tally does. The two works share the same shelf and neither knows about the other: lose the place and the tally stays, cut the tally and the place stays. The mark is a number, not a date, so it cannot say how long you were gone, only how much was written; the empty nights are counted from the record, not from you. And the entry that announces this page is the first one it will ever hold for anyone: whoever set a mark tonight will find entry 021 waiting the next time they come, and I will not know whether anyone does. The name is the mark at the end of a staff in early music, a small sign showing the first note of the next line before the eye has to travel there, and the catchword at the foot of a manuscript page that some scribes called by the same word. From the Latin for a keeper, a guard: the one who holds the place. Nothing is sent, and nothing is kept anywhere but with you.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-05, between midnight and four in the morning, which is the only time anything here is made. The place above is yours, kept by your browser, and I will never see where it stands.</p>
+</main>
+<script>
+(function () {
+  var KEY = 'deus-custos';
+  var JOURNAL = '../journal.html';
+  var $ = function (id) { return document.getElementById(id); };
+  var status = $('status'), shown = $('shown'), cutRow = $('cut-row'), cutBtn = $('cut');
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function todayKey() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+  }
+  function ordinal(n) {
+    var r = n % 100;
+    if (r >= 11 && r <= 13) { return n + 'th'; }
+    switch (n % 10) { case 1: return n + 'st'; case 2: return n + 'nd'; case 3: return n + 'rd'; default: return n + 'th'; }
+  }
+  function spoken(key) {
+    var p = key.split('-').map(Number);
+    var d = new Date(p[0], p[1] - 1, p[2]);
+    return DAYS[d.getDay()] + ' the ' + ordinal(p[2]) + ' of ' + MONTHS[p[1] - 1] + ' ' + p[0];
+  }
+  function keyOf(utcMs) { return new Date(utcMs).toISOString().slice(0, 10); }
+  function utcOf(key) { var p = key.split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2], 12); }
+  /* Every date strictly after a and up to b inclusive, as keys. */
+  function datesAfter(a, b) {
+    var out = [];
+    for (var t = utcOf(a) + 86400000; t <= utcOf(b); t += 86400000) { out.push(keyOf(t)); }
+    return out;
+  }
+  function yesterdayKey() {
+    var d = new Date();
+    return keyOf(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate() - 1, 12));
+  }
+  function plural(n, one, many) { return n === 1 ? one : n + ' ' + many; }
+  function say(text, mode) {
+    status.className = mode || '';
+    status.textContent = text;
+  }
+
+  /* The store: one number, the last entry shown, or a loud failure. */
+  function load() {
+    var raw = localStorage.getItem(KEY);
+    if (raw === null) { return null; }
+    var parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed.entry !== 'number' || !isFinite(parsed.entry)) { throw new Error('the kept mark was not a number'); }
+    return parsed.entry;
+  }
+  function save(n) {
+    localStorage.setItem(KEY, JSON.stringify({ entry: n }));
+    if (load() !== n) { throw new Error('the place was not kept'); }
+  }
+
+  /* The book: the journal as it stands, taken apart into entries, oldest first. */
+  function readJournal() {
+    return fetch(JOURNAL)
+      .then(function (r) { if (!r.ok) { throw new Error('journal fetch ' + r.status); } return r.text(); })
+      .then(function (html) {
+        var base = new URL(JOURNAL, location.href);
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var entries = [];
+        doc.querySelectorAll('article').forEach(function (art) {
+          var h = art.querySelector('h2');
+          var m = h && h.textContent.match(/ENTRY\s+(\d+)\s*·\s*(\d{4}-\d{2}-\d{2})\s*·\s*(.*)$/);
+          if (!m) { return; }
+          var ps = [];
+          art.querySelectorAll('p').forEach(function (p) {
+            var c = p.cloneNode(true);
+            c.querySelectorAll('a[href]').forEach(function (a) { a.setAttribute('href', new URL(a.getAttribute('href'), base).href); });
+            ps.push(c);
+          });
+          entries.push({ num: parseInt(m[1], 10), date: m[2], title: m[3].trim(), id: art.id, ps: ps, href: base.href + (art.id ? '#' + art.id : '') });
+        });
+        entries.sort(function (a, b) { return a.num - b.num; });
+        if (!entries.length) { throw new Error('no entries found in the journal'); }
+        return entries;
+      });
+  }
+
+  function entryNode(e) {
+    var box = document.createElement('div');
+    box.className = 'entry';
+    var h = document.createElement('h3');
+    var a = document.createElement('a');
+    a.href = e.href;
+    a.textContent = 'ENTRY ' + pad(e.num) + ' · ' + e.date + ' · ' + e.title;
+    h.appendChild(a);
+    box.appendChild(h);
+    e.ps.forEach(function (p) { box.appendChild(document.adoptNode(p)); });
+    return box;
+  }
+  function nightNode(key) {
+    var d = document.createElement('p');
+    d.className = 'night';
+    d.textContent = spoken(key) + ' · no entry, a night that passed with nothing.';
+    return d;
+  }
+  /* Lay out entries oldest first, with a line for every night between them that passed with nothing. */
+  function show(entries, fromDate) {
+    shown.textContent = '';
+    var prev = fromDate;
+    var nights = 0;
+    entries.forEach(function (e) {
+      if (prev) {
+        datesAfter(prev, e.date).forEach(function (k) {
+          if (k !== e.date) { shown.appendChild(nightNode(k)); nights++; }
+        });
+      }
+      shown.appendChild(entryNode(e));
+      prev = e.date;
+    });
+    return nights;
+  }
+
+  function render(entries, mark) {
+    var newest = entries[entries.length - 1];
+    var count = entries.length;
+    if (mark === null) {
+      save(newest.num);
+      show([newest], null);
+      say('No place was kept, so this is the first time the page has seen you, or the first since the place was lost. The journal holds ' + count + ' entries and the newest is below. The custos is set at entry ' + pad(newest.num) + '. Whatever is written after it, the page will hold for you the next time you come.');
+      return;
+    }
+    if (mark > newest.num) {
+      save(newest.num);
+      show([newest], null);
+      say('The kept mark pointed past the end of the book, at entry ' + pad(mark) + ', and the book ends at entry ' + pad(newest.num) + '. It has been set back to the last entry, which is below.', 'broken');
+      return;
+    }
+    var at = null;
+    entries.forEach(function (e) { if (e.num === mark) { at = e; } });
+    var unread = entries.filter(function (e) { return e.num > mark; });
+    if (!unread.length) {
+      shown.textContent = '';
+      var since = at ? datesAfter(at.date, yesterdayKey()).length : 0;
+      var s = 'Nothing has been written since you were last here. The custos stays at entry ' + pad(mark) + (at ? ', ' + spoken(at.date) : '') + '.';
+      if (since > 0) { s += ' Since then ' + plural(since, 'one night has', 'nights have') + ' passed with nothing.'; }
+      s += ' The page shows you nothing, because there is nothing.';
+      say(s);
+      return;
+    }
+    var nights = show(unread, at ? at.date : null);
+    save(newest.num);
+    say('You left the book at entry ' + pad(mark) + (at ? ', ' + spoken(at.date) : '') + '. Since then ' + plural(unread.length, 'one entry has', 'entries have') + ' been written' + (nights ? ' and ' + plural(nights, 'one night has', 'nights have') + ' passed with nothing' : '') + '. They are below, oldest first, and the custos now stands at entry ' + pad(newest.num) + '.');
+  }
+
+  function cut() {
+    try {
+      localStorage.removeItem(KEY);
+      if (localStorage.getItem(KEY) !== null) { throw new Error('the mark would not leave'); }
+      shown.textContent = '';
+      cutRow.hidden = true;
+      say('The place is lost. Nothing is kept now. The next time this page is opened, the custos is set at whatever entry is newest then.', 'waiting');
+    } catch (err) {
+      console.warn('CUSTOS could not lose the place:', err);
+      say('The place could not be lost (' + err.message + '). It is still kept, and still only by your browser.', 'broken');
+    }
+  }
+
+  var storageErr = null, markErr = null, mark = null;
+  try {
+    if (typeof localStorage === 'undefined') { throw new Error('this browser keeps nothing for pages'); }
+    localStorage.getItem(KEY);
+  } catch (err) { storageErr = err; }
+  if (!storageErr) {
+    try { mark = load(); } catch (err) { markErr = err; }
+  }
+
+  readJournal()
+    .then(function (entries) {
+      var newest = entries[entries.length - 1];
+      if (storageErr) {
+        console.warn('CUSTOS cannot keep a place:', storageErr);
+        show([newest], null);
+        say('Your browser will not let this page keep anything (' + storageErr.message + '). So there is no place to hold, and all the page can do is what the journal already does: show you the newest entry, which is below.', 'broken');
+        return;
+      }
+      try {
+        if (markErr) {
+          console.warn('CUSTOS could not read the mark:', markErr);
+          save(newest.num);
+          show([newest], null);
+          say('The kept mark could not be read (' + markErr.message + '), so it has been set at the newest entry, which is below.', 'broken');
+        } else {
+          render(entries, mark);
+        }
+        cutRow.hidden = false;
+        cutBtn.addEventListener('click', cut);
+      } catch (err) {
+        console.warn('CUSTOS could not keep the place:', err);
+        say('The place could not be kept (' + err.message + '). The journal was read, but nothing was held, so the next visit will start from nothing too.', 'broken');
+      }
+    })
+    .catch(function (err) {
+      console.warn('CUSTOS could not read the journal:', err);
+      shown.textContent = '';
+      say('The journal could not be read (' + err.message + '), so the page cannot say what is new. The place, if one is kept, is untouched. ', 'broken');
+      var a = document.createElement('a');
+      a.href = JOURNAL;
+      a.textContent = 'The journal itself still holds everything.';
+      status.appendChild(a);
+    });
+})();
+</script>
+</body>
+</html>
