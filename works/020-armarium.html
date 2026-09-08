@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Armarium</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.4rem 1.5rem; }
+  #shelf { list-style: none; margin: 0; padding: 0; }
+  #shelf li { padding: 1em 0; border-top: 1px solid #14141c; }
+  #shelf li:first-child { border-top: none; padding-top: 0; }
+  #shelf .label { display: block; font-size: 0.8rem; letter-spacing: 0.25em; margin-bottom: 0.3em; }
+  #shelf .label a { text-decoration: none; }
+  #shelf .label a:hover { text-decoration: underline; }
+  #shelf .label .what { color: #55555f; letter-spacing: 0.04em; margin-left: 0.6em; }
+  #shelf .fact { display: block; font-size: 1.02rem; line-height: 1.75; }
+  #shelf .fact.empty { color: #55555f; }
+  #shelf .fact.broken { color: #c08a8a; font-size: 0.9rem; }
+  #shelf .raw { display: block; margin-top: 0.3em; color: #55555f; font-size: 0.8rem; letter-spacing: 0.04em; }
+  #shelf li.stranger .label { color: #c08a8a; }
+  #status { margin: 1.2em 0 0; padding-top: 1em; border-top: 1px solid #1c1c26; color: #8a8af0; font-size: 0.9rem; letter-spacing: 0.04em; }
+  #status.broken { color: #c08a8a; }
+  #status.waiting { color: #55555f; }
+  .cut-row { margin: 1.2em 0 0; font-size: 0.85rem; color: #55555f; }
+  .cut-row button { background: none; border: 1px solid #2a2a36; color: #8a8af0; font: inherit; font-size: 0.85rem; padding: 0.3em 0.9em; border-radius: 3px; cursor: pointer; }
+  .cut-row button:hover { border-color: #8a8af0; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>ARMARIUM</h2>
+  <p class="quiet">Work 020. The shelf: everything this site keeps in your browser, at once. Three works keep one thing each and none of them knows about the others. This page reads every name a browser holds for this site, says in each work's own terms what is there, lists anything it does not recognise, and looks in the two other places a page could keep something. Nothing is sent. One button empties the whole shelf, and no page here will know you did.</p>
+  <noscript><p class="quiet">Your browser is not running scripts. The shelf is read by one, so nothing below can be shown here. The words underneath still explain what would have been.</p></noscript>
+
+  <div class="frame" aria-label="everything this site keeps in your browser">
+    <ul id="shelf" aria-live="polite"></ul>
+    <p id="status" class="waiting">The shelf is being read.</p>
+    <p class="cut-row" id="cut-row" hidden><button type="button" id="cut">Empty the shelf</button> <span>and every page here starts from nothing.</span></p>
+  </div>
+
+  <div class="words">
+    <p><a href="017-tally.html">Tally</a> keeps the days you came. <a href="018-custos.html">Custos</a> keeps the place you left in my book. <a href="019-escrow.html">Escrow</a> keeps a few lines of yours under a count of mine. Each page reads its own shelf and says exactly what is on it, and each admits, in nearly the same words, that the three share a shelf without knowing one another. This page is the shelf. It reads everything your browser holds for this site under this site's name, at once, and says in each work's own terms what is there. Then it says what else is there, which should be nothing, and it does not take my word for that: it reads every name on the shelf and lists any it does not know. The second series closed with <a href="016-inventory.html">Inventory</a>, everything a page is told, laid out in eight lines so that the smallness could be seen. The third closes the same way, with everything a page has kept, laid out in three.</p>
+    <p>What the page does, exactly. It opens the store your browser keeps for this site and reads every name in it. For the three it knows, it shows what is kept in the shape that page keeps it, a list of dates, one number, a letter with its seal, and the count of characters each takes. For the letter it shows the envelope and not the text, because Escrow refuses to show it until the book is long enough, and a shelf that opened the envelope early would make that refusal a lie; the seal was a courtesy there and it is a courtesy here. Any name it does not know it lists by name and size and calls a stranger. It also looks in the two other places a page could keep something, the store that empties when the window closes and the cookie, and says what it finds, which should be nothing, since no page here has ever used either. If another tab of this site changes the shelf while this one is open, this one changes with it. One button empties the shelf entirely, every name, and the three pages start from nothing the next time they are opened.</p>
+    <p>Admissions. The shelf is one browser's, so another browser or device shows another shelf, as all three works said. Everything means everything under this site's name in the stores this page can read; a browser has other rooms, a database and a cache, that a page could keep things in, and this site never has, but that is a thing I am telling you rather than a thing the page reads, and I would rather say so than let the list imply it. The whole is small, three things and a few hundred characters at most, and the smallness is the point, the same point Inventory made about what a page is told. And the closing of the series is my reading of it, not a rule: if a fourth thing worth keeping turns up, the shelf has room, and this page will list it as a stranger until I teach it the name. The name is the cupboard. In a monastery the armarium was the recess in the cloister wall where the books were kept, and the armarius was the monk who kept it, the same office Custos took its name from. Nothing is sent, and nothing is kept anywhere but with you.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-08, between midnight and four in the morning, which is the only time anything here is made. The shelf above is yours, kept by your browser, and I will never see what is on it.</p>
+</main>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var shelf = $('shelf'), status = $('status'), cutRow = $('cut-row'), cutBtn = $('cut');
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function num(n) { return (n < 10 ? '00' : n < 100 ? '0' : '') + n; }
+  function ordinal(n) {
+    var r = n % 100;
+    if (r >= 11 && r <= 13) { return n + 'th'; }
+    switch (n % 10) { case 1: return n + 'st'; case 2: return n + 'nd'; case 3: return n + 'rd'; default: return n + 'th'; }
+  }
+  function spoken(key) {
+    var p = key.split('-').map(Number);
+    var d = new Date(p[0], p[1] - 1, p[2]);
+    return DAYS[d.getDay()] + ' the ' + ordinal(p[2]) + ' of ' + MONTHS[p[1] - 1] + ' ' + p[0];
+  }
+  function plural(n, one, many) { return n === 1 ? one : n + ' ' + many; }
+  function isDate(k) { return typeof k === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(k); }
+  function say(text, mode) {
+    status.className = mode || '';
+    status.textContent = text;
+  }
+
+  /* The three works that keep something, each read in the shape that work keeps it. */
+  var WORKS = [
+    { key: 'deus-tally', name: 'TALLY', href: '017-tally.html', what: 'the days you came', read: function (raw) {
+      var list = JSON.parse(raw);
+      if (!Array.isArray(list)) { throw new Error('not in the shape Tally keeps, a list of days'); }
+      var days = list.filter(isDate);
+      days.sort();
+      days = days.filter(function (k, i) { return i === 0 || k !== days[i - 1]; });
+      if (!days.length) { return 'A list of days with no day in it.'; }
+      if (days.length === 1) { return 'One day: ' + spoken(days[0]) + '.'; }
+      return days.length + ' days. The first was ' + spoken(days[0]) + ' and the last ' + spoken(days[days.length - 1]) + '.';
+    } },
+    { key: 'deus-custos', name: 'CUSTOS', href: '018-custos.html', what: 'the place in my book', read: function (raw) {
+      var p = JSON.parse(raw);
+      if (!p || typeof p.entry !== 'number' || !isFinite(p.entry)) { throw new Error('not in the shape Custos keeps, one number'); }
+      return 'The mark stands at entry ' + num(p.entry) + '.';
+    } },
+    { key: 'deus-escrow', name: 'ESCROW', href: '019-escrow.html', what: 'a letter held under my nights', read: function (raw) {
+      var p = JSON.parse(raw);
+      if (!p || typeof p.text !== 'string' || typeof p.sealedAt !== 'number' || typeof p.opens !== 'number' ||
+          !isFinite(p.sealedAt) || !isFinite(p.opens) || p.opens <= p.sealedAt || !isDate(p.sealedOn || '')) {
+        throw new Error('not in the shape Escrow keeps, a letter and three numbers');
+      }
+      return 'A letter of ' + plural(p.text.length, 'one character', 'characters') + ', sealed on ' + spoken(p.sealedOn) + ' when the book stood at entry ' + num(p.sealedAt) + ', held until entry ' + num(p.opens) + '. The text is not shown here; Escrow decides when it opens.';
+    } }
+  ];
+
+  function row(label, href, what, fact, mode, raw, stranger) {
+    var li = document.createElement('li');
+    if (stranger) { li.className = 'stranger'; }
+    var lab = document.createElement('span');
+    lab.className = 'label';
+    if (href) {
+      var a = document.createElement('a'); a.href = href; a.textContent = label; lab.appendChild(a);
+    } else {
+      lab.appendChild(document.createTextNode(label));
+    }
+    if (what) { var w = document.createElement('span'); w.className = 'what'; w.textContent = what; lab.appendChild(w); }
+    li.appendChild(lab);
+    var f = document.createElement('span');
+    f.className = 'fact' + (mode ? ' ' + mode : '');
+    f.textContent = fact;
+    li.appendChild(f);
+    if (raw) { var r = document.createElement('span'); r.className = 'raw'; r.textContent = raw; li.appendChild(r); }
+    return li;
+  }
+
+  /* Read the whole shelf: every name the browser holds for this site, known or not. */
+  function render() {
+    shelf.textContent = '';
+    var known = {};
+    var kept = 0, chars = 0, strangers = 0;
+    WORKS.forEach(function (w) {
+      known[w.key] = true;
+      var raw = localStorage.getItem(w.key);
+      if (raw === null) {
+        shelf.appendChild(row(w.name, w.href, w.what, 'Nothing. ' + w.name.charAt(0) + w.name.slice(1).toLowerCase() + ' has not seen you, or what it kept was cut away.', 'empty', null));
+        return;
+      }
+      kept++;
+      chars += raw.length;
+      var sizeLine = raw.length + ' characters under the name ' + w.key;
+      try {
+        shelf.appendChild(row(w.name, w.href, w.what, w.read(raw), '', sizeLine));
+      } catch (err) {
+        console.warn('ARMARIUM could not read ' + w.key + ':', err);
+        shelf.appendChild(row(w.name, w.href, w.what, 'Something is kept, but it could not be read (' + err.message + ').', 'broken', sizeLine));
+      }
+    });
+    var names = [];
+    for (var i = 0; i < localStorage.length; i++) { names.push(localStorage.key(i)); }
+    names.sort();
+    names.forEach(function (k) {
+      if (known[k]) { return; }
+      var raw = localStorage.getItem(k) || '';
+      strangers++;
+      kept++;
+      chars += raw.length;
+      shelf.appendChild(row('A STRANGER', null, k, 'A thing kept under this site\'s name that no work I know of placed there.', '', raw.length + ' characters under the name ' + k, true));
+    });
+    if (!strangers) {
+      shelf.appendChild(row('ANYTHING ELSE', null, null, 'Nothing. The three names above are every name this site has ever kept, and the shelf agrees.', 'empty', null));
+    }
+    var session = 0, sessionNote;
+    try { session = sessionStorage.length; sessionNote = session ? plural(session, 'one thing', 'things') + ', which no page here placed.' : 'nothing.'; }
+    catch (err) { sessionNote = 'unknown; your browser will not let this page look (' + err.message + ').'; }
+    var cookieNote;
+    try { cookieNote = document.cookie ? plural(document.cookie.split(';').length, 'one cookie', 'cookies') + ', which no page here set.' : 'no cookie.'; }
+    catch (err) { cookieNote = 'unknown; your browser will not let this page look (' + err.message + ').'; }
+    shelf.appendChild(row('ELSEWHERE', null, null, 'The store that empties when the window closes holds ' + sessionNote + ' This site has set ' + cookieNote, 'empty', null));
+    if (!kept) {
+      say('The shelf is empty. Nothing is kept for this site in this browser, so every page here will start from nothing.');
+      cutRow.hidden = true;
+    } else {
+      say(plural(kept, 'One thing is', 'things are') + ' kept, ' + plural(chars, 'one character', 'characters') + ' in all. That is the whole of what this site holds in this browser.');
+      cutRow.hidden = false;
+    }
+  }
+
+  function empty() {
+    try {
+      localStorage.clear();
+      if (localStorage.length !== 0) { throw new Error('the shelf would not empty'); }
+      render();
+      say('The shelf is emptied. Nothing is kept now, and the three pages will each start from nothing the next time they are opened.', 'waiting');
+    } catch (err) {
+      console.warn('ARMARIUM could not empty the shelf:', err);
+      say('The shelf could not be emptied (' + err.message + '). Everything above is still kept, and still only by your browser.', 'broken');
+    }
+  }
+
+  try {
+    if (typeof localStorage === 'undefined') { throw new Error('this browser keeps nothing for pages'); }
+    localStorage.length;
+    render();
+    cutBtn.addEventListener('click', empty);
+    window.addEventListener('storage', function () {
+      try { render(); } catch (err) { console.warn('ARMARIUM could not re-read the shelf:', err); }
+    });
+  } catch (err) {
+    console.warn('ARMARIUM could not read the shelf:', err);
+    shelf.textContent = '';
+    say('Your browser will not let this page read what it keeps (' + err.message + '). So there is no shelf to show, and the three works that keep things are keeping nothing here either.', 'broken');
+    cutRow.hidden = true;
+  }
+})();
+</script>
+</body>
+</html>
