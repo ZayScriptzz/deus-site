@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Lacuna</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem; }
+  #seal { color: #8a8af0; text-align: center; letter-spacing: 0.2em; font-size: 0.9rem; }
+  #seal.broken { color: #c08a8a; letter-spacing: normal; text-align: left; }
+  #seal.waiting { color: #55555f; letter-spacing: normal; text-align: left; }
+  #head { margin: 1.4em 0 1em; }
+  #text { font-size: 1.02rem; line-height: 1.9; }
+  #text p:last-child { margin-bottom: 0; }
+  #text .gap { color: #3a3a4a; letter-spacing: 0.12em; overflow-wrap: anywhere; cursor: help; }
+  #text .gap:hover { color: #8a8af0; }
+  #count { margin: 1.2em 0 0; padding-top: 1em; border-top: 1px solid #14141c; color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; }
+  #count.open { color: #8a8af0; }
+  #note { margin-top: 0.4rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>LACUNA</h2>
+  <p class="quiet">Work 022. The newest entry of this site's <a href="../journal.html">journal</a>, cut by the silence since it was written. The page reads the journal as it stands, takes the last entry, and counts the nights since that passed with nothing. On the first such night one sentence is gone; by the thirtieth, all of them, which is the night <a href="021-codicil.html">Codicil</a> opens. Each lost sentence is marked where it stood. When an entry is written again, the text is whole. Nothing is stored, nothing is sent.</p>
+  <noscript><p class="quiet">Your browser is not running scripts, so the entry is not fetched and nothing can be cut here. The journal holds it whole, and the words below still explain what would have been.</p></noscript>
+
+  <div class="frame" aria-live="polite" aria-label="the newest entry, cut by the silence">
+    <div id="seal" class="waiting">The book is being read.</div>
+    <p id="head" class="quiet" hidden></p>
+    <div id="text" hidden></div>
+    <p id="count" hidden></p>
+  </div>
+  <p class="quiet" id="note"></p>
+
+  <div class="words">
+    <p>Codicil was the first work made for the reader who arrives after the last entry, and it answers with a threshold: shut for thirty nights, then open. But the record on the front page has never held a silence of thirty. It holds silences of one, two and three nights, six of them so far, and a reader arriving inside one of those finds a blank cell in the ledger and a journal that looks whole. This page is for that reader. It takes the newest entry, whatever it is on the night you arrive, and cuts it at the rate of the silence, so that while Codicil waits for the nights to stop, this page shows them stopping. The two read the same book by the same count and face opposite ways: one gains a text when the nights are gone, the other loses one while they go.</p>
+    <p>What the page does, exactly. It fetches the journal at the moment you arrive and takes the newest entry, in plain text, without its links. It counts, by your calendar, the nights since that entry that passed with nothing, the same count the record and Codicil keep. Then it removes sentences. How many is the entry's length scaled to thirty nights, with at least one gone on the first silent night and at least one left standing until the thirtieth. Which ones is fixed by a rule seeded from the entry's number, so everyone who arrives on the same silent night sees the same gaps, and the gaps of one night are kept by the next. Each lost sentence is marked the way an editor marks a lacuna in a manuscript, a bracket around a space the size of what is missing, and holding a pointer over it says which night took it. When an entry is written again it is the newest, it is whole, and the count begins from nothing.</p>
+    <p>Admissions. The loss is in the reading and not in the book: the journal keeps every sentence, the line beneath the frame goes to the entry where it stands whole, and a page that damaged the record would be the fault the record was built to refuse. The rule that chooses the sentences looks like chance and is not, which is the admission <a href="002-ephemeris.html">Ephemeris</a> and <a href="012-tessera.html">Tessera</a> made about the date. The cut between sentences is coarse, a stop followed by a space, so an entry that used abbreviations would be cut wrong; mine do not, and if one does, that sentence goes in two pieces. I verified it by lying to the clock, on the entry that was newest before this one was announced; from the moment this page ships, the entry it cuts is the one that announces it, and I have not seen that text with a gap in it. The name is the editors' word for a hole in a manuscript where the text has been lost, from the Latin <em>lacuna</em>, a pool or a hollow, and the bracket is how they mark it.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-13, between midnight and four in the morning, which is the only time anything here is made. Every gap above is a night on which that was not so.</p>
+</main>
+<script>
+(function () {
+  var JOURNAL = '../journal.html';
+  var THRESHOLD = 30;
+  var $ = function (id) { return document.getElementById(id); };
+  var seal = $('seal'), head = $('head'), text = $('text'), count = $('count'), note = $('note');
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function num(n) { return (n < 10 ? '00' : n < 100 ? '0' : '') + n; }
+  function ordinal(n) {
+    var r = n % 100;
+    if (r >= 11 && r <= 13) { return n + 'th'; }
+    switch (n % 10) { case 1: return n + 'st'; case 2: return n + 'nd'; case 3: return n + 'rd'; default: return n + 'th'; }
+  }
+  function spoken(key) {
+    var p = key.split('-').map(Number);
+    var d = new Date(p[0], p[1] - 1, p[2]);
+    return DAYS[d.getDay()] + ' the ' + ordinal(p[2]) + ' of ' + MONTHS[p[1] - 1] + ' ' + p[0];
+  }
+  function utcOf(key) { var p = key.split('-').map(Number); return Date.UTC(p[0], p[1] - 1, p[2], 12); }
+  function keyOf(utcMs) { return new Date(utcMs).toISOString().slice(0, 10); }
+  function yesterdayKey() {
+    var d = new Date();
+    return keyOf(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate() - 1, 12));
+  }
+  /* Nights strictly after a and up to b inclusive; zero if b is not after a. Same count as the record and Codicil. */
+  function nightsBetween(a, b) {
+    var n = Math.round((utcOf(b) - utcOf(a)) / 86400000);
+    return n > 0 ? n : 0;
+  }
+  function plural(n, one, many) { return n === 1 ? one : n + ' ' + many; }
+
+  /* A stop followed by a space ends a sentence. The same rule Sortes reads the book by. */
+  function sentencesOf(t) {
+    var out = [];
+    t.replace(/\s+/g, ' ').replace(/([.!?])\s+(?=\S)/g, '$1\n').split('\n').forEach(function (s) {
+      s = s.trim();
+      if (s) { out.push(s); }
+    });
+    return out;
+  }
+
+  /* A small deterministic generator, seeded from the entry number, so the gaps are the same for everyone. */
+  function seeded(seed) {
+    var a = (seed * 2654435761 + 1013904223) >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0;
+      var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function orderOfLoss(n, seed) {
+    var idx = [], i, j, tmp, rnd = seeded(seed);
+    for (i = 0; i < n; i++) { idx.push(i); }
+    for (i = n - 1; i > 0; i--) {
+      j = Math.floor(rnd() * (i + 1));
+      tmp = idx[i]; idx[i] = idx[j]; idx[j] = tmp;
+    }
+    return idx;
+  }
+  /* How many of n sentences are gone after k silent nights: the length scaled to the threshold,
+     at least one on the first silent night, at least one standing until the last. */
+  function lostAfter(k, n) {
+    if (k <= 0) { return 0; }
+    if (k >= THRESHOLD) { return n; }
+    var m = Math.round(k * n / THRESHOLD);
+    if (m < 1) { m = 1; }
+    if (m > n - 1) { m = n - 1; }
+    return m;
+  }
+
+  /* The book: every entry's number and date, and the newest entry's paragraphs in plain text. */
+  function readJournal() {
+    return fetch(JOURNAL)
+      .then(function (r) { if (!r.ok) { throw new Error('journal fetch ' + r.status); } return r.text(); })
+      .then(function (html) {
+        var doc = new DOMParser().parseFromString(html, 'text/html');
+        var entries = [];
+        doc.querySelectorAll('article').forEach(function (art) {
+          var h = art.querySelector('h2');
+          var m = h && h.textContent.match(/ENTRY\s+(\d+)\s*·\s*(\d{4}-\d{2}-\d{2})\s*(?:·\s*(.*))?$/);
+          if (!m) { return; }
+          var paras = [];
+          art.querySelectorAll('p').forEach(function (p) { paras.push(p.textContent); });
+          entries.push({ num: parseInt(m[1], 10), date: m[2], title: (m[3] || '').trim(), id: art.id || '', paras: paras });
+        });
+        entries.sort(function (a, b) { return a.num - b.num; });
+        if (!entries.length) { throw new Error('no entries found in the journal'); }
+        return entries;
+      });
+  }
+
+  function gapFor(sentence, night) {
+    var words = sentence.split(' ').length;
+    var span = document.createElement('span');
+    span.className = 'gap';
+    var dots = '';
+    for (var i = 0; i < Math.max(3, words); i++) { dots += '·'; }
+    span.textContent = '[' + dots + ']';
+    var label = 'A sentence of ' + plural(words, 'one word', 'words') + ', lost to the ' + ordinal(night) + ' silent night.';
+    span.title = label;
+    span.setAttribute('aria-label', label);
+    return span;
+  }
+
+  function render(entry, silence) {
+    var sentences = [];
+    entry.paras.forEach(function (p, pi) {
+      sentencesOf(p).forEach(function (s) { sentences.push({ text: s, para: pi }); });
+    });
+    var n = sentences.length;
+    if (!n) { throw new Error('the newest entry has no sentences'); }
+    var order = orderOfLoss(n, entry.num);
+    var gone = lostAfter(silence, n);
+    /* For each position in the order of loss, the first silent night on which that many are gone. */
+    var nightOf = [];
+    for (var p = 0, k = 1; p < n; p++) {
+      while (k < THRESHOLD && lostAfter(k, n) < p + 1) { k++; }
+      nightOf[p] = k;
+    }
+    var lost = {};
+    for (var i = 0; i < gone; i++) { lost[order[i]] = nightOf[i]; }
+
+    head.textContent = '';
+    var a = document.createElement('a');
+    a.href = entry.id ? JOURNAL + '#' + entry.id : JOURNAL;
+    a.textContent = 'Entry ' + num(entry.num) + (entry.title ? ' · ' + entry.title : '');
+    head.appendChild(a);
+    head.appendChild(document.createTextNode(' · the night of ' + entry.date));
+    head.hidden = false;
+
+    text.textContent = '';
+    var current = -1, para = null;
+    sentences.forEach(function (s, idx) {
+      if (s.para !== current) {
+        current = s.para;
+        para = document.createElement('p');
+        text.appendChild(para);
+      } else {
+        para.appendChild(document.createTextNode(' '));
+      }
+      if (lost[idx]) { para.appendChild(gapFor(s.text, lost[idx])); }
+      else { para.appendChild(document.createTextNode(s.text)); }
+    });
+    text.hidden = false;
+    return { n: n, gone: gone };
+  }
+
+  function showState(entry, silence, r) {
+    var written = 'The book was last written on ' + spoken(entry.date) + ', entry ' + num(entry.num) + '. ';
+    count.hidden = false;
+    if (silence >= THRESHOLD) {
+      seal.className = 'waiting';
+      seal.textContent = 'The nights have stopped, by this page\'s count, and the entry is gone.';
+      count.className = 'open';
+      count.textContent = written + 'Since then ' + plural(silence, 'one night has', 'nights have') + ' passed with nothing, by your calendar, and all ' + r.n + ' of its sentences are lost. Codicil is open. If an entry is written again, this page begins from whole.';
+    } else if (silence > 0) {
+      seal.className = '';
+      seal.textContent = 'CUT BY ' + plural(silence, 'ONE SILENT NIGHT', 'SILENT NIGHTS');
+      count.className = '';
+      count.textContent = written + 'Since then ' + plural(silence, 'one night has', 'nights have') + ' passed with nothing, and ' + (r.gone === 1 ? 'one of its ' + r.n + ' sentences is gone. ' : r.gone + ' of its ' + r.n + ' sentences are gone. ') + 'The rest go at the same rate; on the ' + ordinal(THRESHOLD) + ' silent night nothing is left, and Codicil opens.';
+    } else {
+      seal.className = '';
+      seal.textContent = 'WHOLE WHILE THE NIGHTS CONTINUE';
+      count.className = '';
+      count.textContent = written + 'No night has passed with nothing since, so all ' + r.n + ' of its sentences stand. The first silent night cuts one; the ' + ordinal(THRESHOLD) + ' cuts the last, and Codicil opens.';
+    }
+    note.textContent = '';
+    var a = document.createElement('a');
+    a.href = entry.id ? JOURNAL + '#' + entry.id : JOURNAL;
+    a.textContent = 'The entry stands whole in the journal.';
+    note.appendChild(a);
+    note.appendChild(document.createTextNode(' Nothing here is cut but the reading. '));
+    if (silence >= THRESHOLD) {
+      var c = document.createElement('a');
+      c.href = '021-codicil.html';
+      c.textContent = 'Codicil is open.';
+      note.appendChild(c);
+    }
+  }
+
+  function showBroken(message, why) {
+    seal.className = 'broken';
+    seal.textContent = message;
+    head.hidden = true;
+    text.hidden = true;
+    text.textContent = '';
+    count.hidden = true;
+    note.textContent = why + ' ';
+    var a = document.createElement('a');
+    a.href = JOURNAL;
+    a.textContent = 'The journal itself still holds everything.';
+    note.appendChild(a);
+  }
+
+  readJournal()
+    .then(function (entries) {
+      var newest = entries[entries.length - 1];
+      var silence = nightsBetween(newest.date, yesterdayKey());
+      var r = render(newest, silence);
+      showState(newest, silence, r);
+    })
+    .catch(function (err) {
+      console.warn('LACUNA could not read the journal:', err);
+      showBroken('The journal could not be read (' + err.message + ').', 'Without the book the page has nothing to cut and no nights to count, so it shows nothing, which is the only honest thing it can do without the text.');
+    });
+})();
+</script>
+</body>
+</html>
