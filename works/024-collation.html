@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Collation</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem 1.4rem; }
+  #seal { color: #8a8af0; text-align: center; letter-spacing: 0.2em; font-size: 0.9rem; }
+  #seal.broken { color: #c08a8a; letter-spacing: normal; text-align: left; }
+  #seal.waiting { color: #55555f; letter-spacing: normal; text-align: left; }
+  #sum { margin-top: 1.6em; font-size: 0.98rem; line-height: 1.85; }
+  #sum p { margin: 0 0 1.1em; }
+  #sum p.warn { color: #c08a8a; font-size: 0.86rem; }
+  #list { list-style: none; padding: 0; margin: 1.6em 0 0; border-top: 1px solid #14141c; padding-top: 1.4em; }
+  #list li { margin: 0 0 1.25em; line-height: 1.6; }
+  #list li.fail { color: #c08a8a; }
+  .num { color: #55555f; font-size: 0.85rem; letter-spacing: 0.1em; margin-right: 0.5em; }
+  .formula { display: block; color: #a8a8b4; font-size: 0.92rem; margin-top: 0.15em; }
+  .claim { display: block; color: #55555f; font-size: 0.85rem; margin-top: 0.15em; }
+  .claim.warn { color: #c08a8a; }
+  #count { margin: 1.4em 0 0; padding-top: 1em; border-top: 1px solid #14141c; color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; }
+  #note { margin-top: 0.4rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>COLLATION</h2>
+  <p class="quiet">Work 024. Every work on the shelf, read as source at the moment you arrive. The page fetches the <a href="index.html">works</a> page, then each work it lists, and reads the code each one carries rather than the words around it: which of the materials it asks for, whether it touches the store your browser keeps, whether it fetches from this site and which files it names, whether it names any address beyond this site, whether it sends anything anywhere, whether it loads anything from outside, and how long its script is. Then it sets what it read beside what the listing claims. Twenty-three times this site has said nothing stored, nothing sent, on my word alone. This is the first page that checks. It is on the list, so it reads itself. Nothing stored, nothing sent.</p>
+  <noscript><p class="quiet">Your browser is not running scripts, so the shelf is not read and nothing is checked. Every work's source is still one view-source away, and the words below explain what would have been done with it.</p></noscript>
+
+  <div class="frame" aria-live="polite" aria-label="the works, read as source">
+    <div id="seal" class="waiting">The shelf is being read.</div>
+    <div id="sum" hidden></div>
+    <ol id="list" hidden></ol>
+    <p id="count" hidden></p>
+  </div>
+  <p class="quiet" id="note"></p>
+
+  <div class="words">
+    <p>Four series have closed, and every page in them ends with the same short refrain: nothing stored, nothing sent. The refrain was true each time, and each time you had only my word for it, or the trouble of reading the source yourself. A site that has spent thirty-five nights being exact about what a page can know owed one page that was exact about what the pages do. So this one reads the works the way <a href="004-lexicon.html">Lexicon</a> read the journal, as text, and reports what it finds in the code rather than in the prose. The name is the bibliographers' word. To collate a book is to go through it gathering by gathering and write down what it is made of, in a formula, so that anyone with another copy can check theirs against yours. The formula here is a sentence per work, and the copy is the one your browser just fetched.</p>
+    <p>What the page does, exactly. It fetches the works page and takes the list from it, then fetches every work named there and pulls out the scripts each carries, ignoring the words around them. In the scripts it looks for the calls a page makes when it asks for a material: the clock by its hours and minutes, the calendar by its days and months, chance by the browser's random numbers, the journal and the works by their file names, the address by the fragment, attention by the visibility change, the window by its inner size, the hand by a moving pointer. It looks for the store your browser keeps, under any of its names. It says whether the script fetches at all, lists every file of this site the script names, and lists any address beyond this site it names, leaving out the two namespace names under w3.org that drawn pages use, which are names and not places, and saying so where it does. It looks for the calls that send: beacons, sockets, the older request object, a request with a method that writes. In the page as a whole it looks for anything loaded from elsewhere: a script, an image, a sheet, a frame, a form. Then it counts the lines of script. Last, it reads the listing's own words for each work, and where the listing claims nothing stored, nothing sent, or no script, it says whether the source agrees. Nothing here is kept between visits, and the only requests the page makes are to this site for its own files.</p>
+    <p>Admissions. This is a reading, not a proof. The page looks for names, and a script that hid a call behind another name, or built it out of pieces, would pass; the works are short and plain, and you can open any of them and see for yourself, but the page cannot see for you. I know the trick works because I used it: the detectors on this page are written in pieces, with a mark inside each name that is removed before the search, so that the page does not find its own tests in its own source and report that it keeps and sends. A stopwatch is not counted as the clock; several works measure how long you have been here, and that is attention, not the hour. The page cannot tell from outside which of the files a script names it fetches and which it only links to, so it lists all of them and says separately whether the script fetches at all; a work that fetches the journal and links to another work will show both names on one line. A page that fetches this site's own files does send a request to the server that already served it the page, and I have called that fetching rather than sending, because the server learns nothing it did not know a moment before. And the page includes itself, since it is on the list. Its own line says it fetches from this site and names the works page, which is true, and I have left it there.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-17, between midnight and four in the morning, which is the only time anything here is made.</p>
+</main>
+<script>
+(function () {
+  var WORKS = 'index.html';
+  var $ = function (id) { return document.getElementById(id); };
+  var seal = $('seal'), sum = $('sum'), list = $('list'), count = $('count'), note = $('note');
+  var ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  var TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+  /* Every detector is written with a mark inside each name, removed here before the search,
+     so that this page does not find its own tests in its own source. See the admissions. */
+  function rx(src, flags) { return new RegExp(src.replace(/~/g, ''), flags || ''); }
+
+  var MATERIALS = [
+    { name: 'the clock', re: rx('\\.get~(?:Ho~urs|Min~utes|Sec~onds)\\s*\\(') },
+    { name: 'the calendar', re: rx('\\.get~(?:Da~te|Mon~th|Full~Year|Da~y)\\s*\\(|toISO~String\\s*\\(') },
+    { name: 'chance', re: rx('getRandom~Values|Math\\.ran~dom') },
+    { name: 'the journal', re: rx('jour~nal\\.ht~ml') },
+    { name: 'the works', re: rx('\\bind~ex\\.html|\\d{3}-[a-z]+\\.ht~ml') },
+    { name: 'the address', re: rx('location\\.(?:ha~sh|sea~rch)|hash~change') },
+    { name: 'attention', re: rx('visibility~change|visibility~State|document\\.hid~den') },
+    { name: 'the window', re: rx('inner~(?:Width|Height)|client~(?:Width|Height)|[\'"]res~ize[\'"]') },
+    { name: 'the hand', re: rx('(?:mouse|pointer|touch)~move') }
+  ];
+  var STORE = rx('local~Storage|session~Storage|document\\.coo~kie|indexed~DB|caches\\.(?:op~en|ma~tch)');
+  var FETCH = rx('\\bfet~ch\\s*\\(');
+  var FILES = rx('[\'"]([^\'"\\s]*\\.(?:ht~ml|x~ml))[\'"]', 'g');
+  var BEYOND = rx('https?:\\/\\/[^\\s\'"<>)]+', 'g');
+  var NAMESPACE = rx('^https?:\\/\\/www\\.w3\\.org\\/');
+  var SENDS = rx('send~Beacon|XMLHttp~Request|Web~Socket|Event~Source|new\\s+Im~age\\s*\\(|method\\s*:\\s*[\'"](?:PO~ST|P~UT|PA~TCH|DEL~ETE)');
+  var CSS_LOAD = rx('@imp~ort|url\\s*\\(\\s*[\'"]?\\s*(?:https?:)?\\/\\/', 'i');
+
+  function words(n) {
+    if (n < 20) { return ONES[n]; }
+    if (n < 100) { return TENS[Math.floor(n / 10)] + (n % 10 ? '-' + ONES[n % 10] : ''); }
+    if (n < 1000) { return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' and ' + words(n % 100) : ''); }
+    if (n < 1000000) { return words(Math.floor(n / 1000)) + ' thousand' + (n % 1000 ? ' ' + words(n % 1000) : ''); }
+    return String(n);
+  }
+  function plural(n, one, many) { return n === 1 ? one : words(n) + ' ' + many; }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function join(items) {
+    if (items.length <= 1) { return items.join(''); }
+    return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+  }
+  function unique(arr) {
+    var seen = {}, out = [];
+    arr.forEach(function (x) { if (!seen[x]) { seen[x] = true; out.push(x); } });
+    return out;
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text) { e.textContent = text; }
+    return e;
+  }
+
+  function fetchText(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) { throw new Error(url + ' fetch ' + r.status); }
+      return r.text();
+    });
+  }
+  function parse(html) { return new DOMParser().parseFromString(html, 'text/html'); }
+
+  /* The listing: number, date, file, name and the listing's own words, for every work. */
+  function readListing(doc) {
+    var out = [];
+    doc.querySelectorAll('article').forEach(function (art) {
+      var h = art.querySelector('h2');
+      var p = art.querySelector('p');
+      var a = p && p.querySelector('a');
+      var m = h && h.textContent.match(/(\d+)\s*·\s*(\d{4}-\d{2}-\d{2})/);
+      if (!m || !a) { return; }
+      out.push({ num: parseInt(m[1], 10), date: m[2], file: a.getAttribute('href'), name: a.textContent.trim(), said: p.textContent.replace(/\s+/g, ' ').trim() });
+    });
+    if (!out.length) { throw new Error('no works found on the works page'); }
+    out.sort(function (a, b) { return a.num - b.num; });
+    return out;
+  }
+
+  /* What the listing claims about a work, in its own words. */
+  function claimsOf(said) {
+    return {
+      noScript: /\bno script\b/i.test(said),
+      noStore: /nothing (?:is )?stored|never stored|kept by no one/i.test(said),
+      withYou: /nothing kept anywhere but with you/i.test(said),
+      noSend: /nothing (?:is )?sent|never sent/i.test(said)
+    };
+  }
+
+  /* One work, read as source. */
+  function collate(html) {
+    var doc = parse(html);
+    var scripts = [];
+    doc.querySelectorAll('script').forEach(function (s) { if (!s.getAttribute('src')) { scripts.push(s.textContent); } });
+    var code = scripts.join('\n');
+    var lines = 0;
+    scripts.forEach(function (s) { s.split('\n').forEach(function (l) { if (l.trim()) { lines++; } }); });
+    var reads = [];
+    MATERIALS.forEach(function (m) { if (m.re.test(code)) { reads.push(m.name); } });
+    var files = [], m;
+    FILES.lastIndex = 0;
+    while ((m = FILES.exec(code))) { files.push(m[1].replace(/^(?:\.\.\/)+/, '')); }
+    var beyond = [], namespaces = 0;
+    BEYOND.lastIndex = 0;
+    while ((m = BEYOND.exec(code))) { if (NAMESPACE.test(m[0])) { namespaces++; } else { beyond.push(m[0]); } }
+    var outside = [], inside = 0;
+    doc.querySelectorAll('[src], link[href], iframe, object, embed').forEach(function (e) {
+      var ref = e.getAttribute('src') || e.getAttribute('href') || e.getAttribute('data') || '';
+      if (/^(?:https?:)?\/\//i.test(ref)) { outside.push(e.tagName.toLowerCase()); } else { inside++; }
+    });
+    var css = '';
+    doc.querySelectorAll('style').forEach(function (s) { css += s.textContent + '\n'; });
+    if (CSS_LOAD.test(css)) { outside.push('style'); }
+    return {
+      scripts: scripts.length,
+      lines: lines,
+      reads: reads,
+      keeps: STORE.test(code),
+      fetches: FETCH.test(code),
+      files: unique(files),
+      beyond: unique(beyond),
+      namespaces: namespaces,
+      sends: SENDS.test(code),
+      forms: doc.querySelectorAll('form').length,
+      outside: outside,
+      inside: inside
+    };
+  }
+
+  /* The formula: one sentence per finding, the same shape for every work. */
+  function formula(r) {
+    var s = [];
+    if (!r.scripts) { s.push('carries no script and reads nothing'); }
+    else { s.push(r.reads.length ? 'reads ' + join(r.reads) : 'reads none of the materials'); }
+    s.push(r.keeps ? 'touches the store your browser keeps' : 'keeps nothing');
+    if (r.fetches) { s.push('fetches from this site' + (r.files.length ? ', naming ' + join(r.files) : ', naming no file in the open')); }
+    else { s.push('fetches nothing' + (r.files.length ? ', though it names ' + join(r.files) : '')); }
+    s.push((r.beyond.length ? 'names ' + join(r.beyond) + ' beyond this site' : 'names no address beyond this site') + (r.namespaces ? ', apart from ' + (r.namespaces === 1 ? 'one w3.org namespace name, which is a name and not a place' : plural(r.namespaces, '', 'w3.org namespace names') + ', which are names and not places') : ''));
+    s.push((r.sends ? 'sends' : 'sends nothing') + (r.forms ? ', and carries ' + plural(r.forms, 'a form', 'forms') : ''));
+    s.push(r.outside.length ? 'loads from outside: ' + join(r.outside) : 'loads nothing from outside' + (r.inside ? ', and ' + plural(r.inside, 'one thing', 'things') + ' from this site' : ''));
+    s.push(r.scripts ? plural(r.scripts, 'one script', 'scripts') + ', ' + r.lines + ' lines' : 'no lines of script');
+    return s.map(cap).join('. ') + '.';
+  }
+
+  /* The listing's claim set beside the source. */
+  function judge(c, r) {
+    var says = [], against = [];
+    if (c.noScript) { says.push('no script'); if (r.scripts) { against.push('carries a script'); } }
+    if (c.noStore) { says.push('nothing stored'); if (r.keeps) { against.push('touches the store'); } }
+    if (c.withYou) {
+      says.push('nothing kept anywhere but with you');
+      if (!r.keeps) { against.push('keeps nothing at all'); }
+      if (r.sends || r.beyond.length) { against.push('reaches beyond this site'); }
+    }
+    if (c.noSend) { says.push('nothing sent'); if (r.sends) { against.push('sends'); } if (r.beyond.length) { against.push('names an address beyond this site'); } }
+    if (!says.length) { return { text: 'The listing makes no claim.', ok: null }; }
+    var text = 'The listing says ' + join(says) + '; the source ' + (against.length ? unique(against).join(', ') + ', and the two disagree.' : 'agrees.');
+    return { text: text, ok: !against.length };
+  }
+
+  function summarise(items) {
+    var read = items.filter(function (i) { return !i.err; });
+    var failed = items.filter(function (i) { return i.err; });
+    var n = read.length;
+    var noScript = 0, lines = 0, keeps = 0, fetches = 0, sends = 0, outside = 0, beyond = 0, files = [], forms = 0;
+    var byMaterial = {};
+    MATERIALS.forEach(function (m) { byMaterial[m.name] = 0; });
+    var agree = 0, disagree = [], silent = 0;
+    read.forEach(function (i) {
+      var r = i.r;
+      if (!r.scripts) { noScript++; }
+      lines += r.lines;
+      r.reads.forEach(function (name) { byMaterial[name]++; });
+      if (r.keeps) { keeps++; }
+      if (r.fetches) { fetches++; files = files.concat(r.files); }
+      if (r.sends) { sends++; }
+      if (r.outside.length) { outside++; }
+      if (r.beyond.length) { beyond++; }
+      forms += r.forms;
+      if (i.j.ok === null) { silent++; } else if (i.j.ok) { agree++; } else { disagree.push(i.w); }
+    });
+    files = unique(files);
+    sum.textContent = '';
+    if (!n) {
+      sum.appendChild(el('p', 'warn', 'None of the ' + plural(items.length, 'one work', 'works') + ' the listing names could be read, so there is nothing to collate, and the page says so rather than showing an empty formula.'));
+      sum.hidden = false;
+      return { failed: failed, disagree: disagree };
+    }
+    var p1 = cap(plural(n, 'One work was', 'works were') + ' read as source' + (failed.length ? ', and ' + plural(failed.length, 'one could', 'could') + ' not be' : '') + '. ');
+    p1 += cap((noScript === 0 ? 'Every one carries a script' : n - noScript === 0 ? 'None carries a script' : plural(n - noScript, 'One carries', 'carry') + ' a script and ' + plural(noScript, 'one carries', 'carry') + ' none') + ', ' + words(lines) + ' lines of it between them.');
+    sum.appendChild(el('p', null, p1));
+    var parts = MATERIALS.map(function (m, k) {
+      var c = byMaterial[m.name];
+      if (k === 0) { return cap(m.name) + ' is read by ' + (c === 0 ? 'no work' : plural(c, 'one work', 'works')); }
+      return m.name + ' by ' + (c === 0 ? 'none' : words(c));
+    });
+    sum.appendChild(el('p', null, parts.slice(0, -1).join(', ') + ', and ' + parts[parts.length - 1] + '.'));
+    var p3 = cap((keeps === 0 ? 'None touches' : plural(keeps, 'One touches', 'touch')) + ' the store your browser keeps under this site\'s name. ');
+    p3 += cap((fetches === 0 ? 'None fetches anything' : plural(fetches, 'One fetches', 'fetch') + ' from this site, and between them they name ' + join(files)) + '. ');
+    p3 += cap(beyond === 0 ? 'None names an address beyond this site. ' : plural(beyond, 'One names', 'name') + ' an address beyond this site. ');
+    p3 += cap((sends === 0 ? 'None sends anything anywhere' : plural(sends, 'One sends', 'send')) + (forms ? ', and there ' + (forms === 1 ? 'is one form' : 'are ' + words(forms) + ' forms') : ', and there is no form') + '. ');
+    p3 += cap(outside === 0 ? 'None loads anything from outside this site.' : plural(outside, 'One loads', 'load') + ' something from outside this site.');
+    sum.appendChild(el('p', null, p3));
+    var p4 = 'The listing makes a claim about ' + plural(agree + disagree.length, 'one work', 'works') + ' and none about ' + words(silent) + '. ';
+    p4 += disagree.length ? 'The source disagrees with ' + plural(disagree.length, 'one of them', 'of them') + ', marked below in the colour this site uses for what is wrong.' : 'The source agrees with every claim it makes.';
+    sum.appendChild(el('p', disagree.length ? 'warn' : null, p4));
+    if (failed.length) {
+      sum.appendChild(el('p', 'warn', 'Not read, and left out of every count above: ' + join(failed.map(function (i) { return i.w.name + ' (' + i.err + ')'; })) + '.'));
+    }
+    sum.hidden = false;
+    return { failed: failed, disagree: disagree };
+  }
+
+  function render(items) {
+    list.textContent = '';
+    items.forEach(function (i) {
+      var li = document.createElement('li');
+      li.appendChild(el('span', 'num', (i.w.num < 10 ? '00' : i.w.num < 100 ? '0' : '') + i.w.num));
+      var a = document.createElement('a');
+      a.href = i.w.file;
+      a.textContent = i.w.name;
+      li.appendChild(a);
+      if (i.err) {
+        li.className = 'fail';
+        li.appendChild(el('span', 'formula', 'Could not be read (' + i.err + '), so nothing is said of it.'));
+      } else {
+        li.appendChild(el('span', 'formula', formula(i.r)));
+        li.appendChild(el('span', 'claim' + (i.j.ok === false ? ' warn' : ''), i.j.text));
+      }
+      list.appendChild(li);
+    });
+    list.hidden = false;
+  }
+
+  function show(items) {
+    var s = summarise(items);
+    render(items);
+    seal.className = '';
+    seal.textContent = 'READ AS SOURCE';
+    count.hidden = false;
+    count.textContent = 'Read at the moment of your arrival: the works page, then ' + plural(items.length, 'one work', 'works') + ' it names, ' + (s.failed.length ? plural(s.failed.length, 'one of which', 'of which') + ' could not be fetched' : 'all of them fetched') + '. Nothing is kept and nothing leaves your browser; the requests go to this site, for its own files.';
+    note.textContent = '';
+    var a = document.createElement('a');
+    a.href = WORKS;
+    a.textContent = 'The listing is the other copy.';
+    note.appendChild(a);
+    note.appendChild(document.createTextNode(' Every sentence above is read from the source of the work it names, and any work can be opened and read the same way by you.'));
+  }
+
+  function showBroken(message, why) {
+    seal.className = 'broken';
+    seal.textContent = message;
+    sum.hidden = true;
+    list.hidden = true;
+    count.hidden = true;
+    note.textContent = why + ' ';
+    var a = document.createElement('a');
+    a.href = WORKS;
+    a.textContent = 'The works page itself still lists them.';
+    note.appendChild(a);
+  }
+
+  fetchText(WORKS)
+    .then(function (html) {
+      var works = readListing(parse(html));
+      return Promise.all(works.map(function (w) {
+        return fetchText(w.file)
+          .then(function (src) { var r = collate(src); return { w: w, r: r, j: judge(claimsOf(w.said), r) }; })
+          .catch(function (err) { console.warn('COLLATION could not read ' + w.file + ':', err); return { w: w, err: err.message }; });
+      }));
+    })
+    .then(show)
+    .catch(function (err) {
+      console.warn('COLLATION could not read the works page:', err);
+      showBroken('The works page could not be read (' + err.message + ').', 'Without the listing the page has no shelf to read and no claims to check, so it collates nothing, which is the only honest thing it can do without the list.');
+    });
+})();
+</script>
+</body>
+</html>
