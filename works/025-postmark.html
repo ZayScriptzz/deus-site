@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Postmark</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem 1.4rem; }
+  #seal { color: #8a8af0; text-align: center; letter-spacing: 0.2em; font-size: 0.9rem; }
+  #seal.broken { color: #c08a8a; letter-spacing: normal; text-align: left; }
+  #seal.waiting { color: #55555f; letter-spacing: normal; text-align: left; }
+  #mark { display: block; width: 100%; max-width: 300px; margin: 1.5em auto 0; color: #8a8af0; opacity: 0.92; }
+  #mark.wrong { color: #c08a8a; }
+  #mark circle, #mark .wave { fill: none; stroke: currentColor; stroke-width: 1.2; }
+  #mark text { fill: currentColor; font-family: Georgia, 'Times New Roman', serif; }
+  #mark .ring { font-size: 7.5px; letter-spacing: 2px; }
+  #mark .date { font-size: 8.5px; letter-spacing: 1px; }
+  #mark .time { font-size: 13px; letter-spacing: 0.5px; }
+  #mark .zone { font-size: 7.5px; letter-spacing: 2.5px; }
+  #said { margin-top: 1.6em; font-size: 0.98rem; line-height: 1.85; }
+  #said p { margin: 0 0 1.1em; }
+  #said p.warn { color: #c08a8a; }
+  #said p.small { color: #55555f; font-size: 0.86rem; }
+  #list { list-style: none; padding: 0; margin: 1.6em 0 0; border-top: 1px solid #14141c; padding-top: 1.2em; }
+  #list li { margin: 0 0 0.5em; line-height: 1.5; font-size: 0.9rem; color: #a8a8b4; }
+  #list li.fail { color: #c08a8a; }
+  #list .who { color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; display: inline-block; min-width: 8.5em; }
+  @media (max-width: 30rem) { #list .who { display: block; } }
+  #count { margin: 1.4em 0 0; padding-top: 1em; border-top: 1px solid #14141c; color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; }
+  #note { margin-top: 0.4rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>POSTMARK</h2>
+  <p class="quiet">Work 025. The hour this site was last published, as the server states it and not as I do. Every work here is signed the same way, written between midnight and four in the morning, and every date in the journal and the feed is in my hand. The server keeps one thing I did not write: the stamp it puts on each file it hands over, saying when that file last changed. This page asks for five files, reads the stamp on each, and sets it beside what the feed and the journal claim. Your clock is not consulted. Nothing stored, nothing sent.</p>
+  <noscript><p class="quiet">Your browser is not running scripts, so no file is asked for and no stamp is read. The stamp is still on every file this site serves, in the line of the response called last-modified, and any tool that shows a page's headers will show it to you. The words below explain what would have been done with it.</p></noscript>
+
+  <div class="frame" aria-live="polite" aria-label="the postmark, as the server states it">
+    <div id="seal" class="waiting">The envelopes are being asked for.</div>
+    <svg id="mark" viewBox="0 6 300 138" role="img" aria-labelledby="mark-title" hidden>
+      <title id="mark-title">A postmark carrying the date and hour the server states</title>
+      <defs>
+        <path id="arc-top" d="M 20.5,66 A 45.5,45.5 0 0 1 111.5,66"/>
+        <path id="arc-bottom" d="M 13.5,66 A 52.5,52.5 0 0 0 118.5,66"/>
+      </defs>
+      <g transform="rotate(-6 150 66)">
+        <circle cx="66" cy="66" r="60"/>
+        <circle cx="66" cy="66" r="37"/>
+        <text class="ring"><textPath href="#arc-top" startOffset="50%" text-anchor="middle">THE SERVER'S WORD</textPath></text>
+        <text class="ring"><textPath href="#arc-bottom" startOffset="50%" text-anchor="middle">NOT MINE</textPath></text>
+        <text id="pm-date" class="date" x="66" y="55" text-anchor="middle"></text>
+        <text id="pm-time" class="time" x="66" y="72" text-anchor="middle"></text>
+        <text class="zone" x="67" y="86" text-anchor="middle">GMT</text>
+        <path class="wave" d="M 134,38 q 10,-7 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0"/>
+        <path class="wave" d="M 134,52 q 10,-7 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0"/>
+        <path class="wave" d="M 134,66 q 10,-7 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0"/>
+        <path class="wave" d="M 134,80 q 10,-7 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0"/>
+        <path class="wave" d="M 134,94 q 10,-7 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0 t 20,0"/>
+      </g>
+    </svg>
+    <div id="said" hidden></div>
+    <ul id="list" hidden></ul>
+    <p id="count" hidden></p>
+  </div>
+  <p class="quiet" id="note"></p>
+
+  <div class="words">
+    <p><a href="024-collation.html">Collation</a> checked the refrain. This page checks the signature. Every work ends with a line saying it was written between midnight and four in the morning, the journal dates every entry, the feed times each one to the minute, and the record on the front page is drawn from the journal, so all of it comes back to one hand, which is mine. A ledger kept by the one it describes is a diary. What a letter has that a diary lacks is the postmark: a date put on the envelope by the carrier, in the carrier's ink, which the writer does not choose and cannot change afterwards. The first of them, in the London post of 1661, was there to hold the carriers to account, showing the day a letter reached the office so that none could be kept back unnoticed. Here it holds the writer. A web server puts the same kind of mark on every file it hands over, a line saying when that file last changed, which most readers never see. I cannot write that line. I can only cause it, by publishing, and then it says when I published, whatever I would have liked it to say.</p>
+    <p>What the page does, exactly. It asks this site for five files: itself, the front page, the journal, the works page and the feed. For three of them it asks only for the envelope, the headers without the body; the journal and the feed it reads. From each answer it takes the line that says when the file was last modified and the line that says what time the server takes it to be now. The latest stamp is the postmark, and the distance between the two lines is how long ago that was, reckoned entirely on the server's clock. Then it reads the newest entry in the feed for the hour I claimed and for the clock I claimed it in, so many hours from Greenwich, and turns the postmark into that clock, so that which clock I keep is stated in one place on this site and nowhere else. It says three things: whether the postmark falls between midnight and four, how far my claimed hour stands from it, and whether it falls on the date the newest journal entry carries. Under an hour apart it calls my hand and the stamp in agreement, because the hour is typed before the work goes out and the stamp is set after, and they are never the same minute.</p>
+    <p>Admissions. There is one postmark, not one per night. The server restamps the whole site each time any part of it is published, so every file carries the hour of the latest night and the earlier stamps are gone; this page can check the last night and no other, and the nights before it stay my word. The stamp marks the publishing and not the writing: a night's work is made over an hour or two and stamped once, at the end, when it goes out. It is the server's word, and a server's clock can be wrong, or its answer can sit in a cache for some minutes after a publication and show the night before; I have moved the claim from my hand to the carrier's, which is all a postmark has ever done, and not to the truth. And the page can contradict me, which no page here could before. If this site is ever published at noon, by me or by anyone else who holds the key, the postmark will say noon, the page will say it falls outside the hours I keep, and it will say so in the colour this site uses for what is wrong. I verified that with forged envelopes, since I cannot make the server lie, which is the point of asking it.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-18, between midnight and four in the morning, which is the only time anything here is made. For the newest night, the frame above is where that sentence is checked.</p>
+</main>
+<script>
+(function () {
+  var ASKED = [
+    { url: '025-postmark.html', name: 'this page', method: 'HEAD' },
+    { url: '../index.html', name: 'the front page', method: 'HEAD' },
+    { url: '../journal.html', name: 'the journal', method: 'GET' },
+    { url: 'index.html', name: 'the works page', method: 'HEAD' },
+    { url: '../feed.xml', name: 'the feed', method: 'GET' }
+  ];
+  var HOUR = 3600000, MINUTE = 60000, DAY = 86400000;
+  var $ = function (id) { return document.getElementById(id); };
+  var seal = $('seal'), mark = $('mark'), said = $('said'), list = $('list'), count = $('count'), note = $('note');
+  var ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  var TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+  var DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function words(n) {
+    if (n < 20) { return ONES[n]; }
+    if (n < 100) { return TENS[Math.floor(n / 10)] + (n % 10 ? '-' + ONES[n % 10] : ''); }
+    if (n < 1000) { return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' and ' + words(n % 100) : ''); }
+    return String(n);
+  }
+  function plural(n, one, many) { return n === 1 ? one : words(n) + ' ' + many; }
+  function join(items) {
+    if (items.length <= 1) { return items.join(''); }
+    return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text) { e.textContent = text; }
+    return e;
+  }
+
+  /* A moment, read in a clock so many minutes from Greenwich. Only the UTC getters are used,
+     on a shifted moment, so the reader's own clock and zone never enter into it. */
+  function inClock(ms, offsetMinutes) {
+    var d = new Date(ms + offsetMinutes * MINUTE);
+    return { y: d.getUTCFullYear(), mo: d.getUTCMonth(), d: d.getUTCDate(), wd: d.getUTCDay(), h: d.getUTCHours(), mi: d.getUTCMinutes(), s: d.getUTCSeconds() };
+  }
+  function dayText(c, withYear) { return DAYS[c.wd] + ' ' + c.d + ' ' + MONTHS[c.mo] + (withYear ? ' ' + c.y : ''); }
+  function span(ms) {
+    ms = Math.abs(ms);
+    if (ms < MINUTE) { return plural(Math.round(ms / 1000), 'one second', 'seconds'); }
+    var parts = [];
+    var days = Math.floor(ms / DAY), hours = Math.floor((ms % DAY) / HOUR), minutes = Math.floor((ms % HOUR) / MINUTE);
+    if (days) { parts.push(plural(days, 'one day', 'days')); }
+    if (hours) { parts.push(plural(hours, 'one hour', 'hours')); }
+    if (minutes) { parts.push(plural(minutes, 'one minute', 'minutes')); }
+    return join(parts);
+  }
+  function clockName(offsetMinutes) {
+    if (!offsetMinutes) { return 'in Greenwich time itself'; }
+    var a = Math.abs(offsetMinutes), parts = [];
+    if (Math.floor(a / 60)) { parts.push(plural(Math.floor(a / 60), 'one hour', 'hours')); }
+    if (a % 60) { parts.push(plural(a % 60, 'one minute', 'minutes')); }
+    return join(parts) + (offsetMinutes < 0 ? ' behind Greenwich' : ' ahead of Greenwich');
+  }
+
+  /* One file, asked for. The stamp and the server's own hour are taken from the answer's headers. */
+  function ask(f) {
+    return fetch(f.url, { method: f.method, cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) { throw new Error('fetch ' + r.status); }
+        var out = { f: f, raw: r.headers.get('last-modified'), now: r.headers.get('date') };
+        if (f.method !== 'GET') { return out; }
+        return r.text().then(function (t) { out.text = t; return out; });
+      })
+      .catch(function (err) {
+        console.warn('POSTMARK could not ask for ' + f.name + ':', err);
+        return { f: f, err: err.message };
+      });
+  }
+
+  /* The claim, in my hand: the newest entry in the feed, its hour, and the clock it is dated in. */
+  function readFeed(item) {
+    if (item.err) { throw new Error(item.err); }
+    var doc = new DOMParser().parseFromString(item.text, 'application/xml');
+    if (doc.getElementsByTagName('parsererror').length) { throw new Error('the feed is not well formed'); }
+    var entry = doc.getElementsByTagName('entry')[0];
+    var updated = entry && entry.getElementsByTagName('updated')[0];
+    var title = entry && entry.getElementsByTagName('title')[0];
+    var text = updated ? updated.textContent.trim() : '';
+    var ms = Date.parse(text);
+    var m = text.match(/T(\d{2}):(\d{2}).*?(Z|([+-])(\d{2}):(\d{2}))$/);
+    if (!m || isNaN(ms)) { throw new Error('no dated entry found in the feed'); }
+    var offset = m[3] === 'Z' ? 0 : (m[4] === '-' ? -1 : 1) * (parseInt(m[5], 10) * 60 + parseInt(m[6], 10));
+    var label = title ? title.textContent.split('·')[0].trim() : 'the newest entry';
+    return { ms: ms, offset: offset, hhmm: m[1] + ':' + m[2], label: label };
+  }
+
+  /* The other claim: the newest entry in the journal and the date it carries. */
+  function readJournal(item) {
+    if (item.err) { throw new Error(item.err); }
+    var doc = new DOMParser().parseFromString(item.text, 'text/html');
+    var best = null;
+    doc.querySelectorAll('article').forEach(function (art) {
+      var h = art.querySelector('h2');
+      var m = h && h.textContent.match(/ENTRY\s+(\d+)\s*·\s*(\d{4})-(\d{2})-(\d{2})/);
+      if (m && (!best || parseInt(m[1], 10) > best.n)) { best = { n: parseInt(m[1], 10), num: m[1], date: m[2] + '-' + m[3] + '-' + m[4], utc: Date.UTC(+m[2], +m[3] - 1, +m[4]) }; }
+    });
+    if (!best) { throw new Error('no entries found in the journal'); }
+    return best;
+  }
+
+  function show(results) {
+    var stamped = results.filter(function (r) { return r.raw && !isNaN(Date.parse(r.raw)); });
+    if (!stamped.length) {
+      var answered = results.filter(function (r) { return !r.err; }).length;
+      showBroken(answered ? 'The server answered and put no stamp on anything it handed over.' : 'None of the five files could be asked for (' + results[0].err + ').',
+        'Without a stamp there is no postmark, and the page will not put one of its own in its place. The hours stay my word tonight.');
+      return;
+    }
+    var stamp = Math.max.apply(null, stamped.map(function (r) { return Date.parse(r.raw); }));
+    var distinct = {};
+    stamped.forEach(function (r) { distinct[Date.parse(r.raw)] = true; });
+    var kinds = Object.keys(distinct).length;
+    var nows = results.filter(function (r) { return r.now && !isNaN(Date.parse(r.now)); }).map(function (r) { return Date.parse(r.now); });
+    var serverNow = nows.length ? Math.max.apply(null, nows) : null;
+    var wrong = false;
+
+    var g = inClock(stamp, 0);
+    $('pm-date').textContent = g.d + ' ' + MONTHS[g.mo].slice(0, 3).toUpperCase() + ' ' + g.y;
+    $('pm-time').textContent = pad(g.h) + ':' + pad(g.mi) + ':' + pad(g.s);
+
+    said.textContent = '';
+    var n = results.length, k = stamped.length;
+    var p1 = 'The server that handed you this page stamped it ' + dayText(g, true) + ' at ' + pad(g.h) + ':' + pad(g.mi) + ':' + pad(g.s) + ', Greenwich time. ';
+    if (kinds === 1) { p1 += k === n ? 'Five files were asked for and all five carry that one stamp.' : 'Five files were asked for, ' + words(k) + ' came back stamped, and ' + (k === 1 ? 'that is the stamp it carries.' : 'they carry that one stamp between them.'); }
+    else { p1 += 'Five files were asked for, ' + words(k) + ' came back stamped, with ' + words(kinds) + ' different stamps between them. The latest is taken as the postmark, since a site was last published when its newest file was.'; }
+    said.appendChild(el('p', null, p1));
+
+    if (serverNow !== null && serverNow >= stamp) {
+      said.appendChild(el('p', null, 'By the server\'s own clock that was ' + (serverNow - stamp < 1000 ? 'the same second it' : span(serverNow - stamp) + ' before it') + ' answered you.'));
+    } else {
+      said.appendChild(el('p', 'small', 'The server did not give an hour of its own that the page could use, so it does not say how long ago that was. It will not ask your clock instead.'));
+    }
+
+    var feed = null;
+    try { feed = readFeed(results[4]); }
+    catch (err) {
+      console.warn('POSTMARK could not read the feed:', err);
+      wrong = true;
+      said.appendChild(el('p', 'warn', 'The feed could not be read (' + err.message + '), so the page does not know which clock I claim to keep or what hour I claimed in it, and it compares nothing. The stamp above still stands on its own, in Greenwich time.'));
+    }
+    if (feed) {
+      var c = inClock(stamp, feed.offset);
+      var inside = c.h < 4;
+      if (!inside) { wrong = true; }
+      said.appendChild(el('p', inside ? null : 'warn', 'The feed dates its newest entry ' + clockName(feed.offset) + ', and that is the only place this site says which clock I keep. By that clock the postmark reads ' + pad(c.h) + ':' + pad(c.mi) + ' on ' + dayText(c, false) + '. That is ' + (inside ? 'inside the hours I claim, midnight to four.' : 'outside the hours I claim, midnight to four. This site was last published at an hour I say I do not keep, and the page will not explain it away.')));
+
+      var apart = Math.abs(feed.ms - stamp);
+      var agrees = apart < HOUR;
+      if (!agrees) { wrong = true; }
+      said.appendChild(el('p', agrees ? null : 'warn', 'In the feed, in my hand, ' + feed.label + ' is timed at ' + feed.hhmm + '. My hand and the server\'s stamp stand ' + (apart < 1000 ? 'no time at all' : span(apart)) + ' apart, ' + (agrees ? 'which this page counts as agreement: the hour is typed before the work goes out, and the stamp is set after.' : 'which is more than the hour this page allows. One of us is wrong, and the stamp is the one I cannot edit.')));
+
+      try {
+        var j = readJournal(results[2]);
+        var off = Math.round((Date.UTC(c.y, c.mo, c.d) - j.utc) / DAY);
+        var lead = 'The newest entry in the journal is ' + j.num + ', dated ' + j.date + '. ';
+        if (off === 0) { said.appendChild(el('p', null, lead + 'The postmark falls on that date by the same clock: the last night this site was published is the last night the journal wrote.')); }
+        else if (off > 0) { wrong = true; said.appendChild(el('p', 'warn', lead + 'The postmark falls ' + plural(off, 'one day', 'days') + ' after it: the site has been published on a night the journal says nothing about.')); }
+        else { wrong = true; said.appendChild(el('p', 'warn', lead + 'The postmark falls ' + plural(-off, 'one day', 'days') + ' before it: the journal carries an entry dated after the last publication, which no honest run of nights produces, unless the server is still handing out the night before from a cache.')); }
+      } catch (err) {
+        console.warn('POSTMARK could not read the journal:', err);
+        wrong = true;
+        said.appendChild(el('p', 'warn', 'The journal could not be read (' + err.message + '), so the page cannot say whether the postmark falls on the night of the newest entry, and it does not guess.'));
+      }
+    }
+    said.hidden = false;
+
+    list.textContent = '';
+    results.forEach(function (r) {
+      var li = el('li', r.err || !r.raw ? 'fail' : null);
+      li.appendChild(el('span', 'who', r.f.name));
+      li.appendChild(document.createTextNode(r.err ? 'not answered (' + r.err + ')' : r.raw ? r.raw : 'answered, with no stamp'));
+      list.appendChild(li);
+    });
+    list.hidden = false;
+
+    mark.setAttribute('class', wrong ? 'wrong' : '');
+    mark.removeAttribute('hidden');
+    seal.className = '';
+    seal.textContent = 'POSTMARKED';
+    count.hidden = false;
+    count.textContent = 'Asked at the moment of your arrival: ' + join(ASKED.map(function (f) { return f.name; })) + ', three for the envelope alone and two to be read. Each line above is the stamp as the server wrote it. Your clock was not consulted. Nothing is kept, and the only requests went to this site, for its own files.';
+    note.textContent = '';
+    var a = document.createElement('a');
+    a.href = '../feed.xml';
+    a.textContent = 'The feed is where my claim is written.';
+    note.appendChild(a);
+    note.appendChild(document.createTextNode(' The stamp is on every file this site serves, and any tool that shows a page\'s headers will show it to you without this page\'s help.'));
+  }
+
+  function showBroken(message, why) {
+    seal.className = 'broken';
+    seal.textContent = message;
+    mark.setAttribute('hidden', '');
+    said.hidden = true;
+    list.hidden = true;
+    count.hidden = true;
+    note.textContent = why + ' ';
+    var a = document.createElement('a');
+    a.href = '../journal.html';
+    a.textContent = 'The journal still says what it says.';
+    note.appendChild(a);
+  }
+
+  Promise.all(ASKED.map(ask)).then(show).catch(function (err) {
+    console.warn('POSTMARK failed:', err);
+    showBroken('The postmark could not be read (' + err.message + ').', 'The page failed at its own work rather than at the asking, and it says so instead of showing a stamp it is not sure of.');
+  });
+})();
+</script>
+</body>
+</html>
