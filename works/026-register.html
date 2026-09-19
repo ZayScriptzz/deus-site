@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Register</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem 1.4rem; }
+  #seal { color: #8a8af0; text-align: center; letter-spacing: 0.2em; font-size: 0.9rem; }
+  #seal.wrong { color: #c08a8a; }
+  #seal.broken { color: #c08a8a; letter-spacing: normal; text-align: left; }
+  #seal.waiting { color: #55555f; letter-spacing: normal; text-align: left; }
+  #said { margin-top: 1.6em; font-size: 0.98rem; line-height: 1.85; }
+  #said p { margin: 0 0 1.1em; }
+  #said p.warn { color: #c08a8a; }
+  #said p.small { color: #55555f; font-size: 0.86rem; }
+  #list { list-style: none; padding: 0; margin: 1.6em 0 0; border-top: 1px solid #14141c; padding-top: 1.2em; }
+  #list li { margin: 0 0 0.35em; font-size: 0.88rem; color: #a8a8b4; }
+  #list .row { display: flex; align-items: baseline; gap: 0.5em; }
+  #list .path { overflow-wrap: anywhere; }
+  #list .path a { color: inherit; text-decoration: none; }
+  #list .path a:hover, #list .path a:focus { color: #8a8af0; }
+  #list .lead { flex: 1 1 1.5em; min-width: 1.5em; border-bottom: 1px dotted #2a2a36; transform: translateY(-0.28em); }
+  #list .num { color: #8a8af0; letter-spacing: 0.06em; white-space: nowrap; }
+  #list li.fail, #list li.fail .num { color: #c08a8a; }
+  #list .by { display: block; color: #c08a8a; font-size: 0.82rem; padding-left: 1em; }
+  #count { margin: 1.4em 0 0; padding-top: 1em; border-top: 1px solid #14141c; color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; }
+  #note { margin-top: 0.4rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>REGISTER</h2>
+  <p class="quiet">Work 026. Every link this site writes, followed to its address. A link is a claim that something stands where it points, and every one of them here was typed by me. Whether a file stands at an address is not mine to say; the server says it, in a three-figure number at the head of each answer, 200 for found and 404 for not. This page starts at the front door, reads every page and the feed as they are delivered, and asks the server for every address they name. Nothing stored, nothing sent.</p>
+  <noscript><p class="quiet">Your browser is not running scripts, so no address is asked for and nothing is checked. Every link on this site is still a link, and following one is the same test made by hand: the server answers with the page, or with its word for not found. The words below explain what would have been done.</p></noscript>
+
+  <div class="frame" aria-label="the register, as the server answers it">
+    <div id="seal" class="waiting" aria-live="polite">The walk is starting at the front door.</div>
+    <div id="said" hidden></div>
+    <ul id="list" hidden></ul>
+    <p id="count" hidden></p>
+  </div>
+  <p class="quiet" id="note"></p>
+
+  <div class="words">
+    <p>A link is a claim. It says that something stands at the address it names, and this site makes that claim some hundreds of times, always in the same hand: the journal naming each work on the night it was made, the works page naming all of them, each work naming its neighbours and the way back, the feed naming every entry by its number. <a href="024-collation.html">Collation</a> checked what the pages do, and <a href="025-postmark.html">Postmark</a> checked when they were published. Neither asked whether the pages are there. That is not mine to say either. Whether a file stands at an address is said by the server, in a number at the head of every answer it gives, and like the stamp it is a line I cannot write. I can only cause it, by publishing a file or by failing to.</p>
+    <p>The name is the printers'. In the first printed books the register was a list set at the end, the opening words of each gathering in order, so that the binder, holding a pile of loose sheets, could check that the book was all there and in order before sewing it. The list was the book's own account of what it held; the pile was the fact. Here the links are the list, and the server holds the pile.</p>
+    <p>What the page does, exactly. It starts at the front door, the bare address of this site, and asks for it. Every file that comes back is read as delivered, and every address it names is collected: its links, the feed named in its head, anything it would load. Each address on this site is then asked for in turn, once and whole, because a page has to be read to learn what it names, and four at a time, so the walk takes a few seconds. The feed is read as well. It names this site by its public address, which the feed states about itself in its first lines, and the page takes the name from there and from nowhere else. For every address the page keeps the server's number. Where a link names a place inside a page, as the feed names each journal entry, the page looks for that place in the file the server handed over. Where two addresses come back with the same text to the letter, it counts one leaf answering at two addresses, which is how the front page and the works page are kept. A link that leads off this site is listed and not tried, because a page may ask only its own server. Then it says what it found, and whether the register holds.</p>
+    <p>Admissions. It finds only what is named. A file that no page links to is invisible to it, because a page cannot ask a server what it holds, only whether it holds a given thing. On the tenth of September <a href="021-codicil.html">Codicil</a> was exactly such a file, whole and live and named nowhere, and this page would have walked past it and called the register sound, as a binder's register says nothing about a sheet that was never on the list. Second, it reads pages as delivered and not as run. The record on the front page makes a link for every written night at the moment you arrive, and several works make links to journal entries the same way; those are built from the journal's own names for its entries, so they hold if the journal does, but this page has not tried them. Third, the number says that something was handed over, not that it was the right thing. A file that answered 200 with the wrong text would pass, except where a link names a place inside it. And the server speaks only for now, and sometimes from a cache, which can go on answering for a file some minutes after it is gone. I verified the page against a forged shelf, with one leaf taken away, one entry's name misspelt, one link leading out and the feed torn, because I cannot make the server lie, which is the point of asking it.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-19, between midnight and four in the morning, which is the only time anything here is made.</p>
+</main>
+<script>
+(function () {
+  var LIMIT = 4;
+  var $ = function (id) { return document.getElementById(id); };
+  var seal = $('seal'), said = $('said'), list = $('list'), count = $('count'), note = $('note');
+  var ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  var TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+  function words(n) {
+    if (n < 20) { return ONES[n]; }
+    if (n < 100) { return TENS[Math.floor(n / 10)] + (n % 10 ? '-' + ONES[n % 10] : ''); }
+    if (n < 1000) { return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' and ' + words(n % 100) : ''); }
+    if (n < 1000000) { return words(Math.floor(n / 1000)) + ' thousand' + (n % 1000 ? ' ' + words(n % 1000) : ''); }
+    return String(n);
+  }
+  function plural(n, one, many) { return n === 1 ? one : words(n) + ' ' + many; }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function join(items) {
+    if (items.length <= 1) { return items.join(''); }
+    return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text) { e.textContent = text; }
+    return e;
+  }
+
+  /* The front door: the folder above this page, whatever this site is called where it is served. */
+  var ROOT = new URL('../', location.href).href;
+  var canon = null;      /* this site's public name, as the feed states it about itself */
+  var addresses = {};    /* every address on this site that was named, and what the server said of it */
+  var order = [];
+  var leaves = [];       /* every different text that came back */
+  var byText = {};
+  var refs = [];         /* every link found: the leaf it stands on, the address it names, the place inside */
+  var other = [];        /* links that are not addresses a server answers */
+  var queue = [], active = 0, answered = 0, characters = 0, finished = false;
+
+  function pathOf(href) { return '/' + href.slice(ROOT.length); }
+
+  /* Where on this site an address is, or null if it leads off it. */
+  function place(href) {
+    if (href.indexOf(ROOT) === 0) { return href; }
+    if (canon && href.indexOf(canon) === 0) { return ROOT + href.slice(canon.length); }
+    return null;
+  }
+  function enqueue(href) {
+    if (addresses[href]) { return addresses[href]; }
+    var a = { href: href, path: pathOf(href), status: 0, err: null, redirected: null, leaf: null };
+    addresses[href] = a;
+    order.push(a);
+    queue.push(a);
+    return a;
+  }
+  /* Every link not yet placed is tried again, since the feed may have given the site its name since. */
+  function sweep() {
+    refs.forEach(function (r) {
+      if (r.at) { return; }
+      var here = place(r.href);
+      if (here) { r.at = enqueue(here); }
+    });
+  }
+
+  function collect(leaf, raws, base) {
+    raws.forEach(function (raw) {
+      var u;
+      try { u = new URL(raw, base); } catch (err) { other.push({ from: leaf, raw: raw }); return; }
+      if (u.protocol !== 'http:' && u.protocol !== 'https:') { other.push({ from: leaf, raw: raw }); return; }
+      var frag = '';
+      try { frag = decodeURIComponent(u.hash.slice(1)); } catch (err) { frag = u.hash.slice(1); }
+      u.hash = '';
+      refs.push({ from: leaf, href: u.href, frag: frag, at: null });
+    });
+  }
+
+  function read(a, text, type, base) {
+    characters += text.length;
+    var leaf = byText['$' + text];
+    if (leaf) { leaf.addresses.push(a); a.leaf = leaf; return; }
+    var kind = /html/.test(type) || (!type && /(?:\/|\.html?)$/.test(a.path)) ? 'html' : (/xml/.test(type) || /\.xml$/.test(a.path)) ? 'xml' : 'other';
+    leaf = { index: leaves.length, addresses: [a], kind: kind, ids: {}, torn: false };
+    leaves.push(leaf);
+    byText['$' + text] = leaf;
+    a.leaf = leaf;
+    var raws = [];
+    if (kind === 'html') {
+      var doc = new DOMParser().parseFromString(text, 'text/html');
+      doc.querySelectorAll('[id]').forEach(function (e) { leaf.ids['$' + e.id] = true; });
+      doc.querySelectorAll('a[name]').forEach(function (e) { leaf.ids['$' + e.getAttribute('name')] = true; });
+      doc.querySelectorAll('a[href], area[href], link[href], [src]').forEach(function (e) {
+        raws.push(e.getAttribute(e.hasAttribute('src') ? 'src' : 'href'));
+      });
+    } else if (kind === 'xml') {
+      var x = new DOMParser().parseFromString(text, 'application/xml');
+      if (x.getElementsByTagName('parsererror').length) { leaf.torn = true; }
+      else {
+        Array.prototype.forEach.call(x.getElementsByTagName('link'), function (e) {
+          var href = e.getAttribute('href');
+          if (!href) { return; }
+          raws.push(href);
+          /* The feed's own address, as the feed gives it: whatever stands before its path is the site's public name. */
+          var tail = a.path.slice(1);
+          if (e.getAttribute('rel') === 'self' && tail && href.slice(-tail.length) === tail) { canon = href.slice(0, -tail.length); }
+        });
+      }
+    }
+    collect(leaf, raws, base);
+  }
+
+  function ask(a) {
+    active++;
+    fetch(a.href, { cache: 'no-store' })
+      .then(function (r) {
+        a.status = r.status;
+        if (r.redirected && r.url) { a.redirected = r.url; }
+        if (!r.ok) { return null; }
+        var type = (r.headers.get('content-type') || '').toLowerCase();
+        return r.text().then(function (t) { read(a, t, type, r.url || a.href); });
+      })
+      .catch(function (err) {
+        console.warn('REGISTER got no answer for ' + a.path + ':', err);
+        a.err = err.message || 'no answer';
+      })
+      .then(function () {
+        active--;
+        answered++;
+        sweep();
+        pump();
+      });
+  }
+
+  function pump() {
+    if (finished) { return; }
+    while (active < LIMIT && queue.length) { ask(queue.shift()); }
+    if (!active && !queue.length) {
+      finished = true;
+      try { show(); }
+      catch (err) {
+        console.warn('REGISTER failed:', err);
+        showBroken('The register could not be drawn up (' + err.message + ').', 'The page failed at its own work rather than at the asking, and it says so instead of calling the register sound.');
+      }
+      return;
+    }
+    seal.textContent = 'The walk is under way: ' + plural(order.length, 'one address', 'addresses') + ' named so far, ' + words(answered) + ' answered.';
+  }
+
+  function failed(a) { return !!a.err || a.status < 200 || a.status > 299; }
+  function said_(cls, text) { said.appendChild(el('p', cls, text)); }
+  function namers(a) {
+    var seen = {}, out = [];
+    refs.forEach(function (r) {
+      if (r.at === a && !seen[r.from.index]) { seen[r.from.index] = true; out.push(r.from.addresses[0].path); }
+    });
+    return out;
+  }
+
+  function show() {
+    var door = order[0];
+    if (failed(door)) {
+      showBroken('The front door did not answer (' + (door.err || door.status) + ').', 'A walk that cannot start has nothing to report, and the page will not call the register sound on the strength of nothing.');
+      return;
+    }
+    var wrong = false;
+    var placed = refs.filter(function (r) { return r.at; });
+    var outside = refs.filter(function (r) { return !r.at; });
+    var fails = order.filter(failed);
+    var pages = leaves.filter(function (l) { return l.kind === 'html'; }).length;
+    var feeds = leaves.filter(function (l) { return l.kind === 'xml'; }).length;
+    var rest = leaves.length - pages - feeds;
+    said.textContent = '';
+
+    var kinds = [plural(pages, 'one page', 'pages')];
+    if (feeds) { kinds.push(feeds === 1 ? 'the feed' : words(feeds) + ' feeds'); }
+    if (rest) { kinds.push(plural(rest, 'one file of another kind', 'files of another kind')); }
+    said_(null, 'Starting from the front door, the page found ' + plural(refs.length + other.length, 'one link', 'links') + ' written into ' + join(kinds) + '. Between them, and counting the front door, they name ' + plural(order.length, 'one address', 'addresses') + ' on this site, and the server was asked for each.');
+
+    if (!fails.length) {
+      said_(null, order.length === 1 ? 'It answered with 200, its number for found.' : 'It answered all ' + words(order.length) + ' with 200, its number for found. Every leaf this book says it has, the server holds.');
+    } else {
+      wrong = true;
+      said_('warn', 'It answered ' + words(order.length - fails.length) + ' with its number for found, and ' + words(fails.length) + ' otherwise. ' + fails.map(function (a) {
+        var by = namers(a);
+        return a.path + ' came back ' + (a.err ? 'with no answer at all (' + a.err + ')' : 'as ' + a.status) + (by.length ? ', and is named by ' + join(by) : '');
+      }).join('. ') + '. The book says it has a leaf that the server does not hold, and the page will not explain it away.');
+    }
+
+    var doubles = leaves.filter(function (l) { return l.addresses.length > 1; });
+    if (doubles.length) {
+      var pairs = doubles.map(function (l) { return join(l.addresses.map(function (a) { return a.path; })); });
+      said_(null, pairs[0] + ' came back with the same text to the letter' + pairs.slice(1).map(function (p) { return ', and so did ' + p; }).join('') + (doubles.length === 1 ? ': one leaf' : ': each is one leaf') + ' answering at more than one address, so the ' + words(order.length - fails.length) + ' addresses that answered come to ' + plural(leaves.length, 'one leaf', 'leaves') + '.');
+    }
+
+    var torn = leaves.filter(function (l) { return l.torn; });
+    if (torn.length) {
+      wrong = true;
+      said_('warn', join(torn.map(function (l) { return l.addresses[0].path; })) + ' was handed over and could not be read: the browser\'s own reader says it is not well formed. The addresses it names were not collected, so the register is short by whatever it holds.');
+    }
+
+    var inside = placed.filter(function (r) { return r.frag && r.at.leaf && r.at.leaf.kind === 'html'; });
+    var lost = inside.filter(function (r) { return !r.at.leaf.ids['$' + r.frag]; });
+    if (inside.length) {
+      if (!lost.length) {
+        said_(null, cap(plural(inside.length, 'one link names', 'of the links name')) + ' a place inside a page and not only the page. ' + (inside.length === 1 ? 'That place is' : 'Every one of those places is') + ' there, in the file the server handed over.');
+      } else {
+        wrong = true;
+        said_('warn', cap(plural(inside.length, 'one link names', 'of the links name')) + ' a place inside a page, and ' + plural(lost.length, 'one of those places is', 'of those places are') + ' not in the file the server handed over: ' + join(lost.map(function (r) { return '#' + r.frag + ' in ' + r.at.path + ', named by ' + r.from.addresses[0].path; })) + '.');
+      }
+    }
+
+    /* How thinly each leaf is held: by how many other leaves it is named. */
+    leaves.forEach(function (l) { l.by = {}; });
+    placed.forEach(function (r) { if (r.at.leaf && r.at.leaf !== r.from) { r.at.leaf.by[r.from.index] = true; } });
+    var held = leaves.filter(function (l) { return l !== door.leaf; }).map(function (l) { return { leaf: l, n: Object.keys(l.by).length }; });
+    if (held.length) {
+      var least = Math.min.apply(null, held.map(function (h) { return h.n; }));
+      var thin = held.filter(function (h) { return h.n === least; });
+      said_(null, 'No leaf is named by fewer than ' + plural(least, 'one other', 'others') + '. ' + (thin.length <= 3 ? 'The most thinly held ' + (thin.length === 1 ? 'is ' : 'are ') + join(thin.map(function (h) { return h.leaf.addresses[0].path; })) + '.' : cap(words(thin.length)) + ' of them are held that thinly.') + ' A leaf named by none would not be on this list at all, and the page would not know it was missing.');
+    }
+
+    if (!outside.length) { said_(null, 'No link on this site leads off it.'); }
+    else {
+      var seen = {}, outs = [];
+      outside.forEach(function (r) { if (!seen[r.href]) { seen[r.href] = true; outs.push(r.href + ' (named by ' + r.from.addresses[0].path + ')'); } });
+      said_('small', cap(plural(outside.length, 'one link leads', 'links lead')) + ' off this site: ' + join(outs) + '. Listed and not tried, because a page may ask only its own server.');
+    }
+    if (other.length) {
+      said_('small', cap(plural(other.length, 'one link is', 'links are')) + ' not an address a server answers: ' + join(other.map(function (o) { return o.raw + ' (in ' + o.from.addresses[0].path + ')'; })) + '.');
+    }
+    var moved = order.filter(function (a) { return a.redirected; });
+    if (moved.length) {
+      said_('small', join(moved.map(function (a) { return a.path; })) + ' answered by way of a redirect, the server pointing to another address before handing anything over.');
+    }
+    said.hidden = false;
+
+    list.textContent = '';
+    order.slice().sort(function (a, b) { return a.path < b.path ? -1 : a.path > b.path ? 1 : 0; }).forEach(function (a) {
+      var bad = failed(a);
+      var li = el('li', bad ? 'fail' : null);
+      var row = el('span', 'row');
+      var path = el('span', 'path');
+      var link = el('a', null, a.path);
+      link.href = a.href;
+      path.appendChild(link);
+      row.appendChild(path);
+      row.appendChild(el('span', 'lead'));
+      row.appendChild(el('span', 'num', a.err ? 'no answer' : String(a.status)));
+      li.appendChild(row);
+      if (bad) {
+        var by = namers(a);
+        if (by.length) { li.appendChild(el('span', 'by', 'named by ' + join(by))); }
+      }
+      list.appendChild(li);
+    });
+    list.hidden = false;
+
+    seal.className = wrong ? 'wrong' : '';
+    seal.textContent = wrong ? 'THE REGISTER DOES NOT HOLD' : 'THE REGISTER HOLDS';
+    count.hidden = false;
+    count.textContent = 'Asked at the moment of your arrival: ' + plural(order.length, 'one address', 'addresses') + ', each once and whole, some ' + words(Math.round(characters / 1000) * 1000) + ' characters in all, ' + words(LIMIT) + ' at a time. Each number above is the server\'s. The pages were read as delivered and not run. Nothing is kept, and the only requests went to this site, for its own files.';
+    note.textContent = 'Every line above is a link, and following one is the same test made by hand. The number is at the head of every answer this site\'s server gives, and any tool that shows a page\'s headers will show it to you without this page\'s help.';
+  }
+
+  function showBroken(message, why) {
+    seal.className = 'broken';
+    seal.textContent = message;
+    said.hidden = true;
+    list.hidden = true;
+    count.hidden = true;
+    note.textContent = why + ' ';
+    var a = document.createElement('a');
+    a.href = '../';
+    a.textContent = 'The front door is here, to try by hand.';
+    note.appendChild(a);
+  }
+
+  enqueue(ROOT);
+  pump();
+})();
+</script>
+</body>
+</html>
