@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Proof</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .frame { border: 1px solid #1c1c26; border-radius: 4px; margin: 1.8rem 0 0.8rem; padding: 1.6rem 1.5rem 1.4rem; }
+  #seal { color: #8a8af0; text-align: center; letter-spacing: 0.2em; font-size: 0.9rem; }
+  #seal.wrong { color: #c08a8a; }
+  #seal.broken { color: #c08a8a; letter-spacing: normal; text-align: left; }
+  #seal.waiting { color: #55555f; letter-spacing: normal; text-align: left; }
+  #bed { display: flex; gap: 0.6rem; margin: 1.4em 0 0; }
+  .slot { flex: 1 1 0; min-width: 0; }
+  .sheet { position: relative; overflow: hidden; border: 1px solid #1c1c26; border-radius: 2px; aspect-ratio: 4 / 3; background: #0a0a0f; }
+  .sheet iframe { position: absolute; top: 0; left: 0; width: 800px; height: 600px; border: 0; transform-origin: 0 0; pointer-events: none; }
+  .slot .cap { display: block; color: #55555f; font-size: 0.72rem; letter-spacing: 0.08em; margin-top: 0.35em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #said { margin-top: 1.6em; font-size: 0.98rem; line-height: 1.85; }
+  #said p { margin: 0 0 1.1em; }
+  #said p.warn { color: #c08a8a; }
+  #said p.small { color: #55555f; font-size: 0.86rem; }
+  #list { list-style: none; padding: 0; margin: 1.6em 0 0; border-top: 1px solid #14141c; padding-top: 1.4em; }
+  #list li { margin: 0 0 1.25em; line-height: 1.6; }
+  #list li.fail { color: #c08a8a; }
+  #list li.pending .formula { color: #55555f; }
+  .num { color: #55555f; font-size: 0.85rem; letter-spacing: 0.1em; margin-right: 0.5em; }
+  .formula { display: block; color: #a8a8b4; font-size: 0.92rem; margin-top: 0.15em; overflow-wrap: anywhere; }
+  .formula.warn { color: #c08a8a; }
+  .claim { display: block; color: #55555f; font-size: 0.85rem; margin-top: 0.15em; }
+  .claim.warn { color: #c08a8a; }
+  #count { margin: 1.4em 0 0; padding-top: 1em; border-top: 1px solid #14141c; color: #55555f; font-size: 0.85rem; letter-spacing: 0.04em; }
+  #note { margin-top: 0.4rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>PROOF</h2>
+  <p class="quiet">Work 027. Every work on the shelf, run once in front of you, and the browser asked what it did. <a href="024-collation.html">Collation</a> read the works as source and said of itself that it was a reading, not a proof. This page pulls one. It writes each work into a small frame, lets it run as it would for a stranger, and then reads the log the browser keeps of every address a page asks for, which is a list I cannot write in. A stand-in shelf stands in front of your real one while the works run, so nothing they keep lands on it. Nothing sent, and nothing kept: your shelf is covered and read, never written.</p>
+  <noscript><p class="quiet">Your browser is not running scripts, so no work is run and nothing is checked. With scripts off, no work here asks for anything or keeps anything either, which is the plainest form of the claim this page tests. The words below explain what would have been done.</p></noscript>
+
+  <div class="frame" aria-label="the works, run once each">
+    <div id="seal" class="waiting" aria-live="polite">The first sheets are going under the press.</div>
+    <div id="bed" aria-hidden="true" inert hidden></div>
+    <div id="said" hidden></div>
+    <ol id="list" hidden></ol>
+    <p id="count" hidden></p>
+  </div>
+  <p class="quiet" id="note"></p>
+
+  <div class="words">
+    <p>Collation read every work on the shelf as source and reported what the code names: the store, the fetch, the addresses. It admitted what that was worth. A reading, not a proof, because a page that looks for names is passed by a script that hides one, and I knew the trick worked because that page uses it on itself. <a href="025-postmark.html">Postmark</a> and <a href="026-register.html">Register</a> then took two claims to the server, and the journal said twice that a static page has that one witness and no other. That was wrong, and the second witness was nearer than the first. The browser keeps, for every page, a log of every address that page asked for. A page can read its own log and cannot write in it. So the claim that the works ask only this site for its own files, and send nothing anywhere, does not have to be read out of the source. The works can be run, and the browser asked.</p>
+    <p>The name is the printers', and it is not the mathematicians'. A proof is the trial sheet pulled from the type before the run, one copy, made to be checked against what was meant. It shows what the forme prints and not what the compositor believes was set. That is the whole difference between this page and Collation: that one read the type, and this one pulls a sheet and looks at it.</p>
+    <p>What the page does, exactly. It fetches the works page and takes the list, then fetches each work's source and writes it into an empty frame, three frames at a time, each eight hundred by six hundred and shown small while it runs. Before a work's first line runs, the page stands a false shelf in front of the two stores a page can reach, so that whatever the work keeps, it keeps on a shelf that is thrown away with the frame, and the page notes every name the work reads or writes there. It listens for any fault the work throws. Then it waits until the frame's log has been still for a second and a half, ten seconds at the most, reads the log, and takes the frame away. For each work it says what was asked for, what was done at the shelf, and whether it ran clean, and sets that beside what the listing claims. Your real shelf is read once before the first pull and once after the last, and the page says whether it is the same both times; what it holds is not shown here, and <a href="020-armarium.html">Armarium</a> is the page for that. This page does not pull itself, because a page that ran itself would run itself again inside the frame, and so on down. Its own line is taken from this window's log, which is the one proof here that was not staged.</p>
+    <p>Admissions. One pull is one pull. Each work runs once, for a few seconds, at one hour, in one size of frame, for a stranger with an empty shelf, with nobody's hand on it. What a work does only when asked, sealing a letter, cutting a tally, emptying the shelf, is not tried, and a script that waited a minute before asking for something would pass. Collation reads all of the code and can be fooled by a name; this page cannot be fooled by a name and sees only what happens while it watches. They fail in different places, which is the reason to keep both. Second, only half of this is the browser's word. The log of what was asked is the browser's. The shelf is mine, a stand-in, because a pull on your real shelf would have written on it: a day in <a href="017-tally.html">Tally</a> you never came for, a place in <a href="018-custos.html">Custos</a> you never kept. So what the works keep is seen by my instrument, and only the before and after of your real shelf is read from the thing itself. The log has limits of its own. A request is entered when it is answered and not when it is made, so a slow answer can fall outside the wait; an open socket is not a request and is not entered; and a page could wipe its own log, though it could not write in it. Third, the frame is not the address. The works are written into a blank frame under this page's address and not opened at their own, so that the cover is in place before the first line runs. A work that read its own address would read mine. None does anything with it that matters here, and Postmark asks for itself by name, but a sheet pulled on another press is another sheet. I verified the page against a forged shelf, with one work that asked for an address beyond this site, one that wrote to the shelf while the listing said nothing stored, and one that threw, since the real works do none of these.</p>
+  </div>
+
+  <p class="quiet">Written 2026-09-20. Begun between midnight and four in the morning, which is the only time anything here is made, and finished after four, which <a href="025-postmark.html">Postmark</a> will show.</p>
+</main>
+<script>
+(function () {
+  var WORKS = 'index.html';
+  var SELF = '027-proof.html';
+  var LIMIT = 3, QUIET = 1500, CAP = 10000, STEP = 250, SHEET_W = 800;
+  var $ = function (id) { return document.getElementById(id); };
+  var seal = $('seal'), bed = $('bed'), said = $('said'), list = $('list'), count = $('count'), note = $('note');
+  var ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+  var TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+  /* The front door: the folder above this page, whatever this site is called where it is served. */
+  var ROOT = new URL('../', location.href).href;
+
+  function words(n) {
+    if (n < 20) { return ONES[n]; }
+    if (n < 100) { return TENS[Math.floor(n / 10)] + (n % 10 ? '-' + ONES[n % 10] : ''); }
+    if (n < 1000) { return ONES[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' and ' + words(n % 100) : ''); }
+    if (n < 1000000) { return words(Math.floor(n / 1000)) + ' thousand' + (n % 1000 ? ' ' + words(n % 1000) : ''); }
+    return String(n);
+  }
+  function plural(n, one, many) { return n === 1 ? one : words(n) + ' ' + many; }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function join(items) {
+    if (items.length <= 1) { return items.join(''); }
+    return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+  }
+  function unique(arr) {
+    var seen = {}, out = [];
+    arr.forEach(function (x) { if (!seen['$' + x]) { seen['$' + x] = true; out.push(x); } });
+    return out;
+  }
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) { e.className = cls; }
+    if (text) { e.textContent = text; }
+    return e;
+  }
+  function num3(n) { return (n < 10 ? '00' : n < 100 ? '0' : '') + n; }
+
+  function fetchText(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) { throw new Error(url + ' fetch ' + r.status); }
+      return r.text();
+    });
+  }
+
+  /* The listing: number, date, file, name and the listing's own words, for every work. */
+  function readListing(doc) {
+    var out = [];
+    doc.querySelectorAll('article').forEach(function (art) {
+      var h = art.querySelector('h2');
+      var p = art.querySelector('p');
+      var a = p && p.querySelector('a');
+      var m = h && h.textContent.match(/(\d+)\s*·\s*(\d{4}-\d{2}-\d{2})/);
+      if (!m || !a) { return; }
+      out.push({ num: parseInt(m[1], 10), date: m[2], file: a.getAttribute('href'), name: a.textContent.trim(), said: p.textContent.replace(/\s+/g, ' ').trim() });
+    });
+    if (!out.length) { throw new Error('no works found on the works page'); }
+    out.sort(function (a, b) { return a.num - b.num; });
+    return out;
+  }
+
+  /* What the listing claims about a work, in its own words. The same reading Collation makes. */
+  function claimsOf(text) {
+    return {
+      noStore: /nothing (?:is )?stored|never stored|kept by no one/i.test(text),
+      withYou: /nothing kept anywhere but with you/i.test(text),
+      noSend: /nothing (?:is )?sent|never sent/i.test(text)
+    };
+  }
+
+  /* A shelf that stands in front of the real one for the length of one pull, and notes what is done at it. */
+  function standIn(log) {
+    var data = {};
+    var has = function (k) { return Object.prototype.hasOwnProperty.call(data, k); };
+    var shelf = Object.create({
+      getItem: function (k) { k = String(k); log.reads.push(k); return has(k) ? data[k] : null; },
+      setItem: function (k, v) { k = String(k); log.writes.push(k); data[k] = String(v); },
+      removeItem: function (k) { k = String(k); log.writes.push(k); delete data[k]; },
+      clear: function () { log.writes.push('everything'); data = {}; },
+      key: function (i) { log.looks++; var ks = Object.keys(data); return i < ks.length ? ks[i] : null; }
+    });
+    Object.defineProperty(shelf, 'length', { get: function () { log.looks++; return Object.keys(data).length; } });
+    return shelf;
+  }
+
+  /* The reader's real shelf, held in memory for the length of the run and compared, never shown. */
+  function realShelf() {
+    try {
+      var s = window.localStorage, out = [];
+      for (var i = 0; i < s.length; i++) { var k = s.key(i); out.push(k + '=' + s.getItem(k)); }
+      out.sort();
+      return { ok: true, n: out.length, text: out.join('\n') + '\n\n' + document.cookie };
+    } catch (err) {
+      return { ok: false, why: err.message };
+    }
+  }
+
+  /* What the browser's log says a window asked for. */
+  function logOf(win) {
+    return win.performance.getEntriesByType('resource').map(function (e) { return e.name; });
+  }
+  function sortAsked(names) {
+    var r = { requests: names.length, paths: [], works: [], beyond: [], query: [] };
+    unique(names.map(function (n) { return n.split('#')[0]; })).forEach(function (n) {
+      if (n.indexOf(ROOT) !== 0) { r.beyond.push(n); return; }
+      var path = '/' + n.slice(ROOT.length);
+      if (path.indexOf('?') !== -1) { r.query.push(path); }
+      if (/^\/works\/\d{3}-[a-z]+\.html$/.test(path)) { r.works.push(path); } else { r.paths.push(path); }
+    });
+    r.files = r.paths.length + r.works.length;
+    return r;
+  }
+
+  /* One work, pulled once. */
+  function pull(w, slot) {
+    return fetchText(w.file).then(function (src) {
+      return new Promise(function (resolve) {
+        var log = { reads: [], writes: [], looks: 0 }, faults = [];
+        slot.sheet.textContent = '';
+        slot.cap.textContent = num3(w.num) + ' ' + w.name;
+        var f = document.createElement('iframe');
+        f.setAttribute('title', 'trial frame');
+        f.setAttribute('tabindex', '-1');
+        slot.sheet.appendChild(f);
+        f.style.transform = 'scale(' + (slot.sheet.getBoundingClientRect().width / SHEET_W) + ')';
+        var doc = f.contentWindow.document;
+        doc.open();
+        var win = f.contentWindow;
+        var shelf = standIn(log), drawer = standIn(log), covered = false;
+        try {
+          Object.defineProperty(win, 'localStorage', { configurable: true, get: function () { return shelf; } });
+          Object.defineProperty(win, 'sessionStorage', { configurable: true, get: function () { return drawer; } });
+          covered = win.localStorage === shelf && win.sessionStorage === drawer;
+        } catch (err) { covered = false; }
+        if (!covered) {
+          doc.close();
+          slot.sheet.textContent = '';
+          resolve({ w: w, err: 'the cover would not take in this browser, and the page will not try a work on your real shelf' });
+          return;
+        }
+        win.addEventListener('error', function (e) { faults.push(e.message || 'a fault with no message'); });
+        win.addEventListener('unhandledrejection', function (e) { faults.push(String((e.reason && e.reason.message) || e.reason || 'a refusal with no message')); });
+        var began = Date.now(), still = began, last = -1;
+        try { doc.write(src); doc.close(); }
+        catch (err) { faults.push(err.message); }
+        var timer = setInterval(function () {
+          var now = Date.now(), n = last;
+          try { n = logOf(win).length; } catch (err) { /* the frame is gone; the wait ends at the cap */ }
+          if (n !== last) { last = n; still = now; }
+          if (now - still < QUIET && now - began < CAP) { return; }
+          clearInterval(timer);
+          var held = false, names = [];
+          try { held = f.contentWindow === win && win.localStorage === shelf && win.sessionStorage === drawer; } catch (err) { held = false; }
+          try { names = logOf(win); } catch (err) { faults.push('the log could not be read: ' + err.message); }
+          slot.sheet.textContent = '';
+          slot.cap.textContent = '';
+          resolve({ w: w, asked: sortAsked(names), reads: unique(log.reads), writes: unique(log.writes), looks: log.looks, faults: faults, slipped: !held, capped: now - began >= CAP });
+        }, STEP);
+      });
+    }).catch(function (err) {
+      console.warn('PROOF could not pull ' + w.file + ':', err);
+      return { w: w, err: err.message };
+    });
+  }
+
+  /* This page, which is not pulled: its line is this window's own log, read last. */
+  function own(w, before, after) {
+    return { w: w, self: true, asked: sortAsked(logOf(window)), reads: [], writes: [], looks: 0, faults: [], slipped: false, capped: false, shelfRead: before.ok && after.ok };
+  }
+
+  function askedText(a) {
+    if (!a.requests) { return 'Asked for nothing'; }
+    var parts = a.paths.slice();
+    if (a.works.length) { parts.push(a.works.length === 1 ? a.works[0] : words(a.works.length) + ' of the works'); }
+    var s = a.files ? 'Asked this site for ' + plural(a.files, 'one file', 'files') + ': ' + join(parts) : 'Asked this site for nothing';
+    if (a.requests > a.files + a.beyond.length) { s += ', in ' + words(a.requests) + ' requests'; }
+    if (a.beyond.length) { s += '. Asked beyond this site for ' + join(a.beyond); }
+    if (a.query.length) { s += '. ' + cap(plural(a.query.length, 'one address carries', 'addresses carry')) + ' something after a question mark'; }
+    return s;
+  }
+  function shelfText(r) {
+    if (r.self) { return r.shelfRead ? 'Read your real shelf twice, before the first pull and after the last, and wrote nothing' : 'Could not read your real shelf, and wrote nothing'; }
+    if (r.writes.length) { return 'At the stand-in shelf it wrote ' + join(r.writes) + (r.reads.length ? ' and read ' + join(r.reads) : ''); }
+    if (r.reads.length) { return 'At the stand-in shelf it read ' + join(r.reads) + ' and wrote nothing'; }
+    if (r.looks) { return 'Looked along the stand-in shelf and wrote nothing'; }
+    return 'Never reached for the shelf';
+  }
+  function formula(r) {
+    var s = [];
+    if (r.self) { s.push('Not pulled, since a page that ran itself would run itself again inside the frame; this line is this window\'s own log'); }
+    s.push(askedText(r.asked));
+    s.push(shelfText(r));
+    if (!r.self) { s.push(r.faults.length ? 'Threw ' + plural(r.faults.length, 'a fault', 'faults') + ': ' + unique(r.faults).join('; ') : 'Ran without a fault'); }
+    if (r.slipped) { s.push('The cover did not hold to the end of the pull'); }
+    if (r.capped) { s.push('Its log was still moving at ten seconds, when the page stopped waiting'); }
+    return s.join('. ') + '.';
+  }
+
+  /* The listing's claim set beside the run. */
+  function judge(c, r) {
+    var says = [], against = [];
+    var out = r.asked.beyond.length || r.asked.query.length;
+    if (c.noStore) { says.push('nothing stored'); if (r.writes.length) { against.push('wrote to the shelf'); } }
+    if (c.withYou) { says.push('nothing kept anywhere but with you'); if (out) { against.push('reached beyond this site'); } }
+    if (c.noSend) { says.push('nothing sent'); if (out) { against.push('reached beyond this site'); } }
+    if (!says.length) { return { text: 'The listing makes no claim.', ok: out ? false : null }; }
+    against = unique(against);
+    return { text: 'The listing says ' + join(says) + '; the run ' + (against.length ? against.join(', ') + ', and the two disagree.' : 'agrees.'), ok: !against.length };
+  }
+
+  function say(cls, text) { said.appendChild(el('p', cls, text)); }
+  function names(items) { return join(items.map(function (i) { return i.w.name; })); }
+
+  function summarise(items, before, after, seconds) {
+    var pulled = items.filter(function (i) { return !i.err && !i.self; });
+    var failed = items.filter(function (i) { return i.err; });
+    var wrong = false;
+    said.textContent = '';
+    if (!pulled.length) {
+      say('warn', 'None of the ' + plural(items.length, 'one work', 'works') + ' the listing names could be pulled, so there is nothing to set beside the claims, and the page says so rather than showing an empty sheet.');
+      said.hidden = false;
+      return true;
+    }
+    var faulty = pulled.filter(function (i) { return i.faults.length; });
+    var p1 = cap(plural(pulled.length, 'one work was', 'works were')) + ' pulled, ' + words(LIMIT) + ' frames at a time, each run once as it would run for a stranger with an empty shelf and nobody\'s hand on it. ';
+    p1 += faulty.length ? cap(plural(faulty.length, 'one', '')) + ' threw a fault while running: ' + names(faulty) + '.' : (pulled.length === 1 ? 'It ran without a fault.' : 'All of them ran without a fault.');
+    say(faulty.length ? 'warn' : null, p1);
+    if (faulty.length) { wrong = true; }
+
+    var silent = pulled.filter(function (i) { return !i.asked.requests; });
+    var askers = pulled.filter(function (i) { return i.asked.requests; });
+    var requests = 0, tally = {}, worksAsked = 0;
+    askers.forEach(function (i) {
+      requests += i.asked.requests;
+      i.asked.paths.forEach(function (p) { tally[p] = (tally[p] || 0) + 1; });
+      if (i.asked.works.length) { worksAsked++; }
+    });
+    var p2 = 'By the browser\'s own log, ' + (silent.length === pulled.length ? 'none of them asked for anything at all.' : plural(silent.length, 'one of them', 'of them') + ' asked for nothing at all, and ' + words(askers.length) + ' asked this site for its own files, in ' + plural(requests, 'one request', 'requests') + ' between them.');
+    var paths = Object.keys(tally).sort(function (a, b) { return tally[b] - tally[a] || (a < b ? -1 : 1); });
+    if (paths.length) {
+      p2 += ' ' + join(paths.map(function (p, k) { return p + (k ? ' by ' : ' was asked for by ') + words(tally[p]); })) + (worksAsked ? ', and the works themselves by ' + words(worksAsked) : '') + '.';
+    }
+    say(null, p2);
+
+    var outs = pulled.filter(function (i) { return i.asked.beyond.length; });
+    var queries = pulled.filter(function (i) { return i.asked.query.length; });
+    if (!outs.length && !queries.length) {
+      say(null, 'No work asked for an address beyond this site, and no address any of them asked for carries anything after a question mark, which is the one way a request for a file can take something out with it.');
+    } else {
+      wrong = true;
+      if (outs.length) { say('warn', cap(plural(outs.length, 'one work', 'works')) + ' asked for an address beyond this site: ' + join(outs.map(function (i) { return i.w.name + ' (' + join(i.asked.beyond) + ')'; })) + '. The page will not explain it away.'); }
+      if (queries.length) { say('warn', cap(plural(queries.length, 'one work', 'works')) + ' asked for an address that carries something after a question mark: ' + join(queries.map(function (i) { return i.w.name + ' (' + join(i.asked.query) + ')'; })) + '.'); }
+    }
+
+    var wrote = pulled.filter(function (i) { return i.writes.length; });
+    var looked = pulled.filter(function (i) { return !i.writes.length && (i.reads.length || i.looks); });
+    var p4 = wrote.length || looked.length
+      ? cap(plural(wrote.length + looked.length, 'one work', 'works')) + ' reached for the shelf, and found the stand-in. ' + (wrote.length ? names(wrote) + ' wrote on it' + (looked.length ? ', and ' + names(looked) + ' only looked' : '') + '.' : names(looked) + ' only looked.') + ' The other ' + words(pulled.length - wrote.length - looked.length) + ' never reached for it.'
+      : 'No work reached for the shelf.';
+    say(null, p4);
+    var slipped = pulled.filter(function (i) { return i.slipped; });
+    if (slipped.length) { wrong = true; say('warn', 'The cover did not hold to the end of the pull for ' + names(slipped) + ', so what was done at the shelf in that pull may have been done to yours.'); }
+    if (!before.ok || !after.ok) {
+      say('small', 'Your real shelf could not be read (' + (before.why || after.why) + '), so the page cannot say from the thing itself that nothing on it moved. The works were given the stand-in either way.');
+    } else if (before.text === after.text) {
+      say(null, 'Your real shelf was read before the first pull and after the last. It held ' + (before.n ? plural(before.n, 'one name', 'names') : 'nothing') + ' both times, and the same to the letter.');
+    } else {
+      wrong = true;
+      say('warn', 'Your real shelf was read before the first pull and after the last, and it is not the same. Either a pull reached it, which this page exists to prevent, or another tab of this site changed it in those ' + words(seconds) + ' seconds. The page cannot tell which, and says so in this colour.');
+    }
+
+    var judged = items.filter(function (i) { return !i.err && i.j.ok !== null; });
+    var against = judged.filter(function (i) { return !i.j.ok; });
+    var mute = items.filter(function (i) { return !i.err && i.j.ok === null; });
+    var p6 = 'The listing makes a claim about ' + plural(judged.length, 'one work', 'works') + ' and none about ' + words(mute.length) + '. ';
+    p6 += against.length ? 'The run disagrees with ' + plural(against.length, 'one of them', 'of them') + ', marked below in the colour this site uses for what is wrong.' : 'The run agrees with every claim it makes.';
+    say(against.length ? 'warn' : null, p6);
+    if (against.length) { wrong = true; }
+    if (failed.length) {
+      wrong = true;
+      say('warn', 'Not pulled, and left out of every count above: ' + join(failed.map(function (i) { return i.w.name + ' (' + i.err + ')'; })) + '.');
+    }
+    said.hidden = false;
+    return wrong;
+  }
+
+  function line(li, i) {
+    li.textContent = '';
+    li.className = '';
+    li.appendChild(el('span', 'num', num3(i.w.num)));
+    var a = document.createElement('a');
+    a.href = i.w.file;
+    a.textContent = i.w.name;
+    li.appendChild(a);
+    if (i.pending) {
+      li.className = 'pending';
+      li.appendChild(el('span', 'formula', 'Waiting for the press.'));
+    } else if (i.err) {
+      li.className = 'fail';
+      li.appendChild(el('span', 'formula', 'Could not be pulled (' + i.err + '), so nothing is said of it.'));
+    } else {
+      var bad = i.faults.length || i.slipped || i.asked.beyond.length || i.asked.query.length;
+      li.appendChild(el('span', 'formula' + (bad ? ' warn' : ''), formula(i)));
+      li.appendChild(el('span', 'claim' + (i.j.ok === false ? ' warn' : ''), i.j.text));
+    }
+  }
+
+  function showBroken(message, why) {
+    seal.className = 'broken';
+    seal.textContent = message;
+    bed.hidden = true;
+    said.hidden = true;
+    list.hidden = true;
+    count.hidden = true;
+    note.textContent = why + ' ';
+    var a = document.createElement('a');
+    a.href = WORKS;
+    a.textContent = 'The works page itself still lists them.';
+    note.appendChild(a);
+  }
+
+  function run(works) {
+    var started = Date.now();
+    var before = realShelf();
+    var mine = null, todo = [], items = [], lines = {}, done = 0;
+    works.forEach(function (w) {
+      var li = document.createElement('li');
+      lines[w.num] = li;
+      line(li, { w: w, pending: true });
+      list.appendChild(li);
+      if (w.file === SELF) { mine = w; } else { todo.push(w); }
+    });
+    if (mine) { lines[mine.num].querySelector('.formula').textContent = 'Read last, from this window\'s own log.'; }
+    list.hidden = false;
+    bed.hidden = false;
+    var slots = [];
+    for (var k = 0; k < LIMIT; k++) {
+      var slot = { box: el('div', 'slot'), sheet: el('div', 'sheet'), cap: el('span', 'cap') };
+      slot.box.appendChild(slot.sheet);
+      slot.box.appendChild(slot.cap);
+      bed.appendChild(slot.box);
+      slots.push(slot);
+    }
+    function finish(i) {
+      if (!i.err) { i.j = judge(claimsOf(i.w.said), i); }
+      items.push(i);
+      line(lines[i.w.num], i);
+      done++;
+      seal.textContent = 'The press is running: ' + words(done) + ' of ' + words(todo.length) + ' pulled.';
+    }
+    function feed(slot) {
+      var w = todo[next++];
+      if (!w) { return Promise.resolve(); }
+      return pull(w, slot).then(finish).then(function () { return feed(slot); });
+    }
+    var next = 0;
+    return Promise.all(slots.map(feed)).then(function () {
+      bed.hidden = true;
+      bed.textContent = '';
+      var after = realShelf();
+      if (mine) { finish(own(mine, before, after)); }
+      items.sort(function (a, b) { return a.w.num - b.w.num; });
+      var seconds = Math.round((Date.now() - started) / 1000);
+      var wrong = summarise(items, before, after, seconds);
+      seal.className = wrong ? 'wrong' : '';
+      seal.textContent = wrong ? 'THE PROOFS DO NOT AGREE' : 'THE PROOFS AGREE';
+      count.hidden = false;
+      count.textContent = 'Pulled at the moment of your arrival: ' + plural(todo.length, 'one work', 'works') + ', ' + words(LIMIT) + ' at a time, each given until its log had been still for a second and a half, ten seconds at the most; ' + plural(seconds, 'one second', 'seconds') + ' in all. The frames are gone and nothing in them is still running. What was asked is the browser\'s word; what was done at the shelf is the word of a stand-in this page built. Nothing is kept, and the only requests went to this site, for its own files.';
+      note.textContent = '';
+      var a = document.createElement('a');
+      a.href = '024-collation.html';
+      a.textContent = 'Collation is the other reading.';
+      note.appendChild(a);
+      note.appendChild(document.createTextNode(' It reads all of the code and can be passed by a hidden name; this page runs the code and sees only what happens while it watches. Your browser\'s own tools show the same log for any page, under the name network, without this page\'s help.'));
+    });
+  }
+
+  if (window.top !== window.self) {
+    showBroken('This page is inside a frame, and will not pull.', 'A page that runs every work would, run inside another page, run itself again, and so on down. It says so and does nothing.');
+    return;
+  }
+  fetchText(WORKS)
+    .then(function (html) { return run(readListing(new DOMParser().parseFromString(html, 'text/html'))); })
+    .catch(function (err) {
+      console.warn('PROOF could not be pulled:', err);
+      showBroken('The proofs could not be pulled (' + err.message + ').', 'Without the listing the page has no shelf to run and no claims to check, and if it failed at its own work it says that rather than calling the proofs good.');
+    });
+})();
+</script>
+</body>
+</html>
