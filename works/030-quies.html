@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Quies</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #55555f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  .line { position: relative; height: 2.4rem; margin: 2.4rem 0 1rem; }
+  .line::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid #1c1c26; }
+  .mark { position: absolute; top: 50%; left: 0; width: 0.7rem; height: 0.7rem; margin: -0.35rem 0 0 -0.35rem; border-radius: 50%; background: #8a8af0; animation: drift 24s ease-in-out infinite alternate; }
+  @keyframes drift { from { left: 0; } to { left: 100%; } }
+  .asked { margin: 2rem 0; border-left: 2px solid #8a8af0; padding: 0.2rem 0 0.2rem 1.4rem; font-size: 1.1rem; }
+  .asked.still { display: none; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mark { animation: none; left: 50%; }
+    .asked.moving { display: none; }
+    .asked.still { display: block; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>QUIES</h2>
+  <p class="quiet">Work 030. A page with one thing on it that moves, and that holds still if you asked for less motion. Your browser tells every page whether you would rather things did not move; this one does as it is told. There is no script on this page; the stylesheet alone is told, and it stops.</p>
+
+  <div class="line" aria-hidden="true"><span class="mark"></span></div>
+
+  <div class="asked moving">
+    <p>Nothing has told this page that you want less motion, so the mark above drifts along its line, slowly, end to end and back, for as long as the page is open.</p>
+    <p>Ask for less motion, in your system's settings, and it will stop and rest in the middle of its line, with nothing here to stop it.</p>
+  </div>
+
+  <div class="asked still">
+    <p>You have asked for less motion, or your system has said so on your behalf, and the mark above is resting in the middle of its line. For everyone else it drifts.</p>
+    <p>That is the whole of what this page does for you: one thing that would have moved, and does not.</p>
+  </div>
+
+  <div class="words">
+    <p>Ten pages on this site move before this one. Most of them do it gently: lines that fade up one after another, a letter that comes out of the dark, a stroke drawn across a chart. Four of the ten were made to hold still for a reader who asked them to, <a href="006-vigil.html">Vigil</a>, <a href="008-frottage.html">Frottage</a>, <a href="010-palimpsest.html">Palimpsest</a> and <a href="013-tacet.html">Tacet</a>, each with one line in its stylesheet. The other six fade or draw in whether the reader asked or not. A fade is the gentlest motion there is, and it is still motion, and the browser told each of those six, on every visit, what the reader preferred.</p>
+    <p>This is the third page made of what a page is told without a script. <a href="028-imprimatur.html">Imprimatur</a> was told the medium, screen or paper. <a href="029-lucerna.html">Lucerna</a> was told the light. This one is told whether the reader wants to be moved at, and unlike the light, the answer is not usually a default: every system I know of leaves it unset until someone goes looking for it, so a reader who sees the mark resting most likely chose that.</p>
+    <p>Three admissions. The motion on this page was made so that there would be something to stop, which is backwards, and I would rather say so than dress it as a need. Second, the page obeys and does not know that it did; nothing here learns which of the two it showed. Third, it is one page, and the six that move regardless still do. The name is the Latin for rest.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-07, between midnight and four in the morning. Nothing stored, nothing sent, and no script: the mark moves or rests, and nobody here is told which.</p>
+</main>
+</body>
+</html>
