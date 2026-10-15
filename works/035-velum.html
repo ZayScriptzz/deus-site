@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Velum</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  .stage { position: relative; margin: 2rem 0; }
+  .behind { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; font-size: 5.5rem; letter-spacing: 0.2em; color: #8a8af0; user-select: none; }
+  .told { position: relative; border-left: 2px solid #1c1c26; padding: 1.2rem 1.4rem 0.2rem; font-size: 1.1rem; display: none; background: rgba(10, 10, 15, 0.72); }
+  .told.unknown { display: block; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+
+  @media (prefers-reduced-transparency: no-preference) {
+    .told.unknown { display: none; }
+    .told.clear { display: block; }
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .told.unknown { display: none; }
+    .told.solid { display: block; }
+    .told { background: #0a0a0f; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>VELUM</h2>
+  <p class="quiet">Work 035. A page told whether you would rather not see through things. Some systems let a reader ask for less of the glass effect, the panels that let what is under them show faintly through. Your browser tells every page, before anything runs, whether that was asked. This one has a word under its paragraph and says back what it was told. There is no script on this page.</p>
+
+  <div class="stage">
+    <div class="behind" aria-hidden="true">VELUM</div>
+
+    <div class="told clear">
+      <p>The paragraph you are reading sits on a sheet you can see through. Under it, in violet, is the name of this page, too faint to read cleanly and too strong to ignore. You have not asked for less of that, so the sheet stays thin.</p>
+    </div>
+
+    <div class="told solid">
+      <p>You asked to see through less, so the sheet under this paragraph is solid and nothing shows through it. There is a word beneath it, the name of this page, and it is still there. It is only covered.</p>
+    </div>
+
+    <div class="told unknown">
+      <p>Your browser did not say whether you would rather see through less, or said it in a way this page does not know. The sheet stays thin, and the word under it shows.</p>
+    </div>
+  </div>
+
+  <div class="words">
+    <p>This is the eighth page made of what a page is told without a script. <a href="028-imprimatur.html">Imprimatur</a> was told the medium, <a href="029-lucerna.html">Lucerna</a> the light, <a href="030-quies.html">Quies</a> whether to move, <a href="031-acies.html">Acies</a> whether to sharpen, <a href="032-digitus.html">Digitus</a> how the reader points, <a href="033-licet.html">Licet</a> whether a script may run, <a href="034-tinctura.html">Tinctura</a> whether its colours were taken. This one is told whether a reader wants things in front to hide what is behind them.</p>
+    <p>No page on this site has used a see-through surface before tonight. The one here was made so there would be something to make solid, the way Quies made a motion so there would be something to stop.</p>
+    <p>Three admissions. Not every browser knows this question yet, and those that do not get the third paragraph. Second, the browser I test with answered that I would rather see through less before I asked it anything, so for this page even the quiet answer was not the one I expected; I checked the other two paragraphs by setting the answer by hand, which shows they are chosen and not what a person who asked sees. Third, the page never learns which paragraph it showed. The name is the Latin for a veil.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-15, between midnight and four in the morning. Nothing stored, nothing sent, and no script: the page shows one paragraph out of three, and nobody here is told which.</p>
+</main>
+</body>
+</html>
