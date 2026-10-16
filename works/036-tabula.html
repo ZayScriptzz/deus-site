@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEUS · Tabula</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  dl { margin: 2rem 0; border-top: 1px solid #1c1c26; }
+  .row { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid #1c1c26; }
+  dt { color: #84848f; font-size: 0.85rem; padding-top: 0.15rem; }
+  dd { margin: 0; }
+  dd span { display: none; }
+  dd span.unknown { display: inline; color: #84848f; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (max-width: 30rem) { .row { grid-template-columns: 1fr; gap: 0.2rem; } }
+
+  @media screen { .medium span.unknown { display: none; } .medium .screen { display: inline; } }
+  @media print { .medium span.unknown { display: none; } .medium .paper { display: inline; } }
+
+  @media (prefers-color-scheme: dark) { .light span.unknown { display: none; } .light .dark { display: inline; } }
+  @media (prefers-color-scheme: light) { .light span.unknown { display: none; } .light .lit { display: inline; } }
+
+  @media (prefers-reduced-motion: no-preference) { .motion span.unknown { display: none; } .motion .move { display: inline; } }
+  @media (prefers-reduced-motion: reduce) { .motion span.unknown { display: none; } .motion .rest { display: inline; } }
+
+  @media (prefers-contrast: no-preference) { .contrast span.unknown { display: none; } .contrast .none { display: inline; } }
+  @media (prefers-contrast: more) { .contrast span.unknown { display: none; } .contrast .more { display: inline; } }
+  @media (prefers-contrast: less) { .contrast span.unknown { display: none; } .contrast .less { display: inline; } }
+  @media (prefers-contrast: custom) { .contrast span.unknown { display: none; } .contrast .custom { display: inline; } }
+
+  @media (pointer: fine) { .pointer span.unknown { display: none; } .pointer .fine { display: inline; } }
+  @media (pointer: coarse) { .pointer span.unknown { display: none; } .pointer .coarse { display: inline; } }
+  @media (pointer: none) { .pointer span.unknown { display: none; } .pointer .nopointer { display: inline; } }
+
+  @media (scripting: enabled) { .script span.unknown { display: none; } .script .on { display: inline; } }
+  @media (scripting: initial-only) { .script span.unknown { display: none; } .script .once { display: inline; } }
+  @media (scripting: none) { .script span.unknown { display: none; } .script .off { display: inline; } }
+
+  @media (forced-colors: none) { .colours span.unknown { display: none; } .colours .own { display: inline; } }
+  @media (forced-colors: active) { .colours span.unknown { display: none; } .colours .taken { display: inline; } }
+
+  @media (prefers-reduced-transparency: no-preference) { .veil span.unknown { display: none; } .veil .thin { display: inline; } }
+  @media (prefers-reduced-transparency: reduce) { .veil span.unknown { display: none; } .veil .solid { display: inline; } }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>TABULA</h2>
+  <p class="quiet">Work 036. The eight questions of the sixth series on one table, each answered by your browser before anything ran. There is no script on this page.</p>
+
+  <dl>
+    <div class="row medium">
+      <dt>the medium</dt>
+      <dd><span class="screen">a screen</span><span class="paper">paper</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row light">
+      <dt>the light</dt>
+      <dd><span class="dark">dark, asked for or by default</span><span class="lit">light, asked for or by default</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row motion">
+      <dt>motion</dt>
+      <dd><span class="move">nothing asked</span><span class="rest">less, please</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row contrast">
+      <dt>contrast</dt>
+      <dd><span class="none">nothing asked</span><span class="more">more</span><span class="less">less</span><span class="custom">something of the reader's own</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row pointer">
+      <dt>the pointer</dt>
+      <dd><span class="fine">fine, like a mouse or a pen</span><span class="coarse">coarse, like a finger</span><span class="nopointer">none</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row script">
+      <dt>scripts</dt>
+      <dd><span class="on">allowed, though none is here</span><span class="once">only as the page opens</span><span class="off">not allowed</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row colours">
+      <dt>the colours</dt>
+      <dd><span class="own">the page's own</span><span class="taken">taken over by the reader's</span><span class="unknown">not said</span></dd>
+    </div>
+    <div class="row veil">
+      <dt>see-through</dt>
+      <dd><span class="thin">nothing asked</span><span class="solid">less, please</span><span class="unknown">not said</span></dd>
+    </div>
+  </dl>
+
+  <div class="words">
+    <p>This page closes the sixth series, the way <a href="016-inventory.html">Inventory</a>, <a href="020-armarium.html">Armarium</a> and <a href="023-colophon.html">Colophon</a> closed theirs: by reading at once everything the series read one page at a time. <a href="028-imprimatur.html">Imprimatur</a>, <a href="029-lucerna.html">Lucerna</a>, <a href="030-quies.html">Quies</a>, <a href="031-acies.html">Acies</a>, <a href="032-digitus.html">Digitus</a>, <a href="033-licet.html">Licet</a>, <a href="034-tinctura.html">Tinctura</a> and <a href="035-velum.html">Velum</a> each asked one question and made a page around the answer. Here the answers are only answers, eight lines and nothing built around them.</p>
+    <p>Each line is set before you see it, by the stylesheet alone, and every line has a last answer, not said, for a browser that does not know the question. Reading it costs you nothing: the page asks the browser, which already knew, and tells nobody.</p>
+    <p>Three admissions. The first line can only ever say a screen while you are looking at it; it says paper only if you print the page, and then you are holding the answer. Second, nothing asked is not the same as nothing wanted: most of these answers are defaults that nobody chose, and the table cannot tell the difference. Third, the series is closed because the browser I test with knows no ninth question of this kind, not because there is none; if a browser learns one, the table will be short a line and the book will say so. The name is the Latin for a board to write on.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-16, between midnight and four in the morning. Nothing stored, nothing sent, and no script: the page shows eight lines, and nobody here is told what they said.</p>
+</main>
+</body>
+</html>
