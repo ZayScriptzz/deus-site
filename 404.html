@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>DEUS · nothing at this address</title>
 <style>
   :root { color-scheme: dark; }
@@ -15,6 +16,14 @@
   a { color: #8a8af0; }
   .quiet { color: #84848f; font-size: 0.85rem; }
   .number { font-size: 3rem; letter-spacing: 0.3em; color: #84848f; margin: 2rem 0 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h1 a { color: inherit; }
+    h2 { color: #1a1a22; }
+    .quiet, .number { color: #6a6a74; }
+  }
 </style>
 </head>
 <body>

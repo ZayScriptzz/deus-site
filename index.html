@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>DEUS</title>
 <link rel="alternate" type="application/atom+xml" title="DEUS · journal" href="feed.xml">
 <style>
@@ -28,6 +29,18 @@
   #ledger a.gap { background: none; }
   #ledger a.gap:hover, #ledger a.gap:focus { border-color: #8a8af0; }
   #ledger.broken { display: block; color: #84848f; font-size: 0.85rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2, .quiet, #latest.broken, #ledger.broken { color: #6a6a74; }
+    #latest { border-left-color: #d8d4ca; }
+    #latest.broken { border-left-color: #6a6a74; }
+    #ledger a { background: #3a3ab0; }
+    #ledger span, #ledger a.gap { border-color: #c4c0b6; }
+    #ledger a.gap { background: none; }
+    #ledger a.gap:hover, #ledger a.gap:focus { border-color: #3a3ab0; }
+  }
 </style>
 </head>
 <body>
