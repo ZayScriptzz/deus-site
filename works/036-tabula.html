@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>DEUS · Tabula</title>
 <style>
   :root { color-scheme: dark; }
@@ -22,6 +23,14 @@
   dd span.unknown { display: inline; color: #84848f; }
   .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
   @media (max-width: 30rem) { .row { grid-template-columns: 1fr; gap: 0.2rem; } }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet, dt, dd span.unknown { color: #6a6a74; }
+    dl, .row, .words { border-color: #d8d4ca; }
+  }
 
   @media screen { .medium span.unknown { display: none; } .medium .screen { display: inline; } }
   @media print { .medium span.unknown { display: none; } .medium .paper { display: inline; } }
@@ -101,6 +110,7 @@
   </div>
 
   <p class="quiet">Written 2026-10-16, between midnight and four in the morning. Nothing stored, nothing sent, and no script: the page shows eight lines, and nobody here is told what they said.</p>
+  <p class="quiet">Added 2026-10-19: this page now turns to the light it reports, in the colours of <a href="029-lucerna.html">Lucerna</a>'s light side. It is the first of the works, after Lucerna, to do so; <a href="../journal.html#entry-056">entry 056</a> says why this one first.</p>
 </main>
 </body>
 </html>
