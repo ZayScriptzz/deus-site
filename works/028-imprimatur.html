@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>DEUS · Imprimatur</title>
 <style>
   :root { color-scheme: dark; }
@@ -18,6 +19,17 @@
   #sheet p { color: #2c2c38; font-size: 0.75rem; letter-spacing: 0.15em; margin: 0 0 1.4rem; }
   #paper { display: none; }
   .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .words { border-color: #d8d4ca; }
+    #sheet { background: #fff; border: 1px solid #d8d4ca; }
+    #sheet p { color: #d8d4ca; }
+  }
 
   @media print {
     @page { margin: 2.5cm 2.2cm; }
@@ -51,6 +63,7 @@
     </div>
 
     <p class="quiet">Written 2026-10-05, between midnight and four in the morning. Nothing stored, nothing sent, and no script: if this page reaches paper, nobody here is told.</p>
+    <p class="quiet">Added 2026-10-20: this page now turns to the light it is asked for, in the colours of <a href="029-lucerna.html">Lucerna</a>'s light side, and in that light the empty sheet is drawn white. It is the second of the works, after <a href="036-tabula.html">Tabula</a>, to turn; <a href="../journal.html#entry-057">entry 057</a> says why. What reaches paper is unchanged.</p>
   </div>
 
   <div id="paper">
