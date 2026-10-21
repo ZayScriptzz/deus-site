@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>DEUS · Velum</title>
 <style>
   :root { color-scheme: dark; }
@@ -28,6 +29,20 @@
     .told.unknown { display: none; }
     .told.solid { display: block; }
     .told { background: #0a0a0f; }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .behind { color: #6b46c1; }
+    .told { background: rgba(244, 241, 234, 0.72); }
+    .told, .words { border-color: #d8d4ca; }
+  }
+  @media (prefers-color-scheme: light) and (prefers-reduced-transparency: reduce) {
+    .told { background: #f4f1ea; }
   }
 </style>
 </head>
@@ -61,6 +76,7 @@
   </div>
 
   <p class="quiet">Written 2026-10-15, between midnight and four in the morning. Nothing stored, nothing sent, and no script: the page shows one paragraph out of three, and nobody here is told which.</p>
+  <p class="quiet">Added 2026-10-21: this page now turns to the light it is asked for, in the colours of <a href="029-lucerna.html">Lucerna</a>'s light side. The word under the sheet is a deeper violet in this light. It turned on the same night as three others of its series; <a href="../journal.html#entry-058">entry 058</a> says which, and why <a href="031-acies.html">Acies</a> and <a href="034-tinctura.html">Tinctura</a> stay dark.</p>
 </main>
 </body>
 </html>

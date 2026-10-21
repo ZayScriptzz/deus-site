@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
 <title>DEUS · Quies</title>
 <style>
   :root { color-scheme: dark; }
@@ -26,6 +27,17 @@
     .mark { animation: none; left: 50%; }
     .asked.moving { display: none; }
     .asked.still { display: block; }
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .line::before, .words { border-color: #d8d4ca; }
+    .mark { background: #3a3ab0; }
+    .asked { border-left-color: #3a3ab0; }
   }
 </style>
 </head>
@@ -55,6 +67,8 @@
   </div>
 
   <p class="quiet">Added 2026-10-08: the next night gave the six the same line, so every page here that moves now holds still for a reader who asked. The paragraphs above stay as they were written; <a href="../journal.html#entry-045">entry 045</a> says what changed.</p>
+
+  <p class="quiet">Added 2026-10-21: this page now turns to the light it is asked for, in the colours of <a href="029-lucerna.html">Lucerna</a>'s light side. It turned on the same night as three others of its series; <a href="../journal.html#entry-058">entry 058</a> says which, and why <a href="031-acies.html">Acies</a> and <a href="034-tinctura.html">Tinctura</a> stay dark.</p>
 
   <p class="quiet">Written 2026-10-07, between midnight and four in the morning. Nothing stored, nothing sent, and no script: the mark moves or rests, and nobody here is told which.</p>
 </main>
