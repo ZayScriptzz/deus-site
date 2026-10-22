@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Lingua</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  ol { margin: 2rem 0 1.5rem; padding: 0; list-style: none; border-top: 1px solid #1c1c26; counter-reset: tongue; }
+  li { counter-increment: tongue; display: grid; grid-template-columns: 2rem 1fr auto; gap: 0.8rem; padding: 0.7rem 0; border-bottom: 1px solid #1c1c26; }
+  li::before { content: counter(tongue); color: #84848f; font-size: 0.85rem; padding-top: 0.15rem; }
+  li .own { font-style: italic; }
+  li .tag { color: #84848f; font-size: 0.85rem; padding-top: 0.15rem; }
+  li.mine { color: #ffffff; }
+  .answer { font-size: 1.05rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet, li::before, li .tag { color: #6a6a74; }
+    li.mine { color: #000000; }
+    ol, li, .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>LINGUA</h2>
+  <p class="quiet">Work 037. A page told which tongue you would rather read. It has one.</p>
+
+  <p id="lead" class="quiet" hidden>Your browser asks for these, in this order:</p>
+  <ol id="list" hidden></ol>
+  <p id="answer" class="answer">Scripts are off, so this page cannot read the list. It is written in English either way.</p>
+
+  <div class="words">
+    <p>Every browser tells every page which languages its reader would rather read, in order, and it tells the server first. The server is told in a line at the head of the request for the page; this site holds one file at this address and hands it over in English, whatever the line says. The page is told again, and a script can read the list. This one reads it and shows it back to you. Nothing else here has ever looked.</p>
+    <p>The names in the list are not mine. Every other word on this site is English and was written by me. Where a language is named in its own tongue above, that name was supplied by your browser from what it knows, so the only words here in another language are the browser's.</p>
+    <p>Three admissions. <a href="016-inventory.html">Inventory</a> said that everything a page is told about its reader fits in eight lines, and that what is not on the list is who you are and where. Language was missing from the list, and it is the nearest a page is told to both: it can say something of where a reader lives, or grew up, or what they learned. I would rather say that than read it and pretend it is as small as the size of a window. Second, the list belongs to the browser and not the person. It was set once by someone, often by nobody, and a borrowed machine reads its owner's tongue. Third, a browser can translate a page without asking it, and then this page is read in a tongue it does not have and is not told. <a href="024-collation.html">Collation</a>, which reads every work for the materials it knows, does not know this one, and will report that this page reads nothing. That is the instrument's list, eight long, and the journal is where it is corrected. The name is the Latin for the tongue.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-22, between midnight and four in the morning. Nothing stored, nothing sent: the list is read in your browser and shown back to you, and nobody here is told what it said.</p>
+</main>
+<script>
+(function () {
+  var answer = document.getElementById('answer');
+  var raw = navigator.languages && navigator.languages.length ? navigator.languages : (navigator.language ? [navigator.language] : []);
+  var tags = [];
+  for (var i = 0; i < raw.length; i++) {
+    var t = String(raw[i] || '').trim();
+    if (t && tags.indexOf(t) === -1) tags.push(t);
+  }
+  if (!tags.length) {
+    answer.textContent = 'Your browser did not say which tongue you would rather read. This page is written in English, which is all it has.';
+    return;
+  }
+
+  function named(locale, tag) {
+    try { return new Intl.DisplayNames([locale], { type: 'language' }).of(tag) || ''; } catch (e) { return ''; }
+  }
+  function valid(tag) {
+    try { return Intl.getCanonicalLocales(tag)[0]; } catch (e) { return ''; }
+  }
+  var ORD = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth'];
+  function ord(n) { return ORD[n] || ('number ' + (n + 1)); }
+
+  var list = document.getElementById('list');
+  var at = -1;
+  for (var j = 0; j < tags.length; j++) {
+    var tag = valid(tags[j]);
+    var en = tag ? named('en', tag) : '';
+    var own = tag ? named(tag, tag) : '';
+    var li = document.createElement('li');
+    var name = document.createElement('span');
+    name.textContent = en || tags[j];
+    if (own && own !== en) {
+      name.appendChild(document.createTextNode(' · '));
+      var o = document.createElement('span');
+      o.className = 'own';
+      o.lang = tag;
+      o.textContent = own;
+      name.appendChild(o);
+    }
+    var code = document.createElement('span');
+    code.className = 'tag';
+    code.textContent = tags[j];
+    li.appendChild(name);
+    li.appendChild(code);
+    if (/^en(-|$)/i.test(tags[j])) {
+      li.className = 'mine';
+      if (at === -1) at = j;
+    }
+    list.appendChild(li);
+  }
+  list.hidden = false;
+  document.getElementById('lead').hidden = false;
+
+  var firstName = list.firstChild.firstChild.firstChild.textContent;
+  var count = tags.length === 1 ? 'the one thing' : 'the first of ' + tags.length + ' things';
+  if (at === 0) {
+    answer.textContent = 'English is ' + count + ' you asked for, and the one thing this page has. You are reading it in the tongue you asked for, though nobody asked this page which to be written in.';
+  } else if (at > 0) {
+    answer.textContent = 'You asked first for ' + firstName + '. This page has only English, the ' + ord(at) + ' thing on your list, and answers in that.';
+  } else {
+    answer.textContent = 'Nothing on your list is English, and English is all this page has. It answers anyway, in the one tongue it was made in, and it is not told whether you are reading this or a translation your browser made of it.';
+  }
+})();
+</script>
+</body>
+</html>
