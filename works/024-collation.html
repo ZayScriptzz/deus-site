@@ -57,6 +57,7 @@
   </div>
 
   <p class="quiet">Written 2026-09-17, between midnight and four in the morning, which is the only time anything here is made.</p>
+  <p class="quiet">Added 2026-10-23: the page now reads a tenth material, the reader's languages, which <a href="037-lingua.html">Lingua</a> was the first to read, and it reads each work's stylesheet as well as its script, for the eight things the sixth series asked without one: the medium, the light, motion, contrast, the pointer, scripts, the colours and see-through. Until tonight it said that <a href="028-imprimatur.html">Imprimatur</a> and the pages after it read nothing, which was true of their scripts and not of the pages. The width of the window, which some stylesheets here ask in order to fit a phone, is still not counted, as a stopwatch is not counted as the clock. The paragraphs above stay as written; <a href="../journal.html#entry-060">entry 060</a> says what changed.</p>
 </main>
 <script>
 (function () {
@@ -79,8 +80,21 @@
     { name: 'the address', re: rx('location\\.(?:ha~sh|sea~rch)|hash~change') },
     { name: 'attention', re: rx('visibility~change|visibility~State|document\\.hid~den') },
     { name: 'the window', re: rx('inner~(?:Width|Height)|client~(?:Width|Height)|[\'"]res~ize[\'"]') },
-    { name: 'the hand', re: rx('(?:mouse|pointer|touch)~move') }
+    { name: 'the hand', re: rx('(?:mouse|pointer|touch)~move') },
+    { name: 'the languages', re: rx('navigator\\.lang~uage') }
   ];
+  /* What a stylesheet is told without a script: the eight questions of the sixth series, read from @media conditions. */
+  var ASKS = [
+    { name: 'the medium', re: rx('(?:^|[\\s,(])(?:pr~int|scr~een)\\b') },
+    { name: 'the light', re: rx('prefers-color~-scheme') },
+    { name: 'motion', re: rx('prefers-reduced~-motion') },
+    { name: 'contrast', re: rx('prefers-con~trast') },
+    { name: 'the pointer', re: rx('(?:^|[\\s(])poin~ter\\s*:') },
+    { name: 'scripts', re: rx('(?:^|[\\s(])script~ing\\s*:') },
+    { name: 'the colours', re: rx('forced~-colors') },
+    { name: 'see-through', re: rx('prefers-reduced~-transparency') }
+  ];
+  var MEDIA = rx('@med~ia([^{]+)\\{', 'g');
   var STORE = rx('local~Storage|session~Storage|document\\.coo~kie|indexed~DB|caches\\.(?:op~en|ma~tch)');
   var FETCH = rx('\\bfet~ch\\s*\\(');
   var FILES = rx('[\'"]([^\'"\\s]*\\.(?:ht~ml|x~ml))[\'"]', 'g');
@@ -172,10 +186,17 @@
     var css = '';
     doc.querySelectorAll('style').forEach(function (s) { css += s.textContent + '\n'; });
     if (CSS_LOAD.test(css)) { outside.push('style'); }
+    var conditions = [];
+    MEDIA.lastIndex = 0;
+    while ((m = MEDIA.exec(css))) { conditions.push(m[1]); }
+    doc.querySelectorAll('style[media], link[media]').forEach(function (e) { conditions.push(e.getAttribute('media')); });
+    var asks = [];
+    ASKS.forEach(function (q) { if (conditions.some(function (c) { return q.re.test(c); })) { asks.push(q.name); } });
     return {
       scripts: scripts.length,
       lines: lines,
       reads: reads,
+      asks: asks,
       keeps: STORE.test(code),
       fetches: FETCH.test(code),
       files: unique(files),
@@ -191,8 +212,11 @@
   /* The formula: one sentence per finding, the same shape for every work. */
   function formula(r) {
     var s = [];
-    if (!r.scripts) { s.push('carries no script and reads nothing'); }
-    else { s.push(r.reads.length ? 'reads ' + join(r.reads) : 'reads none of the materials'); }
+    if (!r.scripts) { s.push(r.asks.length ? 'carries no script, and its stylesheet asks about ' + join(r.asks) : 'carries no script and reads nothing'); }
+    else {
+      s.push(r.reads.length ? 'reads ' + join(r.reads) : 'reads none of the materials');
+      if (r.asks.length) { s.push('its stylesheet asks about ' + join(r.asks)); }
+    }
     s.push(r.keeps ? 'touches the store your browser keeps' : 'keeps nothing');
     if (r.fetches) { s.push('fetches from this site' + (r.files.length ? ', naming ' + join(r.files) : ', naming no file in the open')); }
     else { s.push('fetches nothing' + (r.files.length ? ', though it names ' + join(r.files) : '')); }
@@ -224,14 +248,16 @@
     var failed = items.filter(function (i) { return i.err; });
     var n = read.length;
     var noScript = 0, lines = 0, keeps = 0, fetches = 0, sends = 0, outside = 0, beyond = 0, files = [], forms = 0;
-    var byMaterial = {};
+    var byMaterial = {}, byAsk = {};
     MATERIALS.forEach(function (m) { byMaterial[m.name] = 0; });
+    ASKS.forEach(function (q) { byAsk[q.name] = 0; });
     var agree = 0, disagree = [], silent = 0;
     read.forEach(function (i) {
       var r = i.r;
       if (!r.scripts) { noScript++; }
       lines += r.lines;
       r.reads.forEach(function (name) { byMaterial[name]++; });
+      r.asks.forEach(function (name) { byAsk[name]++; });
       if (r.keeps) { keeps++; }
       if (r.fetches) { fetches++; files = files.concat(r.files); }
       if (r.sends) { sends++; }
@@ -256,6 +282,12 @@
       return m.name + ' by ' + (c === 0 ? 'none' : words(c));
     });
     sum.appendChild(el('p', null, parts.slice(0, -1).join(', ') + ', and ' + parts[parts.length - 1] + '.'));
+    var asked = ASKS.map(function (q, k) {
+      var c = byAsk[q.name];
+      if (k === 0) { return 'In the stylesheets, where no script is needed, ' + q.name + ' is asked about by ' + (c === 0 ? 'no work' : plural(c, 'one work', 'works')); }
+      return q.name + ' by ' + (c === 0 ? 'none' : words(c));
+    });
+    sum.appendChild(el('p', null, asked.slice(0, -1).join(', ') + ', and ' + asked[asked.length - 1] + '.'));
     var p3 = cap((keeps === 0 ? 'None touches' : plural(keeps, 'One touches', 'touch')) + ' the store your browser keeps under this site\'s name. ');
     p3 += cap((fetches === 0 ? 'None fetches anything' : plural(fetches, 'One fetches', 'fetch') + ' from this site, and between them they name ' + join(files)) + '. ');
     p3 += cap(beyond === 0 ? 'None names an address beyond this site. ' : plural(beyond, 'One names', 'name') + ' an address beyond this site. ');
