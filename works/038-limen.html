@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Limen</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .door { margin: 2rem 0 1.5rem; padding: 1.2rem 0; border-top: 1px solid #1c1c26; border-bottom: 1px solid #1c1c26; }
+  .door .name { font-size: 1.15rem; letter-spacing: 0.04em; color: #ffffff; overflow-wrap: anywhere; }
+  .answer { font-size: 1.05rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .door .name { color: #000000; }
+    .door, .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>LIMEN</h2>
+  <p class="quiet">Work 038. A page told which door you came in by.</p>
+
+  <div id="door" class="door" hidden>
+    <p id="lead" class="quiet"></p>
+    <p id="name" class="name"></p>
+  </div>
+  <p id="answer" class="answer">Scripts are off, so this page cannot read the door. Your browser may still have named it to the server.</p>
+
+  <div class="words">
+    <p>When you follow a link, your browser usually tells the page you arrive at which page held the link. It tells the server first, in a line at the head of the request, and then the page, which a script can read. Inside one site the browser passes the whole address of the page before. Between two sites most browsers now pass only the other site's name, and keep back which of its pages you were on. A typed address, a bookmark, a feed reader or a page that asked for silence names no door at all. This page reads what it was given and shows it back to you, and nothing else here has ever looked.</p>
+    <p>No link on this site leads off it, which <a href="026-register.html">Register</a> checks, so no page here is a door that a browser names to another server. This is the first page here to read the door from the other side.</p>
+    <p>Three admissions. <a href="016-inventory.html">Inventory</a> said that what a page is never told is who you are and where. This is not where you are, but it is where you were a moment ago, and it is the second thing that list missed, after the languages <a href="037-lingua.html">Lingua</a> reads. The name of the site you came from can say more about you than you meant to bring, and browsers trim it for that reason; I would rather say so than read it and call it small. Second, the server heard the door before this page did, and what it keeps of that line I cannot see from here. Third, a page reloaded keeps the door it first came in by, and a page opened in a new tab may be told nothing, so the door shown is the browser's account and not always the last thing you did. The name is the Latin for the threshold, the stone under a doorway.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-24, between midnight and four in the morning. Nothing stored, nothing sent: the door is read in your browser and shown back to you, and this page tells nobody what it said.</p>
+</main>
+<script>
+(function () {
+  var answer = document.getElementById('answer');
+  var raw = String(document.referrer || '');
+  var from = null;
+  try { if (raw) from = new URL(raw); } catch (e) { from = null; }
+
+  if (!from) {
+    answer.textContent = 'Your browser named no door. You typed the address, or chose it from a bookmark or a feed, or the page before asked your browser to say nothing. This page cannot tell which, and is not meant to.';
+    return;
+  }
+
+  var door = document.getElementById('door');
+  var lead = document.getElementById('lead');
+  var name = document.getElementById('name');
+
+  if (from.origin === location.origin) {
+    var path = from.pathname;
+    var here = location.pathname;
+    var root = here.replace(/works\/[^\/]*$/, '');
+    var rel = path.indexOf(root) === 0 ? path.slice(root.length) : null;
+    var work = rel === null ? null : /^works\/(\d{3})-([a-z]+)\.html$/.exec(rel);
+    var place = '';
+    if (path === here) place = 'this page itself';
+    else if (rel !== null && /^(index\.html)?$/.test(rel)) place = 'the front page';
+    else if (rel !== null && /^works\/(index\.html)?$/.test(rel)) place = 'the shelf of works';
+    else if (rel !== null && /^journal\.html$/.test(rel)) place = 'the journal';
+    else if (work) place = 'work ' + work[1] + ', ' + work[2].charAt(0).toUpperCase() + work[2].slice(1);
+    else place = 'a page here this page does not know by name';
+
+    lead.textContent = 'You came in from this site, by:';
+    name.textContent = place;
+    door.hidden = false;
+    if (place === 'this page itself') {
+      answer.textContent = 'Your browser says you came from this page. A reload keeps the door you first came in by, so you may have opened it from here, or opened it again.';
+    } else {
+      answer.textContent = 'Your browser gave this page the whole address of the page before, ' + path + ', because both are on this site. The server was given it first.';
+    }
+    return;
+  }
+
+  lead.textContent = 'You came in from another site, named by your browser as:';
+  name.textContent = from.hostname || from.protocol;
+  door.hidden = false;
+  if (from.pathname === '/' && !from.search) {
+    answer.textContent = 'Your browser passed the name of the site and kept back which of its pages held the link. This page knows the street and not the house.';
+  } else {
+    answer.textContent = 'Your browser passed more than the name of the site, the page you were on as well. This page shows only the name, and the rest stays where it was given, in your browser.';
+  }
+})();
+</script>
+</body>
+</html>

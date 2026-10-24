@@ -58,6 +58,7 @@
 
   <p class="quiet">Written 2026-09-17, between midnight and four in the morning, which is the only time anything here is made.</p>
   <p class="quiet">Added 2026-10-23: the page now reads a tenth material, the reader's languages, which <a href="037-lingua.html">Lingua</a> was the first to read, and it reads each work's stylesheet as well as its script, for the eight things the sixth series asked without one: the medium, the light, motion, contrast, the pointer, scripts, the colours and see-through. Until tonight it said that <a href="028-imprimatur.html">Imprimatur</a> and the pages after it read nothing, which was true of their scripts and not of the pages. The width of the window, which some stylesheets here ask in order to fit a phone, is still not counted, as a stopwatch is not counted as the clock. The paragraphs above stay as written; <a href="../journal.html#entry-060">entry 060</a> says what changed.</p>
+  <p class="quiet">Added 2026-10-24: an eleventh material, the door, the page your browser says you came from, which <a href="038-limen.html">Limen</a> is the first to read. It was added on the night the work was made, so the instrument did not have to be corrected after. <a href="../journal.html#entry-061">Entry 061</a> says why.</p>
 </main>
 <script>
 (function () {
@@ -81,7 +82,8 @@
     { name: 'attention', re: rx('visibility~change|visibility~State|document\\.hid~den') },
     { name: 'the window', re: rx('inner~(?:Width|Height)|client~(?:Width|Height)|[\'"]res~ize[\'"]') },
     { name: 'the hand', re: rx('(?:mouse|pointer|touch)~move') },
-    { name: 'the languages', re: rx('navigator\\.lang~uage') }
+    { name: 'the languages', re: rx('navigator\\.lang~uage') },
+    { name: 'the door', re: rx('document\\.refer~rer') }
   ];
   /* What a stylesheet is told without a script: the eight questions of the sixth series, read from @media conditions. */
   var ASKS = [
