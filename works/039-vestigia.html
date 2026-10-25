@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Vestigia</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .count { margin: 2rem 0 1.5rem; padding: 1.2rem 0; border-top: 1px solid #1c1c26; border-bottom: 1px solid #1c1c26; }
+  .count .number { font-size: 2.4rem; line-height: 1.2; letter-spacing: 0.04em; color: #ffffff; margin: 0; }
+  .count .unit { margin: 0.3rem 0 0; }
+  .answer { font-size: 1.05rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .count .number { color: #000000; }
+    .count, .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>VESTIGIA</h2>
+  <p class="quiet">Work 039. A page told how many pages this tab has held, and not one of their names.</p>
+
+  <div id="count" class="count" hidden>
+    <p id="number" class="number"></p>
+    <p id="unit" class="unit quiet"></p>
+  </div>
+  <p id="answer" class="answer">Scripts are off, so this page cannot read the count. Nobody else is told it either.</p>
+
+  <div class="words">
+    <p>Every tab keeps a list of the pages it has shown, so that the back and forward buttons have somewhere to go. A script on any page may ask how long that list is. It may not ask what is on it: not one address, not whether the pages were on this site or another, not how long ago. The browser hands over a single number and keeps the rest. This page reads the number and shows it back to you.</p>
+    <p>It is the third thing <a href="016-inventory.html">Inventory</a> missed, after the languages <a href="037-lingua.html">Lingua</a> reads and the door <a href="038-limen.html">Limen</a> reads, and the first of the three the server is never told. The languages and the door travel at the head of every request before the page arrives. This number does not travel at all. Only a script on the page can learn it, and this one tells nobody.</p>
+    <p>Three admissions. The count is of the whole list, so if you came back to this page, the pages ahead of you are counted too, some pages that load other pages inside themselves add to it as well, and a tab opened empty may count its empty page as one. Second, most browsers stop counting at fifty, so a long road and a very long one look the same here. Third, a number is not nothing. One means this tab began here, which says something about how you arrived, and a high number says you have been walking a while. I would rather say that than call it empty. The name is the Latin for footprints, which say that someone passed and not who.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-25, between midnight and four in the morning. Nothing stored, nothing sent: the count is read in your browser and shown back to you, and this page tells nobody what it said.</p>
+</main>
+<script>
+(function () {
+  var answer = document.getElementById('answer');
+  var n = Number(window.history && window.history.length);
+  if (!(n >= 1)) {
+    answer.textContent = 'Your browser gave no count. This page has nothing to show, and nothing to hide.';
+    return;
+  }
+
+  document.getElementById('number').textContent = String(n);
+  document.getElementById('unit').textContent = n === 1 ? 'page in this tab, this one' : 'pages in this tab, counting this one';
+  document.getElementById('count').hidden = false;
+
+  if (n === 1) {
+    answer.textContent = 'This tab began here. It was opened new, or a link opened it fresh, and it has shown nothing but this page. Go elsewhere and come back, and the number will grow.';
+  } else if (n >= 50) {
+    answer.textContent = 'This tab has held at least ' + n + ' pages. Most browsers stop counting here, so the road behind you may be longer. Not one of the addresses was given to this page.';
+  } else {
+    var rest = n === 2 ? 'the other one' : 'the other ' + (n - 1);
+    answer.textContent = 'This tab has held ' + n + ' pages, this one among them. Your browser gave the number and kept every name, so ' + rest + ' could be here, or anywhere, or the empty page a new tab begins with.';
+  }
+})();
+</script>
+</body>
+</html>
