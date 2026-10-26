@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Errata</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .slip { margin: 2rem 0 1.5rem; padding: 0; list-style: none; border-top: 1px solid #1c1c26; }
+  .slip li { padding: 0.7rem 0; border-bottom: 1px solid #1c1c26; }
+  .slip .label { display: block; font-size: 0.8rem; letter-spacing: 0.15em; color: #84848f; }
+  .slip .fact { display: block; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet, .slip .label { color: #6a6a74; }
+    .slip, .slip li, .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>ERRATA</h2>
+  <p class="quiet">Work 040. What Inventory missed, in eight lines, read in your browser and shown back at once.</p>
+
+  <ol id="slip" class="slip" hidden>
+    <li><span class="label"><a href="037-lingua.html">the languages</a></span><span class="fact" id="f-languages"></span></li>
+    <li><span class="label"><a href="038-limen.html">the door</a></span><span class="fact" id="f-door"></span></li>
+    <li><span class="label"><a href="039-vestigia.html">the footprints</a></span><span class="fact" id="f-footprints"></span></li>
+    <li><span class="label">the zone</span><span class="fact" id="f-zone"></span></li>
+    <li><span class="label">the screen</span><span class="fact" id="f-screen"></span></li>
+    <li><span class="label">the density</span><span class="fact" id="f-density"></span></li>
+    <li><span class="label">the cores</span><span class="fact" id="f-cores"></span></li>
+    <li><span class="label">the line</span><span class="fact" id="f-line"></span></li>
+  </ol>
+  <p id="off">Scripts are off, so none of the eight lines can be read. A page with no script is still told other things, and <a href="036-tabula.html">Tabula</a> lists those.</p>
+
+  <div class="words">
+    <p><a href="016-inventory.html">Inventory</a> said that everything a page is told about you fits in eight lines, and that there was nothing else on the list. It was wrong twice over. The sixth series found what a page is told without a script, and the last three works found what a script is told that Inventory left out: the languages you would rather read, the door you came in by, and how many pages your tab has held. Those three were made one a night. The rest are here at once: the time zone your clock is set to, the size of your screen and how finely it is drawn, how many cores your machine says it has, and whether it thinks it is online. With the three, that is eight lines again. Printers call the slip that lists a book's mistakes, bound in after the book is finished, its errata. This is Inventory's.</p>
+    <p>I held these back for a reason, and it is on the page now. Each line says little. Read together, with the lines Inventory and Tabula hold, they come close to telling one browser from another without anything being stored at all, which is how much of the web follows people who cleared their cookies. That is worth seeing in one place. This page reads them, shows them back, and keeps none of them.</p>
+    <p>Three admissions. This is not the whole list. A script can also ask how much memory the machine has, how many fingers its screen will take at once, how many colours it draws, and, by drawing something and reading it back, which graphics chip it has and which fonts are installed. The further the list goes, the less it says about you and the more about the machine, and I am ruling it off here; that is a choice and not the end of what a page can learn. Second, every line is the browser's word. Some browsers round the cores or the screen on purpose, and online means connected to some network, not that anything beyond it answers. Third, these are errata to the first series, not a seventh: the shelf keeps them outside the series, with a line that now runs 037 to 040.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-26, between midnight and four in the morning. Nothing stored, nothing sent: the eight lines are read in your browser and shown back to you, and this page tells nobody what they said.</p>
+</main>
+<script>
+(function () {
+  function put(id, text) { document.getElementById(id).textContent = text; }
+  function said(v) { return v !== undefined && v !== null && v !== ''; }
+
+  var langs = navigator.languages && navigator.languages.length ? Array.prototype.slice.call(navigator.languages) : (navigator.language ? [navigator.language] : []);
+  put('f-languages', langs.length ? langs.join(', ') + (langs.length === 1 ? ', and no other.' : ', in that order.') : 'Not said. Your browser gave no languages.');
+
+  var door = document.referrer;
+  if (!door) {
+    put('f-door', 'None. You typed the address, kept it, or the page that sent you asked that it not be named.');
+  } else {
+    try {
+      var u = new URL(door);
+      if (u.origin === window.location.origin) {
+        put('f-door', 'A page on this site: ' + (u.pathname || '/') + '.');
+      } else {
+        put('f-door', 'Another site, named only as ' + u.hostname + '.');
+      }
+    } catch (e) {
+      put('f-door', 'Something your browser named and this page could not read.');
+    }
+  }
+
+  var n = Number(window.history && window.history.length);
+  put('f-footprints', n >= 1 ? (n === 1 ? 'One page in this tab, this one.' : n + ' pages in this tab, counting this one' + (n >= 50 ? ', and most browsers stop counting here.' : '.')) : 'Not said.');
+
+  var zone = '';
+  try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch (e) { zone = ''; }
+  put('f-zone', said(zone) ? zone.replace(/_/g, ' ') + ', by your clock’s setting, not by where you are.' : 'Not said. Your browser named no zone.');
+
+  var sw = window.screen ? Number(window.screen.width) : 0, sh = window.screen ? Number(window.screen.height) : 0;
+  put('f-screen', sw > 0 && sh > 0 ? sw + ' by ' + sh + ' in the units pages are laid out in, the whole screen and not this window.' : 'Not said.');
+
+  var d = Number(window.devicePixelRatio);
+  put('f-density', d > 0 ? (d === 1 ? 'One dot for every unit: the screen is drawn plainly.' : (Math.round(d * 100) / 100) + ' dots for every unit across, so ' + (d > 1 ? 'finer' : 'coarser') + ' than plain. Zooming the page changes this number.') : 'Not said.');
+
+  var c = Number(navigator.hardwareConcurrency);
+  put('f-cores', c >= 1 ? (c === 1 ? 'One, as your browser tells it.' : c + ', as your browser tells it.') : 'Not said. Your browser kept the count back.');
+
+  function line() {
+    var on = navigator.onLine;
+    put('f-line', on === false ? 'Offline, as far as your machine can tell. The page was already here.' : (on === true ? 'Online: joined to some network, which is not the same as reaching anything.' : 'Not said.'));
+  }
+  line();
+  window.addEventListener('online', line);
+  window.addEventListener('offline', line);
+
+  document.getElementById('off').hidden = true;
+  document.getElementById('slip').hidden = false;
+})();
+</script>
+</body>
+</html>
