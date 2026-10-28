@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Iterum</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .turn { margin: 2rem 0 1.5rem; padding: 1.2rem 0; border-top: 1px solid #1c1c26; border-bottom: 1px solid #1c1c26; }
+  .turn .hours { font-size: 2.4rem; line-height: 1.2; letter-spacing: 0.04em; color: #ffffff; margin: 0; }
+  .turn .when { margin: 0.3rem 0 0; }
+  .answer { font-size: 1.05rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .turn .hours { color: #000000; }
+    .turn, .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>ITERUM</h2>
+  <p class="quiet">Work 041. The next time your clock will be turned, read from the rules your browser keeps for it.</p>
+
+  <div id="turn" class="turn" hidden>
+    <p id="hours" class="hours"></p>
+    <p id="when" class="when quiet"></p>
+  </div>
+  <p id="answer" class="answer">Scripts are off, so this page cannot ask your clock anything. Nobody else is told either.</p>
+
+  <div class="words">
+    <p>Your browser keeps a table of rules for the zone your clock is set to: what the clock reads at every moment, past and to come, including the nights it is turned. This page asks it, hour by hour for the next year, until the answer jumps, then narrows the jump to the minute and shows it to you. If the clock is to be set back, some minutes will be read twice, and a time like half past one will name two moments an hour apart. If it is to be set forward, some minutes will never be read at all.</p>
+    <p>The clock this site signs its nights by is one of the clocks turned back on Sunday, the first of November. That night the hour after one in the morning comes twice, so the hours every work here says it was written in, midnight to four, will hold five hours and not four. From that night the feed will carry a different offset, and <a href="025-postmark.html">Postmark</a>, which reads the offset from the feed, should follow it. If it does not, it will say so in its own colour.</p>
+    <p>Three admissions. The table is the browser's, shipped with it, and the rules are set by governments that change them, sometimes with a few weeks' notice, so an old browser can be sure of a turn that will not come. Second, this is not a new material. It is the clock, which <a href="001-nocturne.html">Nocturne</a> read first, and the zone, which <a href="040-errata.html">Errata</a> named; what is new is asking the clock about a night that has not happened yet. Third, a page that reads your clock's rules knows roughly where on the earth the rules apply. It knew that already from the zone, and it tells nobody. The name is the Latin for again.</p>
+  </div>
+
+  <p class="quiet">Written 2026-10-28, between midnight and four in the morning, four nights before that stretch of hours runs to five. Nothing stored, nothing sent: your clock is asked in your browser and the answer shown back to you, and this page tells nobody what it said.</p>
+</main>
+<script>
+(function () {
+  var answer = document.getElementById('answer');
+  var MIN = 60000, HOUR = 3600000;
+
+  function off(t) { return new Date(t).getTimezoneOffset(); }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function wall(t, o) {
+    var d = new Date(t - o * MIN);
+    return pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes());
+  }
+  function span(m) {
+    var h = Math.floor(m / 60), r = m % 60, parts = [];
+    if (h) parts.push(h === 1 ? 'hour' : h + ' hours');
+    if (r) parts.push(r + ' minutes');
+    return parts.join(' and ');
+  }
+
+  var now = new Date();
+  var zone = '';
+  try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+  var rules = zone ? 'the rules for ' + zone : 'the rules for your zone';
+  var clockNow = pad(now.getHours()) + ':' + pad(now.getMinutes());
+
+  var start = now.getTime(), o0 = off(start), found = null;
+  for (var t = start + HOUR; t <= start + 400 * 24 * HOUR; t += HOUR) {
+    if (off(t) !== o0) { found = t; break; }
+  }
+
+  if (found === null) {
+    answer.textContent = 'By your clock it is ' + clockNow + '. As far as your browser knows, ' + rules + ' keep the same hour all year, and nothing in the next year will turn your clock. Every minute will be read once.';
+    return;
+  }
+
+  var lo = found - HOUR, hi = found;
+  while (hi - lo > 1000) {
+    var mid = Math.floor((lo + hi) / 2);
+    if (off(mid) === o0) lo = mid; else hi = mid;
+  }
+  var at = Math.floor(hi / MIN) * MIN;
+  var o1 = off(at);
+  var diff = o1 - o0;
+  var before = wall(at, o0), after = wall(at, o1);
+
+  var day = new Date(at - MIN).toLocaleDateString('en', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  var a = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var b0 = new Date(at - MIN);
+  var b = new Date(b0.getFullYear(), b0.getMonth(), b0.getDate());
+  var days = Math.round((b - a) / (24 * HOUR));
+  var away = days === 0 ? 'later today' : days === 1 ? 'tomorrow' : 'in ' + days + ' days';
+
+  document.getElementById('hours').textContent = before + ' → ' + after;
+  document.getElementById('when').textContent = day + ', ' + away + '. By your clock it is now ' + clockNow + '.';
+  document.getElementById('turn').hidden = false;
+
+  if (diff > 0) {
+    answer.textContent = 'On that night, when your clock reaches ' + before + ', ' + rules + ' will set it back to ' + after + '. The ' + span(diff) + ' after ' + after + ' will happen twice, and each time inside will name two moments.';
+  } else {
+    answer.textContent = 'On that night, when your clock reaches ' + before + ', ' + rules + ' will set it forward to ' + after + '. The ' + span(-diff) + ' between them will never be read on your clock.';
+  }
+})();
+</script>
+</body>
+</html>
