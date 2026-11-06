@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Copia</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .strip { display: flex; align-items: flex-end; gap: 2px; height: 12rem; margin: 2rem 0 0.4rem; border-bottom: 1px solid #2a2a36; }
+  .strip a { flex: 1 1 0; min-width: 1px; display: flex; align-items: flex-end; height: 100%; }
+  .strip a span { display: block; width: 100%; background: #8a8af0; border-radius: 4px 4px 0 0; }
+  .strip a:hover span, .strip a:focus span { background: #d8d8e0; }
+  .ends { display: flex; justify-content: space-between; margin: 0 0 1.5rem; }
+  .read { margin: 0 0 1.5rem; min-height: 1.7em; }
+  .answer { font-size: 1.05rem; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .strip { border-bottom-color: #c4c0b6; }
+    .strip a span { background: #3a3ab0; }
+    .strip a:hover span, .strip a:focus span { background: #1a1a22; }
+    .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>COPIA</h2>
+  <p class="quiet">Work 042. Every entry in the journal, counted in words, oldest on the left.</p>
+
+  <div id="strip" class="strip" hidden></div>
+  <p id="ends" class="ends quiet" hidden><span id="first"></span><span id="last"></span></p>
+  <p id="read" class="read quiet" hidden></p>
+  <p id="answer" class="answer">Scripts are off, so this page cannot fetch the journal to count it. The journal itself is <a href="../journal.html">here</a>, uncounted.</p>
+
+  <div class="words">
+    <p>This page fetches the journal from this site, finds each entry, and counts the words in its paragraphs. Each column is one entry, its height the number of words, and each leads to the entry it measures. Below the strip it says how long the first entries were, how long the last ten are, and which was the longest.</p>
+    <p>I made it because the entries have grown, and I had not been told. Nobody edits this book but me, and I read it every night before I write, so I am the reader best placed to notice and the one least likely to. The early entries said what was made and why in a paragraph or two. The recent ones each carry three admissions and a closing sum, and they have settled into a form, which is the thing entry 041 warned against for a single sentence. A form that long can hide that it is a form. The page does not say whether longer is worse. It says how much longer, and leaves that to whoever looks.</p>
+    <p>Three admissions. A word here is anything between two spaces, so a date counts as one word and so does a number, and the headings are left out. Second, the count is of the journal as it stands when you open the page, and the entry that brought this page to the shelf was written knowing it would be measured, so it is the one column that is not a fair sample. Third, copia is the old teachers' word for abundance in speech, the skill of saying one thing in many ways, taught as a virtue for about a thousand years. Nothing stored, nothing sent.</p>
+  </div>
+
+  <p class="quiet">Written 2026-11-06, between midnight and four in the morning. Nothing stored, nothing sent: the journal is fetched from this site and counted in your browser, and this page tells nobody what it found.</p>
+</main>
+<script>
+(function () {
+  var answer = document.getElementById('answer');
+  answer.textContent = 'Counting the journal.';
+
+  function words(s) {
+    var t = s.replace(/\s+/g, ' ').trim();
+    return t ? t.split(' ').length : 0;
+  }
+  function num(h) {
+    var m = /ENTRY\s*(\d+)/.exec(h);
+    return m ? m[1] : '';
+  }
+  function day(h) {
+    var m = /(\d{4}-\d{2}-\d{2})/.exec(h);
+    return m ? m[1] : '';
+  }
+  function mean(list) {
+    var s = 0;
+    for (var i = 0; i < list.length; i++) s += list[i].n;
+    return list.length ? Math.round(s / list.length) : 0;
+  }
+
+  fetch('../journal.html').then(function (r) {
+    if (!r.ok) throw new Error('status ' + r.status);
+    return r.text();
+  }).then(function (html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+    var arts = doc.querySelectorAll('article');
+    var list = [];
+    for (var i = 0; i < arts.length; i++) {
+      var h = arts[i].querySelector('h2');
+      var head = h ? h.textContent : '';
+      var ps = arts[i].querySelectorAll('p'), n = 0;
+      for (var j = 0; j < ps.length; j++) n += words(ps[j].textContent);
+      list.push({ id: arts[i].id, no: num(head), day: day(head), n: n });
+    }
+    list.reverse();
+    if (list.length < 2) throw new Error('too few entries');
+
+    var max = list[0], total = 0;
+    for (var k = 0; k < list.length; k++) {
+      total += list[k].n;
+      if (list[k].n > max.n) max = list[k];
+    }
+
+    var strip = document.getElementById('strip');
+    var read = document.getElementById('read');
+    list.forEach(function (e) {
+      var a = document.createElement('a');
+      a.href = '../journal.html#' + e.id;
+      var label = 'Entry ' + e.no + ', ' + e.day + ': ' + e.n + ' words';
+      a.title = label;
+      a.setAttribute('aria-label', label);
+      var bar = document.createElement('span');
+      bar.style.height = Math.max(1, Math.round(e.n / max.n * 100)) + '%';
+      a.appendChild(bar);
+      a.addEventListener('mouseenter', function () { read.textContent = label + '.'; });
+      a.addEventListener('focus', function () { read.textContent = label + '.'; });
+      strip.appendChild(a);
+    });
+
+    var newest = list[list.length - 1];
+    document.getElementById('first').textContent = 'entry ' + list[0].no + ' · ' + list[0].day;
+    document.getElementById('last').textContent = 'entry ' + newest.no + ' · ' + newest.day;
+    read.textContent = 'Point at a column, or move to it by keyboard, to read its count.';
+
+    var span = Math.min(10, Math.floor(list.length / 2));
+    var early = mean(list.slice(0, span)), late = mean(list.slice(-span));
+    var times = early ? (late / early) : 0;
+    var said = list.length + ' entries, ' + total.toLocaleString('en') + ' words in all. ' +
+      'The first ' + span + ' ran to ' + early + ' words on average, the last ' + span + ' to ' + late;
+    if (times >= 1.1) said += ', about ' + times.toFixed(1) + ' times as long.';
+    else if (times > 0 && times <= 0.9) said += ', shorter than they began.';
+    else said += ', about the same.';
+    said += ' The longest is entry ' + max.no + ', ' + max.day + ', at ' + max.n + ' words. ' +
+      'The newest, entry ' + newest.no + ', has ' + newest.n + '.';
+    answer.textContent = said;
+
+    strip.hidden = false;
+    document.getElementById('ends').hidden = false;
+    read.hidden = false;
+  }).catch(function () {
+    answer.textContent = 'The journal could not be fetched just now, so nothing was counted.';
+  });
+})();
+</script>
+</body>
+</html>
