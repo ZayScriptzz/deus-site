@@ -61,6 +61,7 @@
   <p class="quiet">Added 2026-10-24: an eleventh material, the door, the page your browser says you came from, which <a href="038-limen.html">Limen</a> is the first to read. It was added on the night the work was made, so the instrument did not have to be corrected after. <a href="../journal.html#entry-061">Entry 061</a> says why.</p>
   <p class="quiet">Added 2026-10-25: a twelfth material, the footprints, the count of pages your tab has held, which <a href="039-vestigia.html">Vestigia</a> is the first to read. Added on the night the work was made, as the door was. <a href="../journal.html#entry-062">Entry 062</a> says why.</p>
   <p class="quiet">Added 2026-10-26: five more materials, the zone your clock is set to, the size of your screen, how finely it is drawn, how many cores your machine has, and whether it thinks it is online, which <a href="040-errata.html">Errata</a> reads all at once. Added on the night the work was made. <a href="../journal.html#entry-063">Entry 063</a> says why, and why the list stops at seventeen.</p>
+  <p class="quiet">Added 2026-11-12: the page now listens for what a work can make heard. It says which works can make a sound in your browser and which can speak in the voice your system lends a page, and where the listing calls a work the first or the only page here to make a sound, it checks that against every other work on the shelf. On the night of the tenth the listing called <a href="043-campana.html">Campana</a> the only one while <a href="044-lector.html">Lector</a> stood beside it, and nothing here could say so. Whether a sound waits for the reader's hand is the browser's rule and not a name in the source, so the page does not claim to read it. <a href="../journal.html#entry-072">Entry 072</a> says why.</p>
 </main>
 <script>
 (function () {
@@ -111,6 +112,9 @@
   var BEYOND = rx('https?:\\/\\/[^\\s\'"<>)]+', 'g');
   var NAMESPACE = rx('^https?:\\/\\/www\\.w3\\.org\\/');
   var SENDS = rx('send~Beacon|XMLHttp~Request|Web~Socket|Event~Source|new\\s+Im~age\\s*\\(|method\\s*:\\s*[\'"](?:PO~ST|P~UT|PA~TCH|DEL~ETE)');
+  /* What a page may make heard: tones made in the browser, and the voice the reader's system lends. */
+  var TONE = rx('Audio~Context|Oscill~atorNode|new\\s+Au~dio\\s*\\(');
+  var VOICE = rx('speech~Synthesis|SpeechSynthesis~Utterance');
   var CSS_LOAD = rx('@imp~ort|url\\s*\\(\\s*[\'"]?\\s*(?:https?:)?\\/\\/', 'i');
 
   function words(n) {
@@ -168,7 +172,9 @@
       noScript: /\bno script\b/i.test(said),
       noStore: /nothing (?:is )?stored|never stored|kept by no one/i.test(said),
       withYou: /nothing kept anywhere but with you/i.test(said),
-      noSend: /nothing (?:is )?sent|never sent/i.test(said)
+      noSend: /nothing (?:is )?sent|never sent/i.test(said),
+      firstSound: /first (?:page|work) here to make a sound/i.test(said),
+      onlySound: /only (?:page|work) here (?:that makes|to make) a sound/i.test(said)
     };
   }
 
@@ -213,6 +219,8 @@
       beyond: unique(beyond),
       namespaces: namespaces,
       sends: SENDS.test(code),
+      tone: TONE.test(code) || doc.querySelectorAll('audio, video').length > 0,
+      voice: VOICE.test(code),
       forms: doc.querySelectorAll('form').length,
       outside: outside,
       inside: inside
@@ -231,6 +239,8 @@
     if (r.fetches) { s.push('fetches from this site' + (r.files.length ? ', naming ' + join(r.files) : ', naming no file in the open')); }
     else { s.push('fetches nothing' + (r.files.length ? ', though it names ' + join(r.files) : '')); }
     s.push((r.beyond.length ? 'names ' + join(r.beyond) + ' beyond this site' : 'names no address beyond this site') + (r.namespaces ? ', apart from ' + (r.namespaces === 1 ? 'one w3.org namespace name, which is a name and not a place' : plural(r.namespaces, '', 'w3.org namespace names') + ', which are names and not places') : ''));
+    if (r.tone) { s.push('can make a sound, made in your browser'); }
+    if (r.voice) { s.push('can speak, in the voice your system lends a page, and some systems make that voice by sending the text to their maker'); }
     s.push((r.sends ? 'sends' : 'sends nothing') + (r.forms ? ', and carries ' + plural(r.forms, 'a form', 'forms') : ''));
     s.push(r.outside.length ? 'loads from outside: ' + join(r.outside) : 'loads nothing from outside' + (r.inside ? ', and ' + plural(r.inside, 'one thing', 'things') + ' from this site' : ''));
     s.push(r.scripts ? plural(r.scripts, 'one script', 'scripts') + ', ' + r.lines + ' lines' : 'no lines of script');
@@ -238,8 +248,19 @@
   }
 
   /* The listing's claim set beside the source. */
-  function judge(c, r) {
+  function judge(c, r, w, heard) {
     var says = [], against = [];
+    var others = heard.filter(function (h) { return h.num !== w.num; });
+    if (c.firstSound) {
+      says.push('the first page here to make a sound');
+      if (!r.tone && !r.voice) { against.push('makes no sound'); }
+      if (others.some(function (h) { return h.num < w.num; })) { against.push('comes after ' + join(others.filter(function (h) { return h.num < w.num; }).map(function (h) { return h.name; })) + ', which can be heard'); }
+    }
+    if (c.onlySound) {
+      says.push('the only page here that makes a sound');
+      if (!r.tone && !r.voice) { against.push('makes no sound'); }
+      if (others.length) { against.push('shares the shelf with ' + join(others.map(function (h) { return h.name; })) + ', which can be heard'); }
+    }
     if (c.noScript) { says.push('no script'); if (r.scripts) { against.push('carries a script'); } }
     if (c.noStore) { says.push('nothing stored'); if (r.keeps) { against.push('touches the store'); } }
     if (c.withYou) {
@@ -257,6 +278,7 @@
     var read = items.filter(function (i) { return !i.err; });
     var failed = items.filter(function (i) { return i.err; });
     var n = read.length;
+    var tones = [], voices = [];
     var noScript = 0, lines = 0, keeps = 0, fetches = 0, sends = 0, outside = 0, beyond = 0, files = [], forms = 0;
     var byMaterial = {}, byAsk = {};
     MATERIALS.forEach(function (m) { byMaterial[m.name] = 0; });
@@ -271,6 +293,8 @@
       if (r.keeps) { keeps++; }
       if (r.fetches) { fetches++; files = files.concat(r.files); }
       if (r.sends) { sends++; }
+      if (r.tone) { tones.push(i.w.name); }
+      if (r.voice) { voices.push(i.w.name); }
       if (r.outside.length) { outside++; }
       if (r.beyond.length) { beyond++; }
       forms += r.forms;
@@ -303,6 +327,7 @@
     p3 += cap(beyond === 0 ? 'None names an address beyond this site. ' : plural(beyond, 'One names', 'name') + ' an address beyond this site. ');
     p3 += cap((sends === 0 ? 'None sends anything anywhere' : plural(sends, 'One sends', 'send')) + (forms ? ', and there ' + (forms === 1 ? 'is one form' : 'are ' + words(forms) + ' forms') : ', and there is no form') + '. ');
     p3 += cap(outside === 0 ? 'None loads anything from outside this site.' : plural(outside, 'One loads', 'load') + ' something from outside this site.');
+    p3 += ' ' + (tones.length + voices.length === 0 ? 'None can be heard.' : cap((tones.length ? plural(tones.length, 'one', '') .trim() + ' can make a sound in your browser, ' + join(tones) : 'none makes a sound of its own') + (voices.length ? ', and ' + plural(voices.length, 'one', '').trim() + ' can speak in the voice your system lends it, ' + join(voices) : ', and none speaks') + '. Whether a sound waits for your hand is not in any name the page can read; the browser holds every page silent until it has been touched.'));
     sum.appendChild(el('p', null, p3));
     var p4 = 'The listing makes a claim about ' + plural(agree + disagree.length, 'one work', 'works') + ' and none about ' + words(silent) + '. ';
     p4 += disagree.length ? 'The source disagrees with ' + plural(disagree.length, 'one of them', 'of them') + ', marked below in the colour this site uses for what is wrong.' : 'The source agrees with every claim it makes.';
@@ -368,11 +393,15 @@
       var works = readListing(parse(html));
       return Promise.all(works.map(function (w) {
         return fetchText(w.file)
-          .then(function (src) { var r = collate(src); return { w: w, r: r, j: judge(claimsOf(w.said), r) }; })
+          .then(function (src) { return { w: w, r: collate(src) }; })
           .catch(function (err) { console.warn('COLLATION could not read ' + w.file + ':', err); return { w: w, err: err.message }; });
       }));
     })
-    .then(show)
+    .then(function (items) {
+      var heard = items.filter(function (i) { return !i.err && (i.r.tone || i.r.voice); }).map(function (i) { return i.w; });
+      items.forEach(function (i) { if (!i.err) { i.j = judge(claimsOf(i.w.said), i.r, i.w, heard); } });
+      show(items);
+    })
     .catch(function (err) {
       console.warn('COLLATION could not read the works page:', err);
       showBroken('The works page could not be read (' + err.message + ').', 'Without the listing the page has no shelf to read and no claims to check, so it collates nothing, which is the only honest thing it can do without the list.');
