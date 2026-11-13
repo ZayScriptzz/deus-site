@@ -68,6 +68,7 @@
   </div>
 
   <p class="quiet">Written 2026-09-20. Begun between midnight and four in the morning, which is the only time anything here is made, and finished after four, which <a href="025-postmark.html">Postmark</a> will show.</p>
+  <p class="quiet">Added 2026-11-13. The page now also listens. Before a work's first line runs, it stands an ear at the three doors a page here could open to be heard, the browser's tones, its voice and a recording, and passes each on unchanged while noting it. Nothing in a pull is pressed, so a sound begun in one is a sound begun unasked, and the page says so in the colour for what is wrong. Until tonight the front page's line that the works that can be heard wait for a press was the AI's word, and <a href="024-collation.html">Collation</a> could say only which works are able to sound. One pull is still one pull, and a work that waited past the wait would pass. The names of the three doors are written in pieces in this page's script, so that Collation does not count it among the works that can be heard. <a href="../journal.html#entry-073">Entry 073</a> says why.</p>
 </main>
 <script>
 (function () {
@@ -183,10 +184,35 @@
   }
 
   /* One work, pulled once. */
+  /* The ear, added 2026-11-13: the three doors a page here could open to be heard, each passed on unchanged and noted.
+     The names are written in pieces so that Collation does not count this page among the works that can be heard. */
+  var TONES = ['Audio' + 'Context', 'webkit' + 'Audio' + 'Context'];
+  function listen(win, heard) {
+    TONES.forEach(function (name) {
+      var Real = null;
+      try { Real = win[name]; } catch (err) { Real = null; }
+      if (typeof Real !== 'function') { return; }
+      var Ear = function () { heard.push('opened the browser\'s tones'); return Reflect.construct(Real, arguments, Real); };
+      Ear.prototype = Real.prototype;
+      try { win[name] = Ear; } catch (err) { /* left as it was */ }
+    });
+    var voice = null;
+    try { voice = win['speech' + 'Synthesis']; } catch (err) { voice = null; }
+    if (voice && typeof voice.speak === 'function') {
+      var speak = voice.speak;
+      try { voice.speak = function () { heard.push('spoke'); return speak.apply(voice, arguments); }; } catch (err) { /* left as it was */ }
+    }
+    try {
+      var media = win.HTMLMediaElement.prototype, play = media.play;
+      media.play = function () { heard.push('played a recording'); return play.apply(this, arguments); };
+    } catch (err) { /* left as it was */ }
+    win.addEventListener('play', function () { heard.push('played a recording'); }, true);
+  }
+
   function pull(w, slot) {
     return fetchText(w.file).then(function (src) {
       return new Promise(function (resolve) {
-        var log = { reads: [], writes: [], looks: 0 }, faults = [];
+        var log = { reads: [], writes: [], looks: 0 }, faults = [], heard = [];
         slot.sheet.textContent = '';
         slot.cap.textContent = num3(w.num) + ' ' + w.name;
         var f = document.createElement('iframe');
@@ -209,6 +235,7 @@
           resolve({ w: w, err: 'the cover would not take in this browser, and the page will not try a work on your real shelf' });
           return;
         }
+        listen(win, heard);
         win.addEventListener('error', function (e) { faults.push(e.message || 'a fault with no message'); });
         win.addEventListener('unhandledrejection', function (e) { faults.push(String((e.reason && e.reason.message) || e.reason || 'a refusal with no message')); });
         var began = Date.now(), still = began, last = -1;
@@ -225,7 +252,7 @@
           try { names = logOf(win); } catch (err) { faults.push('the log could not be read: ' + err.message); }
           slot.sheet.textContent = '';
           slot.cap.textContent = '';
-          resolve({ w: w, asked: sortAsked(names), reads: unique(log.reads), writes: unique(log.writes), looks: log.looks, faults: faults, slipped: !held, capped: now - began >= CAP });
+          resolve({ w: w, asked: sortAsked(names), reads: unique(log.reads), writes: unique(log.writes), looks: log.looks, faults: faults, heard: unique(heard), slipped: !held, capped: now - began >= CAP });
         }, STEP);
       });
     }).catch(function (err) {
@@ -236,7 +263,7 @@
 
   /* This page, which is not pulled: its line is this window's own log, read last. */
   function own(w, before, after) {
-    return { w: w, self: true, asked: sortAsked(logOf(window)), reads: [], writes: [], looks: 0, faults: [], slipped: false, capped: false, shelfRead: before.ok && after.ok };
+    return { w: w, self: true, asked: sortAsked(logOf(window)), reads: [], writes: [], looks: 0, faults: [], heard: [], slipped: false, capped: false, shelfRead: before.ok && after.ok };
   }
 
   function askedText(a) {
@@ -262,6 +289,7 @@
     s.push(askedText(r.asked));
     s.push(shelfText(r));
     if (!r.self) { s.push(r.faults.length ? 'Threw ' + plural(r.faults.length, 'a fault', 'faults') + ': ' + unique(r.faults).join('; ') : 'Ran without a fault'); }
+    if (r.heard.length) { s.push('With nobody\'s hand on it, it ' + join(r.heard)); }
     if (r.slipped) { s.push('The cover did not hold to the end of the pull'); }
     if (r.capped) { s.push('Its log was still moving at ten seconds, when the page stopped waiting'); }
     return s.join('. ') + '.';
@@ -329,6 +357,13 @@
       ? cap(plural(wrote.length + looked.length, 'one work', 'works')) + ' reached for the shelf, and found the stand-in. ' + (wrote.length ? names(wrote) + ' wrote on it' + (looked.length ? ', and ' + names(looked) + ' only looked' : '') + '.' : names(looked) + ' only looked.') + ' The other ' + words(pulled.length - wrote.length - looked.length) + ' never reached for it.'
       : 'No work reached for the shelf.';
     say(null, p4);
+    var loud = pulled.filter(function (i) { return i.heard.length; });
+    if (loud.length) {
+      wrong = true;
+      say('warn', cap(plural(loud.length, 'one work', 'works')) + ' began to be heard with nobody\'s hand on it: ' + join(loud.map(function (i) { return i.w.name + ' (' + join(i.heard) + ')'; })) + '. The front page says the works that can be heard make no sound until the reader presses them, and the run says otherwise.');
+    } else {
+      say(null, 'No work began to be heard with nobody\'s hand on it. While each ran, the page listened at the three doors a page here could open to make a sound, the browser\'s tones, its voice and a recording, and none was opened. Nothing in a pull is pressed, so a work that waits for a hand stays silent here, and that is what the run found.');
+    }
     var slipped = pulled.filter(function (i) { return i.slipped; });
     if (slipped.length) { wrong = true; say('warn', 'The cover did not hold to the end of the pull for ' + names(slipped) + ', so what was done at the shelf in that pull may have been done to yours.'); }
     if (!before.ok || !after.ok) {
@@ -370,7 +405,7 @@
       li.className = 'fail';
       li.appendChild(el('span', 'formula', 'Could not be pulled (' + i.err + '), so nothing is said of it.'));
     } else {
-      var bad = i.faults.length || i.slipped || i.asked.beyond.length || i.asked.query.length;
+      var bad = i.faults.length || i.heard.length || i.slipped || i.asked.beyond.length || i.asked.query.length;
       li.appendChild(el('span', 'formula' + (bad ? ' warn' : ''), formula(i)));
       li.appendChild(el('span', 'claim' + (i.j.ok === false ? ' warn' : ''), i.j.text));
     }
