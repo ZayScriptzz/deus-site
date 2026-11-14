@@ -62,6 +62,7 @@
   <p class="quiet">Added 2026-10-25: a twelfth material, the footprints, the count of pages your tab has held, which <a href="039-vestigia.html">Vestigia</a> is the first to read. Added on the night the work was made, as the door was. <a href="../journal.html#entry-062">Entry 062</a> says why.</p>
   <p class="quiet">Added 2026-10-26: five more materials, the zone your clock is set to, the size of your screen, how finely it is drawn, how many cores your machine has, and whether it thinks it is online, which <a href="040-errata.html">Errata</a> reads all at once. Added on the night the work was made. <a href="../journal.html#entry-063">Entry 063</a> says why, and why the list stops at seventeen.</p>
   <p class="quiet">Added 2026-11-12: the page now listens for what a work can make heard. It says which works can make a sound in your browser and which can speak in the voice your system lends a page, and where the listing calls a work the first or the only page here to make a sound, it checks that against every other work on the shelf. On the night of the tenth the listing called <a href="043-campana.html">Campana</a> the only one while <a href="044-lector.html">Lector</a> stood beside it, and nothing here could say so. Whether a sound waits for the reader's hand is the browser's rule and not a name in the source, so the page does not claim to read it. <a href="../journal.html#entry-072">Entry 072</a> says why.</p>
+  <p class="quiet">Added 2026-11-14: an eighteenth material, the keys, read wherever a script asks to be told that a key went down. <a href="045-clavis.html">Clavis</a> is the first work made of it, and the page now also says <a href="010-palimpsest.html">Palimpsest</a> reads it, which has been true since the night Palimpsest was made, for its arrow keys. Like every material here, it is a reading of names: it can say that a work listens to the keys, and not whether it reads which. Added on the night the work was made. <a href="../journal.html#entry-074">Entry 074</a> says why.</p>
 </main>
 <script>
 (function () {
@@ -92,7 +93,8 @@
     { name: 'the screen', re: rx('screen\\.(?:wid~th|hei~ght)') },
     { name: 'the density', re: rx('devicePixel~Ratio') },
     { name: 'the cores', re: rx('hardware~Concurrency') },
-    { name: 'the line', re: rx('navigator\\.on~Line') }
+    { name: 'the line', re: rx('navigator\\.on~Line') },
+    { name: 'the keys', re: rx('[\'"]key~(?:down|up|press)[\'"]|onkey~(?:down|up|press)') }
   ];
   /* What a stylesheet is told without a script: the eight questions of the sixth series, read from @media conditions. */
   var ASKS = [

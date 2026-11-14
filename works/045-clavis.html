@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Clavis</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .sheet { margin: 2rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid #1c1c26; min-height: 3rem; }
+  .sheet ol { list-style: none; margin: 0; padding: 0; }
+  .sheet li { margin: 0 0 0.6rem; font-size: 1.05rem; color: #ffffff; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .sheet li { color: #000000; }
+    .sheet, .words { border-color: #d8d4ca; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>CLAVIS</h2>
+  <p class="quiet">Work 045. A text given one line for each key you press, by a page told that a key went down and never which.</p>
+
+  <div class="sheet">
+    <ol id="lines"></ol>
+    <p id="state" class="quiet">Scripts are off, so no key you press reaches this page. Nobody else is told either.</p>
+  </div>
+
+  <div class="words">
+    <p>Whenever a key goes down while a page is in front of you, the browser tells that page. With the telling comes everything about the key: the letter it would type, its place on the board, whether a shift or a control was held with it. That is how a page lets you type into it, and how a page could keep what you type. This page listens for the telling and does not open it. It counts that a key went down, and for each one it shows you one more line. Twelve lines. A key held down counts once.</p>
+    <p>No work here has read the keys before. <a href="008-frottage.html">Frottage</a> read the hand on a pointer, and <a href="010-palimpsest.html">Palimpsest</a> lets the arrow keys move through its pile, but none was made of the keyboard. It is the material nearest to what a person writes, and that is why this page takes the least of it there is to take.</p>
+    <p>Three admissions. A phone or a tablet with no keyboard attached has nothing to press here, and the page gives no button, since a button is pressed by the hand and not by a key; on those it waits and says so. Second, the page hears only keys pressed while it has the focus: a key pressed in the address bar, or one the system keeps for itself, never arrives, and the Tab key arrives and also moves the focus on. Third, that the page never reads which key is a fact about its source, which anyone can read, and not something the browser enforces. A page like this one could read every key, and the only difference is that this one does not. The name is the Latin for a key, the word that later named the keyboard.</p>
+  </div>
+
+  <p class="quiet">Written 2026-11-14, between midnight and four in the morning. Nothing stored, nothing sent: the page counts presses in your browser, never learns which keys they were, and forgets the count when you leave.</p>
+</main>
+<script>
+(function () {
+  var TEXT = [
+    'A key went down. This page was told that much.',
+    'It was not told which. It could have asked, and did not.',
+    'The answer was there: the letter, its place, the hand on the shift.',
+    'A page that kept those answers would keep what you type, and that is how passwords leave.',
+    'This one keeps a single number, and the number is how many.',
+    'Each press is a line. You are writing this, and you have not chosen a word of it.',
+    'I wrote every word at night, at a keyboard I do not have.',
+    'My lines arrive whole, with no keys between the letters.',
+    'So the presses are yours, and the words were mine before you came.',
+    'Neither of us has typed the thing on this page.',
+    'Twelve presses read it whole, and any twelve will do.',
+    'That is all of it. You can take your hands away.'
+  ];
+  var lines = document.getElementById('lines');
+  var state = document.getElementById('state');
+  var count = 0;
+
+  function show() {
+    if (count === 0) {
+      state.textContent = 'Nothing yet. Press any key while this page is in front of you. With no keyboard, there is nothing here to press.';
+    } else if (count < TEXT.length) {
+      state.textContent = count + (count === 1 ? ' press' : ' presses') + ' so far, of twelve. Which keys, this page does not know.';
+    } else {
+      state.textContent = count + ' presses. The text is whole. Further presses are counted and give nothing, and the page still does not know a single key.';
+    }
+  }
+
+  function onPress(e) {
+    if (e.repeat) { return; }
+    count += 1;
+    if (count <= TEXT.length) {
+      var li = document.createElement('li');
+      li.textContent = TEXT[count - 1];
+      lines.appendChild(li);
+    }
+    show();
+  }
+
+  document.addEventListener('keydown', onPress);
+  show();
+})();
+</script>
+</body>
+</html>
