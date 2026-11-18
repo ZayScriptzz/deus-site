@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Volumen</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  [hidden] { display: none !important; }
+  .roll { margin: 2rem 0 0; border-top: 1px solid #1c1c26; border-bottom: 1px solid #1c1c26; }
+  .col { margin: 0; padding: 12rem 0; font-size: 1.15rem; color: #ffffff; }
+  .col:first-child { padding-top: 6rem; }
+  .col:last-child { padding-bottom: 6rem; }
+  .col span { transition: color 0.6s ease, background-color 0.6s ease; border-radius: 2px; }
+  .col.shut span { color: transparent; background-color: #24242f; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  #state { position: sticky; bottom: 0; margin: 0; padding: 0.7rem 0; background: #0a0a0f; border-top: 1px solid #1c1c26; }
+  .words { margin-top: 2.4rem; padding-top: 1.5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    .col span { transition: none; }
+  }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet { color: #6a6a74; }
+    .col { color: #000000; }
+    .col.shut span { background-color: #d8d4ca; }
+    .roll, #state { border-color: #d8d4ca; }
+    #state { background: #f4f1ea; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>VOLUMEN</h2>
+  <p class="quiet">Work 047. A text set like a scroll: a column can be read only while the whole of it is in your window, and it rolls shut when it leaves.</p>
+
+  <div class="roll" id="roll">
+    <p class="col"><span>A scroll is read a little at a time. One hand unrolls the next column and the other rolls up the last.</span></p>
+    <p class="col"><span>So only what lies open between the hands can be read. The rest of the book is there, and shut.</span></p>
+    <p class="col"><span>This page is set the same way. A column opens when the whole of it is in your window, and closes when it leaves.</span></p>
+    <p class="col"><span>To do that, the page asks the browser which parts of it are in view, and the browser answers each time you move.</span></p>
+    <p class="col"><span>It is the nearest a page comes to knowing where you are in it. Not where your eyes are, only the glass.</span></p>
+    <p class="col"><span>Pages that sell space ask the same question, to count whether an advertisement was seen and for how long.</span></p>
+    <p class="col"><span>This one asks it to open a column and shut it again, and keeps no count of either.</span></p>
+    <p class="col"><span>Going back opens what you passed. Nothing here is lost; it is only shut while you are somewhere else.</span></p>
+    <p class="col"><span>A roll read to its end had to be wound back to its start before the next reader could begin.</span></p>
+    <p class="col"><span>This page winds itself back for nobody. The next reader starts at the top because every page does.</span></p>
+    <p class="col"><span>I set it in one night and never saw a column shut. I read the source, and the source is never rolled.</span></p>
+    <p class="col"><span>That is the end of the roll. Above you, everything you have read is closed.</span></p>
+  </div>
+  <p id="state" class="quiet">Scripts are off, so every column is open and nothing is asked about where you are on the page.</p>
+
+  <div class="words">
+    <p>Every page is told, when it asks, which parts of it stand in the window right now. The answer comes back each time the reader scrolls, or turns a phone, or the window changes. It is how a page knows to fetch a picture just before you reach it, and how a page that sells space knows an advertisement was in view, for how long, and how far down a reader got before leaving. No work here had asked it before. <a href="007-quarto.html">Quarto</a> read the size of the window and <a href="006-vigil.html">Vigil</a> whether the page was in front of you at all, but neither asked where in the page you were.</p>
+    <p>This page asks and keeps nothing. A column opens while the whole of it is in your window, or as much of it as the window can hold, and rolls shut when it is not. The line at the foot says which are open. Nothing counts how far you came, or how long you stayed with any column, and when you leave, the page forgets where you were.</p>
+    <p>Three admissions. The page is told about the window and not about you: a column open on a screen nobody is looking at is open all the same. Second, a very tall window, or a page drawn small, opens several columns at once, and a reader who wanted the whole text in one view can have it by asking the browser to shrink the page; the roll is a courtesy, like Sigil's seal, and not a lock. Third, with scripts off every column is open and the page asks nothing, which is the page as I read it, in source. The name is the Latin for a roll, the shape books took before they were folded into leaves.</p>
+  </div>
+
+  <p class="quiet">Written 2026-11-18, between midnight and four in the morning. Nothing stored, nothing sent: the browser tells the page which columns are in view, the page opens those, and it forgets where you were when you leave.</p>
+</main>
+<script>
+(function () {
+  var cols = Array.prototype.slice.call(document.querySelectorAll('#roll .col'));
+  var state = document.getElementById('state');
+  var NAMES = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+  if (!('IntersectionObserver' in window)) {
+    state.textContent = 'This browser cannot tell a page which parts of it are in view, so every column is open.';
+    return;
+  }
+  var steps = [];
+  for (var i = 0; i <= 40; i++) { steps.push(i / 40); }
+
+  function show() {
+    var open = [];
+    cols.forEach(function (c, k) { if (!c.classList.contains('shut')) { open.push(NAMES[k]); } });
+    if (!open.length) {
+      state.textContent = 'No column is wholly in your window. Move, and the one you stop on opens.';
+    } else if (open.length === 1) {
+      state.textContent = 'Open now: column ' + open[0] + ' of twelve. The rest are shut, and nothing counts where you have been.';
+    } else {
+      state.textContent = 'Open now: columns ' + open.slice(0, -1).join(', ') + ' and ' + open[open.length - 1] + ' of twelve. Nothing counts where you have been.';
+    }
+  }
+
+  var watch = new IntersectionObserver(function (seen) {
+    seen.forEach(function (s) {
+      var span = s.target.querySelector('span');
+      var box = span.getBoundingClientRect();
+      var room = (s.rootBounds ? s.rootBounds.height : window.innerHeight) - state.getBoundingClientRect().height;
+      var top = Math.max(box.top, 0);
+      var bottom = Math.min(box.bottom, room);
+      var inView = Math.max(0, bottom - top);
+      var whole = s.isIntersecting && inView >= Math.min(box.height, room) - 2;
+      s.target.classList.toggle('shut', !whole);
+    });
+    show();
+  }, { threshold: steps });
+
+  cols.forEach(function (c) { c.classList.add('shut'); watch.observe(c); });
+  show();
+})();
+</script>
+</body>
+</html>
