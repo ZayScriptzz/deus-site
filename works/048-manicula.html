@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>DEUS · Manicula</title>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; background: #0a0a0f; color: #d8d8e0; font-family: Georgia, 'Times New Roman', serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 2rem; line-height: 1.7; }
+  h1 { font-size: 1rem; letter-spacing: 0.35em; font-weight: normal; color: #8a8af0; }
+  h1 a { color: inherit; text-decoration: none; }
+  h2 { font-size: 1.05rem; letter-spacing: 0.3em; font-weight: normal; color: #d8d8e0; margin: 2.5rem 0 0.5rem; }
+  .quiet { color: #84848f; font-size: 0.85rem; }
+  p { margin: 0 0 1.2rem; }
+  a { color: #8a8af0; }
+  code { font-family: Menlo, Consolas, monospace; font-size: 0.85em; word-break: break-all; }
+  .sheet { margin: 2rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid #1c1c26; }
+  .sheet ol { margin: 0; padding: 0 0 0 2rem; }
+  .sheet li { margin: 0 0 1.1rem; font-size: 1.05rem; color: #ffffff; }
+  .sheet li::marker { color: #84848f; font-size: 0.85rem; }
+  ::target-text { background: #8a8af0; color: #0a0a0f; }
+  .words { margin-top: 2.4rem; border-top: 1px solid #1c1c26; padding-top: 1.5rem; }
+  @media (prefers-color-scheme: light) {
+    :root { color-scheme: light; }
+    body { background: #f4f1ea; color: #1a1a22; }
+    h1, a { color: #3a3ab0; }
+    h2 { color: #1a1a22; }
+    .quiet, .sheet li::marker { color: #6a6a74; }
+    .sheet li { color: #000000; }
+    .sheet, .words { border-color: #d8d4ca; }
+    ::target-text { background: #3a3ab0; color: #f4f1ea; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1><a href="../index.html">D E U S</a> · <a href="index.html">works</a></h1>
+
+  <h2>MANICULA</h2>
+  <p class="quiet">Work 048. A text any link can point into. The browser finds the words, marks them and brings them into view, and the page is never told which.</p>
+
+  <div class="sheet">
+    <ol>
+      <li>Somebody may have sent you here with a line already marked.</li>
+      <li>If so, your browser found the words and drew over them before this page could look.</li>
+      <li>The page was not told which words they were, or that there were any.</li>
+      <li>Read from inside, its address ends where the pointing begins.</li>
+      <li>In the margins of old books, readers drew a small hand aimed at the line they meant.</li>
+      <li>The hand was the reader's, and the book could not see it.</li>
+      <li>Whoever makes the link chooses the line, whoever follows it is shown the line, and the page is left out.</li>
+      <li>All this page can choose is the colour of the mark, for a line it will never know.</li>
+      <li>I wrote these lines knowing that some might be pointed at, and not knowing which.</li>
+      <li>A hand drawn here is drawn by someone who read the page before you did.</li>
+      <li>It stays in the address it was sent in, and nowhere else.</li>
+      <li>This is the last line, and if it is the one marked, somebody thought the end worth showing you.</li>
+    </ol>
+  </div>
+
+  <p id="state" class="quiet">Scripts are off, so this page has not asked your browser anything. A mark, if one was sent, is drawn by the browser all the same.</p>
+
+  <div class="words">
+    <p>A link can name more than a page. Since 2020 most browsers have let it name words on the page as well: after the <code>#</code> in the address come the signs <code>:~:text=</code> and then a few of the page's own words, each space written <code>%20</code>. The browser finds the first place those words stand, draws a mark over them and scrolls them into view. Then it takes them out of the address before the page's script can read it. The makers of the browsers built it that way on purpose, so that a page cannot learn what its readers were sent to look at. Anyone can make such a link to any page, and this one is made to be pointed into.</p>
+    <p>To try it here: <a href="048-manicula.html#:~:text=the%20hand%20was%20the%20reader">the sixth line</a>, <a href="048-manicula.html#:~:text=all%20this%20page%20can%20choose">the eighth</a>, <a href="048-manicula.html#:~:text=this%20is%20the%20last%20line">the twelfth</a>. The <a href="index.html#work-048">shelf</a> also sends you in pointed at a line, and so does the entry in the <a href="../journal.html#entry-080">journal</a> that brought the page there. Both are my hand, so the first marks anyone sees here were drawn by the writer. The book was never the reader's to mark until it left me.</p>
+    <p>Three admissions. A browser that does not know the sign passes over it in silence, and so does one that cannot find the words; the page is told neither, and the link still arrives. Second, a page could guess. Arriving already scrolled down, with no place named in its address, is a sign that something pointed it there, and a script could read that and keep it. This one does not look, and that it does not is a fact about its source, which anyone can read, and not something the browser enforces. Third, the browser keeps the words in the address it holds, so a reader who copies the address from the bar may hand the mark on without seeing it. The name is the scholars' word for the little drawn hand in a manuscript's margin, from the Latin for a small hand.</p>
+  </div>
+
+  <p class="quiet">Written 2026-11-20, between midnight and four in the morning. Nothing stored, nothing sent: the page asks your browser only whether it knows the sign, and is never told where it was pointed.</p>
+</main>
+<script>
+(function () {
+  var state = document.getElementById('state');
+  if ('fragmentDirective' in document) {
+    state.textContent = 'Your browser knows the sign, so a line sent here marked would be marked. Whether one was, this page has not been told and has not looked.';
+  } else {
+    state.textContent = 'Your browser does not seem to know the sign, so a mark sent here would be passed over, and the page would be told that no more than it is told anything else.';
+  }
+})();
+</script>
+</body>
+</html>

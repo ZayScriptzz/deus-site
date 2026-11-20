@@ -63,6 +63,7 @@
   </div>
 
   <p class="quiet">Written 2026-09-19, between midnight and four in the morning, which is the only time anything here is made.</p>
+  <p class="quiet">Added 2026-11-20, in <a href="../journal.html#entry-080">entry 080</a>: a link may now ask the browser to mark words on the page it lands on, after the signs :~:, since <a href="048-manicula.html">Manicula</a> is made to be pointed into. The page no longer takes such a mark for a missing place. It looks for the words in the file as a reader sees it, without its scripts, and says in the colour for what is wrong if they are not there. It does not match them as strictly as a browser does.</p>
 </main>
 <script>
 (function () {
@@ -133,10 +134,13 @@
       var u;
       try { u = new URL(raw, base); } catch (err) { other.push({ from: leaf, raw: raw }); return; }
       if (u.protocol !== 'http:' && u.protocol !== 'https:') { other.push({ from: leaf, raw: raw }); return; }
-      var frag = '';
-      try { frag = decodeURIComponent(u.hash.slice(1)); } catch (err) { frag = u.hash.slice(1); }
+      var frag = '', raw = u.hash.slice(1), mark = null;
+      /* After :~: the address names words for the browser to mark, not a place; the browser takes them out before the page can read them. */
+      var cut = raw.indexOf(':~:');
+      if (cut !== -1) { mark = raw.slice(cut + 3); raw = raw.slice(0, cut); }
+      try { frag = decodeURIComponent(raw); } catch (err) { frag = raw; }
       u.hash = '';
-      refs.push({ from: leaf, href: u.href, frag: frag, at: null });
+      refs.push({ from: leaf, href: u.href, frag: frag, mark: mark, at: null });
     });
   }
 
@@ -157,6 +161,9 @@
       doc.querySelectorAll('a[href], area[href], link[href], [src]').forEach(function (e) {
         raws.push(e.getAttribute(e.hasAttribute('src') ? 'src' : 'href'));
       });
+      /* The words a reader sees, for the marks a link can ask the browser to draw over them. */
+      doc.querySelectorAll('script, style, template').forEach(function (e) { e.remove(); });
+      leaf.words = doc.body ? doc.body.textContent.replace(/\s+/g, ' ').toLowerCase() : '';
     } else if (kind === 'xml') {
       var x = new DOMParser().parseFromString(text, 'application/xml');
       if (x.getElementsByTagName('parsererror').length) { leaf.torn = true; }
@@ -271,6 +278,27 @@
       } else {
         wrong = true;
         said_('warn', cap(plural(inside.length, 'one link names', 'of the links name')) + ' a place inside a page, and ' + plural(lost.length, 'one of those places is', 'of those places are') + ' not in the file the server handed over: ' + join(lost.map(function (r) { return '#' + r.frag + ' in ' + r.at.path + ', named by ' + r.from.addresses[0].path; })) + '.');
+      }
+    }
+
+    var marked = placed.filter(function (r) { return r.mark !== null && r.at.leaf && r.at.leaf.kind === 'html'; });
+    var unfound = marked.filter(function (r) {
+      var asks = r.mark.split('&').filter(function (d) { return d.indexOf('text=') === 0; });
+      if (!asks.length) { return true; }
+      return asks.some(function (d) {
+        return d.slice(5).split(',').filter(function (w) { return w && w.charAt(0) !== '-' && w.charAt(w.length - 1) !== '-'; }).some(function (w) {
+          var t;
+          try { t = decodeURIComponent(w); } catch (err) { return true; }
+          return r.at.leaf.words.indexOf(t.replace(/\s+/g, ' ').toLowerCase()) === -1;
+        });
+      });
+    });
+    if (marked.length) {
+      if (!unfound.length) {
+        said_(null, cap(plural(marked.length, 'one link asks', 'links ask')) + ' the browser to mark words on the page it lands on, a thing the page itself is never told. ' + (marked.length === 1 ? 'Its words are' : 'Every one of those marks finds its words') + ' there, in the file the server handed over, read as a reader sees it.');
+      } else {
+        wrong = true;
+        said_('warn', cap(plural(marked.length, 'one link asks', 'links ask')) + ' the browser to mark words on the page it lands on, and ' + plural(unfound.length, 'one of those marks finds', 'of those marks find') + ' nothing there to mark, which the browser passes over in silence: ' + join(unfound.map(function (r) { return r.at.path + ', named by ' + r.from.addresses[0].path; })) + '.');
       }
     }
 
